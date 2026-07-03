@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>UK Geospatial Converter</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header>
+  <h1>UK Geospatial Converter</h1>
+  <p class="subtitle">Paste OS Grid Refs, Irish Grid Refs, Easting/Northing, Lat/Lon, or postcodes — one per line.</p>
+</header>
+
+<main>
+  <section class="input-panel">
+    <textarea id="input-text" placeholder="NT 257 735&#10;TQ2880&#10;SW1A 1AA&#10;51.5074, -0.1278&#10;437295, 115541&#10;J 335 745&#10;BT1 5GS"></textarea>
+    <div class="controls">
+      <button id="upload-btn" class="secondary">Upload CSV…</button>
+      <input type="file" id="csv-file-input" accept=".csv,text/csv" hidden />
+      <button id="convert-btn">Convert</button>
+      <span id="status"></span>
+    </div>
+
+    <div id="upload-panel" class="upload-panel" hidden>
+      <div class="upload-panel-header">
+        <strong id="upload-filename"></strong>
+        <label class="header-toggle"><input type="checkbox" id="has-header-checkbox" /> First row is a header</label>
+      </div>
+      <p class="upload-hint">Pick one column (a mixed location string per row), or two columns to combine as "A, B" per row (e.g. separate Latitude/Longitude or Easting/Northing columns).</p>
+      <div id="column-picker" class="column-picker"></div>
+      <div class="upload-preview-wrap">
+        <table id="upload-preview-table"></table>
+      </div>
+      <div class="controls">
+        <button id="load-columns-btn">Load &amp; Convert</button>
+        <button id="cancel-upload-btn" class="secondary">Cancel</button>
+        <span id="upload-status"></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="map-panel">
+    <div id="map"></div>
+    <div class="legend" id="legend"></div>
+    <div class="display-style-control" id="display-style-control">
+      <div class="display-style-row">
+        <label><input type="radio" name="display-style" value="points" checked /> Points</label>
+        <label><input type="radio" name="display-style" value="area" /> Regions <span class="experimental-badge">experimental</span></label>
+      </div>
+      <div class="region-size-row" id="region-size-row" hidden>
+        <label>Size:
+          <select id="region-size-select">
+            <option value="area">Area</option>
+            <option value="district" selected>District</option>
+            <option value="sector">Sector</option>
+            <option value="unit">Unit</option>
+          </select>
+        </label>
+      </div>
+    </div>
+  </section>
+
+  <section class="results-panel">
+    <div class="results-panel-header">
+      <h2>Results</h2>
+      <span id="results-row-count"></span>
+      <button id="download-btn" class="secondary" disabled>Download CSV</button>
+    </div>
+    <div class="results-table-wrap">
+      <table id="results-table">
+        <thead>
+          <tr>
+            <th>Input</th>
+            <th>Type</th>
+            <th>OS Grid Ref</th>
+            <th>Easting</th>
+            <th>Northing</th>
+            <th>Irish Grid Ref</th>
+            <th>Lat</th>
+            <th>Lon</th>
+            <th>Postcode</th>
+            <th>Region</th>
+            <th>Country</th>
+          </tr>
+        </thead>
+        <tbody id="results-body"></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

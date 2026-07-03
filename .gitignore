@@ -1,0 +1,9 @@
+node_modules/
+*.log
+.env
+.claude/
+
+# Postcode boundary datasets are gigabytes in size (see the README in this
+# folder) — never commit the data itself, only the docs.
+data/postcode-boundaries/*/
+!data/postcode-boundaries/README.md
