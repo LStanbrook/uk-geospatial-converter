@@ -2,8 +2,8 @@
 
 Paste (or upload a CSV of) a mixed list of UK location references — OS Grid
 Refs, Irish Grid Refs (Northern Ireland), Easting/Northing (OSGB36), Lat/Lon
-(WGS84), or postcodes — and get every format back for each line, previewed
-in a scrollable table + CSV box, plotted on a map, and exportable as CSV.
+(WGS84), or postcodes — and get every format back for each line, in a
+scrollable results table, plotted on a map, and exportable as CSV.
 
 ## CSV upload
 
@@ -157,6 +157,31 @@ npm start        # http://localhost:3000
 ```
 
 For local iteration with auto-restart: `npm run dev`.
+
+## Deploying (Render.com)
+
+`render.yaml` in the repo root is a Render Blueprint, so deploying is just:
+
+1. Push this repo to GitHub (already done if you're reading this there).
+2. On [render.com](https://render.com), sign in with GitHub.
+3. **New +** → **Blueprint** → select this repo. Render reads `render.yaml`
+   and configures the web service (build: `npm install`, start: `npm start`,
+   health check: `/healthz`) automatically — just confirm and deploy.
+
+That's it — no server to manage, no Dockerfile needed. A couple of things
+worth knowing about this specific app in that environment:
+
+- **The postcode boundary dataset is not deployed** (it's gitignored — see
+  "Postcode boundary polygons" above, and it's several GB, well beyond what
+  a free host needs for this app to work). "Regions" map mode will fall
+  back to the illustrative circles in production. Everything else (all
+  conversions, Points mode, CSV upload/download, postcode lookups) works
+  identically.
+- The app is stateless (no database, no writes to disk at runtime), so it
+  fits a free/ephemeral-disk host without any caveats there.
+- Render's free tier spins a service down after 15 minutes idle; the next
+  visit takes ~50 seconds to wake back up. Fine for occasional/personal use
+  across devices; upgrade to a paid instance type if you want it always-on.
 
 ## Testing
 
