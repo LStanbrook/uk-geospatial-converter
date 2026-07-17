@@ -158,7 +158,7 @@ const REGION_LEVEL_LABELS = { area: 'area', district: 'district', sector: 'secto
 async function addPostcodeArea(r, colour, regionSize) {
   const code = (r.postcode || '').replace(/^~/, '');
   try {
-    const res = await fetch(`/api/boundary/${encodeURIComponent(code)}?level=${encodeURIComponent(regionSize)}`);
+    const res = await fetch(`api/boundary/${encodeURIComponent(code)}?level=${encodeURIComponent(regionSize)}`);
     if (res.ok) {
       const body = await res.json();
       const layer = L.geoJSON(body.geometry, {
@@ -315,7 +315,7 @@ async function convert() {
   status.textContent = 'Converting…';
 
   try {
-    const res = await fetch('/api/convert', {
+    const res = await fetch('api/convert', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ text }),
