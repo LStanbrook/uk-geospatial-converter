@@ -86,7 +86,7 @@ function osGridToLatLon(easting, northing) {
     const Mc = ((15 / 8) * N2 + (15 / 8) * N3) * Math.sin(2 * (phi - PHI0)) * Math.cos(2 * (phi + PHI0));
     const Md = (35 / 24) * N3 * Math.sin(3 * (phi - PHI0)) * Math.cos(3 * (phi + PHI0));
     M = B * F0 * (Ma - Mb + Mc - Md);
-  } while (northing - N0 - M >= 0.00001);
+  } while (Math.abs(northing - N0 - M) >= 0.00001);
 
   const cosPhi = Math.cos(phi);
   const sinPhi = Math.sin(phi);
