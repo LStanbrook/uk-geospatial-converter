@@ -1,4 +1,5 @@
 :root {
+  /* Brand + map-marker colours (kept in sync with TYPE_COLOURS in app.js) */
   --blue: #2563eb;
   --lightblue: #60a5fa;
   --green: #16a34a;
@@ -6,103 +7,243 @@
   --violet: #7c3aed;
   --red: #dc2626;
   --gray: #6b7280;
-  --border: #e2e8f0;
-  --bg: #f8fafc;
+
+  --accent: #2563eb;
+  --accent-dark: #1d4ed8;
+  --accent-light: #eff6ff;
+  --accent-ring: rgba(37, 99, 235, 0.25);
+
+  /* Neutral scale */
+  --slate-50: #f8fafc;
+  --slate-100: #f1f5f9;
+  --slate-200: #e2e8f0;
+  --slate-300: #cbd5e1;
+  --slate-400: #94a3b8;
+  --slate-500: #64748b;
+  --slate-600: #475569;
+  --slate-700: #334155;
+  --slate-800: #1e293b;
+  --slate-900: #0f172a;
+
+  --border: var(--slate-200);
+  --bg: var(--slate-50);
+
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 16px;
+
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
+  --shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px -8px rgba(15, 23, 42, 0.10);
+  --shadow-float: 0 4px 16px -4px rgba(15, 23, 42, 0.18);
+
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", Consolas, Menlo, monospace;
 }
 
 * { box-sizing: border-box; }
 
+html { color-scheme: light; }
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: var(--font-sans);
   margin: 0;
-  background: var(--bg);
-  color: #0f172a;
+  background:
+    radial-gradient(1200px 480px at 12% -10%, rgba(37, 99, 235, 0.07), transparent 60%),
+    var(--bg);
+  color: var(--slate-900);
+  -webkit-font-smoothing: antialiased;
 }
 
+a { color: var(--accent); }
+
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---------------------------------------------------------------------
+   Header
+   --------------------------------------------------------------------- */
+
 header {
-  padding: 1.25rem 1.5rem 0.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 1100;
+  padding: 1rem 1.5rem;
+  background: rgba(248, 250, 252, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--slate-200);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.brand-mark {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background: linear-gradient(135deg, var(--accent), var(--violet));
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
 }
 
 header h1 {
-  margin: 0 0 0.25rem;
-  font-size: 1.5rem;
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--slate-900);
 }
 
 .subtitle {
-  margin: 0;
-  color: #475569;
-  font-size: 0.9rem;
+  margin: 0.15rem 0 0;
+  color: var(--slate-500);
+  font-size: 0.87rem;
 }
+
+/* ---------------------------------------------------------------------
+   Layout
+   --------------------------------------------------------------------- */
 
 main {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto 1fr;
-  gap: 1rem;
-  padding: 1rem 1.5rem 2rem;
+  gap: 1.25rem;
+  padding: 1.25rem 1.5rem 2.5rem;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
 }
 
 .input-panel {
   grid-column: 1 / 2;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.75rem;
+  padding: 1.1rem;
 }
+
+/* ---------------------------------------------------------------------
+   Form controls
+   --------------------------------------------------------------------- */
 
 textarea {
   width: 100%;
   height: 220px;
-  padding: 0.75rem;
-  font-family: "SF Mono", Consolas, Menlo, monospace;
+  padding: 0.85rem;
+  font-family: var(--font-mono);
   font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--slate-800);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: var(--radius);
   resize: vertical;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-ring);
 }
 
 .controls {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.6rem;
+  flex-wrap: wrap;
 }
 
 button {
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  border: 1px solid var(--blue);
-  background: var(--blue);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1.05rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--accent);
+  background: var(--accent);
   color: white;
-  font-size: 0.9rem;
+  font-family: inherit;
+  font-size: 0.87rem;
+  font-weight: 600;
   cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+button svg { flex-shrink: 0; }
+
+button:hover {
+  background: var(--accent-dark);
+  border-color: var(--accent-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px -2px var(--accent-ring);
+}
+
+button:active {
+  transform: translateY(0);
 }
 
 button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 button#download-btn,
+button#download-xlsx-btn,
 button#upload-btn,
 button.secondary {
   background: white;
-  color: var(--blue);
+  color: var(--accent);
+  border-color: var(--border);
+}
+
+button#download-btn:hover,
+button#download-xlsx-btn:hover,
+button#upload-btn:hover,
+button.secondary:hover {
+  background: var(--accent-light);
+  border-color: var(--accent);
+  color: var(--accent-dark);
 }
 
 #status,
 #upload-status {
   font-size: 0.85rem;
-  color: #475569;
+  color: var(--slate-600);
 }
 
+/* ---------------------------------------------------------------------
+   CSV upload panel
+   --------------------------------------------------------------------- */
+
 .upload-panel {
-  margin-top: 0.25rem;
-  padding: 0.85rem;
+  margin-top: 0.1rem;
+  padding: 0.9rem;
   border: 1px solid var(--border);
-  border-radius: 8px;
-  background: white;
+  border-radius: var(--radius);
+  background: var(--slate-50);
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0.65rem;
 }
 
 .upload-panel-header {
@@ -115,16 +256,17 @@ button.secondary {
 .header-toggle {
   font-weight: normal;
   font-size: 0.8rem;
-  color: #475569;
+  color: var(--slate-600);
   display: flex;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.35rem;
+  cursor: pointer;
 }
 
 .upload-hint {
   margin: 0;
   font-size: 0.78rem;
-  color: #475569;
+  color: var(--slate-500);
 }
 
 .column-picker {
@@ -137,23 +279,32 @@ button.secondary {
   display: flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.3rem 0.6rem;
+  padding: 0.32rem 0.7rem;
   border: 1px solid var(--border);
   border-radius: 999px;
   font-size: 0.8rem;
+  background: white;
   cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.column-picker label:hover {
+  border-color: var(--accent);
 }
 
 .column-picker label.selected {
-  border-color: var(--blue);
-  background: #eff6ff;
+  border-color: var(--accent);
+  background: var(--accent-light);
+  color: var(--accent-dark);
+  font-weight: 600;
 }
 
 .upload-preview-wrap {
   max-height: 160px;
   overflow: auto;
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
+  background: white;
 }
 
 #upload-preview-table {
@@ -164,75 +315,26 @@ button.secondary {
 
 #upload-preview-table th,
 #upload-preview-table td {
-  padding: 0.3rem 0.5rem;
+  padding: 0.32rem 0.55rem;
   border-bottom: 1px solid var(--border);
   white-space: nowrap;
   text-align: left;
 }
 
 #upload-preview-table th {
-  background: #f1f5f9;
-}
-
-.display-style-control {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  z-index: 1000;
-  background: white;
-  padding: 0.45rem 0.7rem;
-  border-radius: 6px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
-  font-size: 0.8rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.display-style-row {
-  display: flex;
-  gap: 0.75rem;
-}
-
-.display-style-control label {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  cursor: pointer;
-}
-
-.experimental-badge {
-  display: inline-block;
-  padding: 0.05rem 0.4rem;
-  border-radius: 999px;
-  background: #fef3c7;
-  color: #92400e;
-  font-size: 0.68rem;
+  background: var(--slate-100);
+  color: var(--slate-600);
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
 }
 
-.region-size-row {
-  border-top: 1px solid var(--border);
-  padding-top: 0.4rem;
-  font-size: 0.78rem;
-  color: #475569;
-}
-
-.region-size-row select {
-  font-size: 0.78rem;
-  padding: 0.15rem 0.3rem;
-  border-radius: 4px;
-  border: 1px solid var(--border);
-}
+/* ---------------------------------------------------------------------
+   Map panel + floating controls
+   --------------------------------------------------------------------- */
 
 .map-panel {
   grid-column: 2 / 3;
   grid-row: 1 / 3;
   position: relative;
-  border: 1px solid var(--border);
-  border-radius: 8px;
   overflow: hidden;
   min-height: 500px;
 }
@@ -243,17 +345,92 @@ button.secondary {
   min-height: 500px;
 }
 
+.display-style-control,
+.legend {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: var(--shadow-float);
+  border-radius: var(--radius-sm);
+}
+
+.display-style-control {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 1000;
+  padding: 0.55rem 0.75rem;
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.display-style-row {
+  display: flex;
+  gap: 0.9rem;
+}
+
+.display-style-control label {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  cursor: pointer;
+  color: var(--slate-700);
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  accent-color: var(--accent);
+}
+
+.experimental-badge {
+  display: inline-block;
+  padding: 0.05rem 0.42rem;
+  border-radius: 999px;
+  background: #fef3c7;
+  color: #92400e;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.region-size-row {
+  border-top: 1px solid var(--slate-200);
+  padding-top: 0.45rem;
+  font-size: 0.78rem;
+  color: var(--slate-600);
+}
+
+.region-size-row select {
+  font-family: inherit;
+  font-size: 0.78rem;
+  padding: 0.2rem 1.5rem 0.2rem 0.4rem;
+  border-radius: 6px;
+  border: 1px solid var(--slate-300);
+  background: white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 0.35rem center / 12px 12px;
+  appearance: none;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.region-size-row select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-ring);
+}
+
 .legend {
   position: absolute;
   bottom: 12px;
   left: 12px;
   z-index: 1000;
-  background: white;
-  padding: 0.5rem 0.75rem;
-  border-radius: 6px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  padding: 0.55rem 0.8rem;
   font-size: 0.8rem;
-  line-height: 1.5;
+  line-height: 1.6;
+  color: var(--slate-700);
 }
 
 .legend .swatch {
@@ -264,36 +441,44 @@ button.secondary {
   margin-right: 6px;
 }
 
+/* ---------------------------------------------------------------------
+   Results panel
+   --------------------------------------------------------------------- */
+
 .results-panel {
   grid-column: 1 / 2;
   display: flex;
   flex-direction: column;
   min-height: 0;
   max-height: 460px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: white;
   overflow: hidden;
 }
 
 .results-panel-header {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.6rem 0.75rem;
+  gap: 0.6rem;
+  padding: 0.65rem 0.85rem;
   border-bottom: 1px solid var(--border);
-  background: #f8fafc;
+  background: var(--slate-50);
 }
 
 .results-panel-header h2 {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--slate-800);
 }
 
 #results-row-count {
   font-size: 0.78rem;
-  color: #475569;
+  color: var(--slate-500);
   flex: 1;
+}
+
+.results-panel-header button {
+  padding: 0.42rem 0.75rem;
+  font-size: 0.78rem;
 }
 
 .results-table-wrap {
@@ -308,21 +493,35 @@ table {
 }
 
 th, td {
-  padding: 0.4rem 0.6rem;
+  padding: 0.45rem 0.65rem;
   text-align: left;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--slate-100);
   white-space: nowrap;
 }
 
 th {
   position: sticky;
   top: 0;
-  background: #f1f5f9;
+  background: var(--slate-100);
+  color: var(--slate-600);
+  font-weight: 600;
   z-index: 1;
 }
 
+tbody tr {
+  transition: background 0.1s ease;
+}
+
+tbody tr:hover {
+  background: var(--slate-50);
+}
+
 tr.error-row {
-  background: #fef2f2;
+  background: rgba(220, 38, 38, 0.05);
+}
+
+tr.error-row:hover {
+  background: rgba(220, 38, 38, 0.09);
 }
 
 .not-found {
@@ -333,10 +532,40 @@ tr.error-row {
 
 .type-badge {
   display: inline-block;
-  padding: 0.1rem 0.45rem;
+  padding: 0.14rem 0.55rem;
   border-radius: 999px;
   color: white;
-  font-size: 0.72rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* ---------------------------------------------------------------------
+   Scrollbars (WebKit/Chromium) — cosmetic only, degrades gracefully
+   --------------------------------------------------------------------- */
+
+.results-table-wrap::-webkit-scrollbar,
+.upload-preview-wrap::-webkit-scrollbar,
+textarea::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.results-table-wrap::-webkit-scrollbar-thumb,
+.upload-preview-wrap::-webkit-scrollbar-thumb,
+textarea::-webkit-scrollbar-thumb {
+  background: var(--slate-300);
+  border-radius: 999px;
+}
+
+.results-table-wrap::-webkit-scrollbar-track,
+.upload-preview-wrap::-webkit-scrollbar-track,
+textarea::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
 }
 
 @media (max-width: 900px) {
@@ -348,5 +577,8 @@ tr.error-row {
   }
   .map-panel {
     grid-row: auto;
+  }
+  header {
+    position: static;
   }
 }
