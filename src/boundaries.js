@@ -1,14 +1,21 @@
 /**
  * Loads postcode boundary polygons on demand from a dataset dropped in
  * data/postcode-boundaries/ (see the README there). Expects the layout
- * used by community-generated "gb-postcodes" style datasets:
+ * used by community-generated "gb-postcodes" style datasets, with either
+ * plural or singular subfolder names:
  *
  *   <dataset root>/
- *     areas/{AREA}.geojson                       one feature, e.g. areas/AB.geojson
- *     districts/{DISTRICT}.geojson                one feature, e.g. districts/AB10.geojson
- *     sectors/{DISTRICT}/{DISTRICT} {N}.geojson    one feature, e.g. sectors/AB10/AB10 1.geojson
- *     units/{DISTRICT}.geojson                     MANY features (every unit postcode in that
- *                                                   district), matched by a mapit_code property
+ *     areas|area/{AREA}.geojson                       one feature, e.g. areas/AB.geojson
+ *     districts|district/{DISTRICT}.geojson            one feature, e.g. districts/AB10.geojson
+ *     sectors|sector/{DISTRICT}/{DISTRICT} {N}.geojson  one feature, e.g. sectors/AB10/AB10 1.geojson
+ *     units|unit/{DISTRICT}.geojson                     MANY features (every unit postcode in that
+ *                                                        district), matched by a mapit_code/postcode property
+ *
+ * If more than one candidate dataset folder is found one level down inside
+ * data/postcode-boundaries/, the most recently modified one wins — so
+ * dropping in a replacement dataset alongside an old one is enough to
+ * switch over, no code change needed. Set POSTCODE_BOUNDARIES_DATASET to a
+ * folder name (e.g. "gb-postcodes-v5") to pin a specific one instead.
  *
  * This is an *approximation* — typically Voronoi/Thiessen polygons built
  * from postcode centroids, not an official Ordnance Survey / ONS boundary
@@ -25,48 +32,78 @@ const fs = require('fs');
 const path = require('path');
 
 const BOUNDARIES_DIR = path.join(__dirname, '..', 'data', 'postcode-boundaries');
-const REQUIRED_SUBDIRS = ['areas', 'districts', 'sectors', 'units'];
+// Datasets are laid out with either plural ("areas/") or singular ("area/")
+// subfolder names depending on the source generator — both are accepted.
+const SUBDIR_CONVENTIONS = [
+  { area: 'areas', district: 'districts', sector: 'sectors', unit: 'units' },
+  { area: 'area', district: 'district', sector: 'sector', unit: 'unit' },
+];
 const LEVELS = ['area', 'district', 'sector', 'unit'];
 const MAX_CACHED_FILES = 300;
 
-let datasetRoot; // resolved once, then cached; `null` means "checked, not found"
+let dataset; // resolved once, then cached; `null` means "checked, not found"
 const fileCache = new Map(); // filePath -> parsed JSON (or null)
 
-function hasAllSubdirs(dir) {
-  return REQUIRED_SUBDIRS.every((sub) => {
-    try {
-      return fs.statSync(path.join(dir, sub)).isDirectory();
-    } catch {
-      return false;
-    }
-  });
+/** Returns the matching subdir-name convention for `dir`, or null if incomplete. */
+function matchSubdirConvention(dir) {
+  return (
+    SUBDIR_CONVENTIONS.find((subdirs) =>
+      Object.values(subdirs).every((sub) => {
+        try {
+          return fs.statSync(path.join(dir, sub)).isDirectory();
+        } catch {
+          return false;
+        }
+      })
+    ) || null
+  );
 }
 
-/** Finds the dataset root: either data/postcode-boundaries/ itself, or one subfolder down. */
+/**
+ * Finds the dataset root: either data/postcode-boundaries/ itself, or one
+ * subfolder down. When multiple candidate dataset folders exist one level
+ * down (e.g. swapping in a replacement without deleting the old one), the
+ * most recently modified one wins.
+ */
 function resolveDatasetRoot() {
-  if (datasetRoot !== undefined) return datasetRoot;
+  if (dataset !== undefined) return dataset;
 
-  if (hasAllSubdirs(BOUNDARIES_DIR)) {
-    datasetRoot = BOUNDARIES_DIR;
-    return datasetRoot;
+  const pinned = process.env.POSTCODE_BOUNDARIES_DATASET;
+  if (pinned) {
+    const candidate = path.join(BOUNDARIES_DIR, pinned);
+    const subdirs = matchSubdirConvention(candidate);
+    if (subdirs) {
+      dataset = { root: candidate, subdirs };
+      return dataset;
+    }
+    console.warn(`[boundaries] POSTCODE_BOUNDARIES_DATASET="${pinned}" not found or incomplete — falling back to auto-detect.`);
+  }
+
+  const atTopLevel = matchSubdirConvention(BOUNDARIES_DIR);
+  if (atTopLevel) {
+    dataset = { root: BOUNDARIES_DIR, subdirs: atTopLevel };
+    return dataset;
   }
 
   try {
     const entries = fs.readdirSync(BOUNDARIES_DIR, { withFileTypes: true });
+    let best = null;
     for (const entry of entries) {
       if (!entry.isDirectory()) continue;
       const candidate = path.join(BOUNDARIES_DIR, entry.name);
-      if (hasAllSubdirs(candidate)) {
-        datasetRoot = candidate;
-        return datasetRoot;
-      }
+      const subdirs = matchSubdirConvention(candidate);
+      if (!subdirs) continue;
+      const mtimeMs = fs.statSync(candidate).mtimeMs;
+      if (!best || mtimeMs > best.mtimeMs) best = { root: candidate, subdirs, mtimeMs };
     }
+    dataset = best ? { root: best.root, subdirs: best.subdirs } : null;
+    return dataset;
   } catch {
     // BOUNDARIES_DIR itself doesn't exist — fine, no dataset available.
   }
 
-  datasetRoot = null;
-  return datasetRoot;
+  dataset = null;
+  return dataset;
 }
 
 function loadFile(filePath) {
@@ -119,25 +156,26 @@ function postcodeParts(rawPostcode) {
   };
 }
 
-function filePathForLevel(root, level, parts) {
+function filePathForLevel(root, subdirs, level, parts) {
   switch (level) {
     case 'area':
-      return parts.area ? path.join(root, 'areas', `${parts.area}.geojson`) : null;
+      return parts.area ? path.join(root, subdirs.area, `${parts.area}.geojson`) : null;
     case 'district':
-      return parts.district ? path.join(root, 'districts', `${parts.district}.geojson`) : null;
+      return parts.district ? path.join(root, subdirs.district, `${parts.district}.geojson`) : null;
     case 'sector':
       return parts.sectorFileName
-        ? path.join(root, 'sectors', parts.district, `${parts.sectorFileName}.geojson`)
+        ? path.join(root, subdirs.sector, parts.district, `${parts.sectorFileName}.geojson`)
         : null;
     case 'unit':
-      return parts.district ? path.join(root, 'units', `${parts.district}.geojson`) : null;
+      return parts.district ? path.join(root, subdirs.unit, `${parts.district}.geojson`) : null;
     default:
       return null;
   }
 }
 
 function normaliseMapitCode(props) {
-  const raw = props?.mapit_code ?? props?.area ?? props?.district ?? props?.sector ?? props?.postcodes;
+  const raw =
+    props?.mapit_code ?? props?.area ?? props?.district ?? props?.sector ?? props?.postcodes ?? props?.postcode;
   return raw ? String(raw).toUpperCase().replace(/\s+/g, '') : null;
 }
 
@@ -154,14 +192,14 @@ function fallbackChain(requestedLevel) {
  * back to 'district'. Returns { geometry, level, code } or null.
  */
 function findBoundary(postcode, requestedLevel = 'district') {
-  const root = resolveDatasetRoot();
-  if (!root) return null;
+  const ds = resolveDatasetRoot();
+  if (!ds) return null;
 
   const parts = postcodeParts(postcode);
   if (!parts) return null;
 
   for (const level of fallbackChain(requestedLevel)) {
-    const filePath = filePathForLevel(root, level, parts);
+    const filePath = filePathForLevel(ds.root, ds.subdirs, level, parts);
     if (!filePath) continue;
 
     const data = loadFile(filePath);
@@ -181,11 +219,11 @@ function findBoundary(postcode, requestedLevel = 'district') {
 
 /** Called once at server startup, purely to log whether a dataset was found. */
 function loadBoundaries() {
-  const root = resolveDatasetRoot();
-  if (!root) {
+  const ds = resolveDatasetRoot();
+  if (!ds) {
     console.log('[boundaries] No dataset found in data/postcode-boundaries/ — using circle fallback only.');
   } else {
-    console.log(`[boundaries] Found postcode boundary dataset at ${root} (loaded on demand, not eagerly).`);
+    console.log(`[boundaries] Found postcode boundary dataset at ${ds.root} (loaded on demand, not eagerly).`);
   }
 }
 
