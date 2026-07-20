@@ -184,8 +184,26 @@ async function convertLine(raw) {
   return result;
 }
 
+// Postcode/grid-ref lines each trigger 1-2 network lookups (postcodes.io).
+// Firing all of them at once for a large paste/CSV blows past Node's
+// per-origin connection limit and most requests fail outright with a
+// low-level "fetch failed" rather than a clean HTTP error — so lines are
+// processed in small concurrent batches instead of all at once.
+const CONCURRENCY = 8;
+
 async function convertBatch(lines) {
-  return Promise.all(lines.map((line) => convertLine(line)));
+  const results = new Array(lines.length);
+  let next = 0;
+
+  async function worker() {
+    while (next < lines.length) {
+      const i = next++;
+      results[i] = await convertLine(lines[i]);
+    }
+  }
+
+  await Promise.all(Array.from({ length: Math.min(CONCURRENCY, lines.length) }, worker));
+  return results;
 }
 
 module.exports = { convertLine, convertBatch };
