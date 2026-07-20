@@ -153,9 +153,19 @@ function addPointMarker(r, colour) {
 }
 
 const REGION_LEVEL_LABELS = { area: 'area', district: 'district', sector: 'sector', unit: 'unit' };
+const REGION_LEVEL_RANK = { area: 0, district: 1, sector: 2, unit: 3 };
 
-/** Draws a boundary polygon if the dataset has one at (or below) the requested level, else an illustrative circle. */
-async function addPostcodeArea(r, colour, regionSize) {
+/**
+ * Builds a boundary polygon (or illustrative circle fallback) for a
+ * postcode, without adding it to the map yet — the caller adds layers in
+ * coarsest-to-finest order once every lookup has resolved, so a finer
+ * boundary (e.g. a sector) always ends up drawn on top of, and clickable
+ * over, a coarser one (e.g. an area) it happens to overlap. Doing the
+ * addTo() here instead, as each fetch resolves, would make the stacking
+ * order depend on network timing — overlapping polygons would flicker
+ * between which one is on top from one conversion to the next.
+ */
+async function buildPostcodeAreaLayer(r, colour, regionSize) {
   const code = (r.postcode || '').replace(/^~/, '');
   try {
     const res = await fetch(`api/boundary/${encodeURIComponent(code)}?level=${encodeURIComponent(regionSize)}`);
@@ -172,8 +182,7 @@ async function addPostcodeArea(r, colour, regionSize) {
         popupHtml(r) +
           `<br/><em>Experimental region boundary (${escapeHtml(levelNote)}) — approximate, not an official OS/ONS boundary.</em>`
       );
-      layer.addTo(markerLayer);
-      return;
+      return { layer, rank: REGION_LEVEL_RANK[body.level] ?? 0 };
     }
   } catch {
     // network error — fall through to the circle fallback below
@@ -192,13 +201,14 @@ async function addPostcodeArea(r, colour, regionSize) {
     popupHtml(r) +
       '<br/><em>No boundary dataset found for this postcode — illustrative circle only, not a real area. See data/postcode-boundaries/README.md.</em>'
   );
-  circle.addTo(markerLayer);
+  return { layer: circle, rank: REGION_LEVEL_RANK[regionSize] ?? 0 };
 }
 
-async function renderMarkers(results) {
+async function renderMarkers(results, { refit = true } = {}) {
   markerLayer.clearLayers();
   const bounds = [];
   const regionSize = document.getElementById('region-size-select').value;
+  const areaLayers = [];
 
   const jobs = results.map(async (r) => {
     if (r.lat == null || r.lon == null) return;
@@ -210,54 +220,55 @@ async function renderMarkers(results) {
     // Easting/Northing input that reverse-geocoded to a nearby postcode
     // should show that postcode's region too.
     if (displayStyle === 'area' && r.postcode) {
-      await addPostcodeArea(r, colour, regionSize);
+      areaLayers.push(await buildPostcodeAreaLayer(r, colour, regionSize));
     } else {
       addPointMarker(r, colour);
     }
   });
 
   await Promise.all(jobs);
-  if (bounds.length) map.fitBounds(bounds, { padding: [30, 30], maxZoom: 12 });
+  areaLayers
+    .sort((a, b) => a.rank - b.rank)
+    .forEach(({ layer }) => layer.addTo(markerLayer));
+  if (refit && bounds.length) map.fitBounds(bounds, { padding: [30, 30], maxZoom: 12 });
 }
 
 document.querySelectorAll('input[name="display-style"]').forEach((el) => {
   el.addEventListener('change', (e) => {
     displayStyle = e.target.value;
     document.getElementById('region-size-row').hidden = displayStyle !== 'area';
-    renderMarkers(lastResults);
+    renderMarkers(lastResults, { refit: false });
   });
 });
 
 document.getElementById('region-size-select').addEventListener('change', () => {
-  if (displayStyle === 'area') renderMarkers(lastResults);
+  if (displayStyle === 'area') renderMarkers(lastResults, { refit: false });
 });
 
 // ---------------------------------------------------------------------
 // CSV export
 // ---------------------------------------------------------------------
 
-function toCsv(results) {
-  const headers = [
-    'Original Input',
-    'Detected Type',
-    'OS Grid Ref',
-    'Easting (OSGB36)',
-    'Northing (OSGB36)',
-    'Irish Grid Ref',
-    'Easting (Irish Grid)',
-    'Northing (Irish Grid)',
-    'Latitude (WGS84)',
-    'Longitude (WGS84)',
-    'Postcode',
-    'Region',
-    'Country',
-    'Error',
-  ];
-  const escapeCsv = (v) => {
-    const s = v === null || v === undefined ? '' : String(v);
-    return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
-  };
-  const rows = results.map((r) => {
+const EXPORT_HEADERS = [
+  'Original Input',
+  'Detected Type',
+  'OS Grid Ref',
+  'Easting (OSGB36)',
+  'Northing (OSGB36)',
+  'Irish Grid Ref',
+  'Easting (Irish Grid)',
+  'Northing (Irish Grid)',
+  'Latitude (WGS84)',
+  'Longitude (WGS84)',
+  'Postcode',
+  'Region',
+  'Country',
+  'Error',
+];
+
+/** Shared row data (as arrays, unescaped) for both the CSV and Excel exports. */
+function toExportRows(results) {
+  return results.map((r) => {
     const hasError = Boolean(r.error);
     const field = (v) => (v === null || v === undefined ? (hasError ? NOT_FOUND : '') : v);
     return [
@@ -275,11 +286,21 @@ function toCsv(results) {
       field(r.region),
       field(r.country),
       r.error || '',
-    ]
-      .map(escapeCsv)
-      .join(',');
+    ];
   });
-  return [headers.join(','), ...rows].join('\r\n');
+}
+
+function toCsv(results) {
+  const escapeCsv = (v) => {
+    const s = v === null || v === undefined ? '' : String(v);
+    return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+  };
+  const rows = toExportRows(results).map((row) => row.map(escapeCsv).join(','));
+  return [EXPORT_HEADERS.join(','), ...rows].join('\r\n');
+}
+
+function exportFilename(extension) {
+  return `geospatial-conversion-${new Date().toISOString().slice(0, 19).replace(/[:T]/g, '-')}.${extension}`;
 }
 
 function downloadCsv(results) {
@@ -288,11 +309,18 @@ function downloadCsv(results) {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = `geospatial-conversion-${new Date().toISOString().slice(0, 19).replace(/[:T]/g, '-')}.csv`;
+  a.download = exportFilename('csv');
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
+}
+
+function downloadXlsx(results) {
+  const worksheet = XLSX.utils.aoa_to_sheet([EXPORT_HEADERS, ...toExportRows(results)]);
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, 'Conversions');
+  XLSX.writeFile(workbook, exportFilename('xlsx'));
 }
 
 // ---------------------------------------------------------------------
@@ -304,6 +332,7 @@ async function convert() {
   const status = document.getElementById('status');
   const convertBtn = document.getElementById('convert-btn');
   const downloadBtn = document.getElementById('download-btn');
+  const downloadXlsxBtn = document.getElementById('download-xlsx-btn');
 
   if (!text.trim()) {
     status.textContent = 'Paste some input first.';
@@ -312,6 +341,7 @@ async function convert() {
 
   convertBtn.disabled = true;
   downloadBtn.disabled = true;
+  downloadXlsxBtn.disabled = true;
   status.textContent = 'Converting…';
 
   try {
@@ -329,6 +359,7 @@ async function convert() {
     const errorCount = lastResults.filter((r) => r.error).length;
     status.textContent = `Converted ${lastResults.length} line(s)${errorCount ? `, ${errorCount} not found` : ''}.`;
     downloadBtn.disabled = lastResults.length === 0;
+    downloadXlsxBtn.disabled = lastResults.length === 0;
   } catch (err) {
     status.textContent = `Error: ${err.message}`;
   } finally {
@@ -338,6 +369,7 @@ async function convert() {
 
 document.getElementById('convert-btn').addEventListener('click', convert);
 document.getElementById('download-btn').addEventListener('click', () => downloadCsv(lastResults));
+document.getElementById('download-xlsx-btn').addEventListener('click', () => downloadXlsx(lastResults));
 
 // ---------------------------------------------------------------------
 // CSV upload + column picker
@@ -502,7 +534,12 @@ document.getElementById('load-columns-btn').addEventListener('click', () => {
     .filter(Boolean);
 
   document.getElementById('input-text').value = lines.join('\n');
-  resetUploadPanel();
+  // Deliberately leave the upload panel open (rather than resetting it) —
+  // if the header checkbox or column choice turns out to be wrong once you
+  // see the converted results, you can fix it and hit "Load & Convert"
+  // again without re-uploading the file. "Cancel" or picking a new file
+  // are the only things that actually clear this state.
+  document.getElementById('upload-status').textContent = 'Converted below. Adjust settings above and reload if needed.';
   convert(); // loading columns in should go straight to converting, no extra click
 });
 
