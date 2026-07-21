@@ -118,8 +118,9 @@ function renderTable(results) {
         <td>${cell(r.lat, 6)}</td>
         <td>${cell(r.lon, 6)}</td>
         <td>${cell(r.postcode)}</td>
-        <td>${cell(r.region)}</td>
-        <td>${cell(r.country)}</td>
+        <td>${cell(r.itl1)}</td>
+        <td>${cell(r.itl2)}</td>
+        <td>${cell(r.itl3)}</td>
       </tr>`;
     })
     .join('');
@@ -130,13 +131,14 @@ function renderTable(results) {
 // ---------------------------------------------------------------------
 
 function popupHtml(r) {
+  const itlBreadcrumb = [r.itl1, r.itl2, r.itl3].filter(Boolean).map(escapeHtml).join(' &rsaquo; ');
   return (
     `<strong>${escapeHtml(r.input)}</strong><br/>${TYPE_LABELS[r.type] || r.type}<br/>` +
     `Lat/Lon: ${fmt(r.lat, 5)}, ${fmt(r.lon, 5)}<br/>` +
     (r.osGridRef ? `OS Grid: ${r.osGridRef}<br/>` : '') +
     (r.irishGridRef ? `Irish Grid: ${r.irishGridRef}<br/>` : '') +
     (r.postcode ? `Postcode: ${r.postcode}<br/>` : '') +
-    (r.region ? `Region: ${r.region}` : '')
+    (itlBreadcrumb ? `ITL Region: ${itlBreadcrumb}` : '')
   );
 }
 
@@ -261,8 +263,9 @@ const EXPORT_HEADERS = [
   'Latitude (WGS84)',
   'Longitude (WGS84)',
   'Postcode',
-  'Region',
-  'Country',
+  'ITL1',
+  'ITL2',
+  'ITL3',
   'Error',
 ];
 
@@ -283,8 +286,9 @@ function toExportRows(results) {
       field(r.lat),
       field(r.lon),
       field(r.postcode),
-      field(r.region),
-      field(r.country),
+      field(r.itl1),
+      field(r.itl2),
+      field(r.itl3),
       r.error || '',
     ];
   });

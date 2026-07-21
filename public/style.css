@@ -395,6 +395,13 @@ input[type="checkbox"] {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.03em;
+  cursor: help;
+}
+
+.info-hint {
+  cursor: help;
+  color: var(--slate-400);
+  font-size: 0.85em;
 }
 
 .region-size-row {

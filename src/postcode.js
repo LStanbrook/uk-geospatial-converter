@@ -18,8 +18,52 @@
 
 const path = require('path');
 const niSample = require(path.join('..', 'data', 'ni-postcode-sample.json'));
+const { byLad: ITL_BY_LAD, byName: ITL_BY_LAD_NAME } = require(path.join('..', 'data', 'itl-lookup.json'));
 
 const POSTCODES_IO_BASE = 'https://api.postcodes.io';
+
+/** Unique, non-null values across several ITL lookups, joined for display (e.g. "Wandsworth / Westminster"). */
+function mergeItlLevel(entries, level) {
+  const values = [...new Set(entries.map((e) => e[level]).filter(Boolean))];
+  return values.length ? values.join(' / ') : null;
+}
+
+/**
+ * Derives ITL1/ITL2/ITL3 area names from a postcode's Local Authority
+ * District (LAD) GSS code (e.g. postcodes.io's codes.admin_district,
+ * "W06000015") plus its name(s) as a fallback. Deliberately not keyed by
+ * postcodes.io's own codes.nuts — that field turned out to be a different
+ * vintage/numbering to the ONS lookup data/itl-lookup.json was built from
+ * for Scotland and Wales (code-prefix matching silently produced wrong or
+ * missing ITL2 names, e.g. Cardiff/Edinburgh), even though ITL1 happened to
+ * still resolve. LAD GSS codes agree far more often, but can still drift
+ * between vintages (observed for Sheffield), so an exact-code miss falls
+ * back to a name match — LAD names are the most stable identifier of the three.
+ *
+ * `ladName` may be a single name (full postcodes) or an *array* of names —
+ * postcodes.io's /outcodes/ endpoint (partial postcodes) returns
+ * admin_district as an array when the outward code spans several districts,
+ * with no GSS code at all. Each level is merged independently: a partial
+ * postcode straddling Wandsworth and Westminster still resolves a single
+ * ITL1/ITL2 ("London" / "Inner London - West") since both districts share
+ * those, only ITL3 shows the straddle ("Wandsworth / Westminster").
+ */
+function itlFromLad(ladCode, ladName) {
+  if (ladCode && ITL_BY_LAD[ladCode]) {
+    const entry = ITL_BY_LAD[ladCode];
+    return { itl1: entry.itl1, itl2: entry.itl2, itl3: entry.itl3 };
+  }
+
+  const names = Array.isArray(ladName) ? ladName : ladName ? [ladName] : [];
+  const entries = names.map((n) => ITL_BY_LAD_NAME[n.toLowerCase()]).filter(Boolean);
+  if (!entries.length) return { itl1: null, itl2: null, itl3: null };
+
+  return {
+    itl1: mergeItlLevel(entries, 'itl1'),
+    itl2: mergeItlLevel(entries, 'itl2'),
+    itl3: mergeItlLevel(entries, 'itl3'),
+  };
+}
 
 function isNorthernIrelandPostcode(postcode) {
   return /^BT/i.test(postcode.trim());
@@ -55,12 +99,14 @@ async function lookupGbPostcode(postcode) {
   if (!body || body.status !== 200 || !body.result) return null;
 
   const r = body.result;
+  const { itl1, itl2, itl3 } = itlFromLad(r.codes?.admin_district, r.admin_district);
   return {
     lat: r.latitude,
     lon: r.longitude,
     postcode: r.postcode || outwardCode(postcode),
-    region: r.admin_district || r.region || (r.admin_district_codes ? r.admin_district_codes[0] : null),
-    country: r.country || null,
+    itl1,
+    itl2,
+    itl3,
     source: 'postcodes.io',
   };
 }
@@ -75,8 +121,11 @@ function lookupNiPostcode(postcode) {
     lat: entry.lat,
     lon: entry.lon,
     postcode: district,
-    region: entry.district,
-    country: 'Northern Ireland',
+    // NI has no ITL2 subdivision — ITL1 and ITL2 are both simply "Northern
+    // Ireland", with ITL3 splitting into its 11 local government districts.
+    itl1: 'Northern Ireland',
+    itl2: 'Northern Ireland',
+    itl3: entry.district,
     source: 'sample-data (approximate district centroid — replace with LPS Pointer for production)',
   };
 }
@@ -102,9 +151,12 @@ async function nearestGbPostcode(lat, lon) {
     const body = await res.json();
     const match = body?.result?.[0];
     if (!match) return null;
+    const { itl1, itl2, itl3 } = itlFromLad(match.codes?.admin_district, match.admin_district);
     return {
       postcode: match.postcode,
-      region: match.admin_district,
+      itl1,
+      itl2,
+      itl3,
       distanceMetres: match.distance,
     };
   } catch {

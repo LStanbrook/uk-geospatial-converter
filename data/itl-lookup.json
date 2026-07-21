@@ -1,0 +1,3617 @@
+{
+  "_readme": "Local Authority District (LAD) -> ITL1/ITL2/ITL3 area names. Source: ONS Open Geography Portal, 'LAD (April 2023) to LAU1 to ITL3 to ITL2 to ITL1 (January 2021) Lookup in the UK' (https://geoportal.statistics.gov.uk/). 'byLad' is keyed by LAD GSS code (postcodes.io's codes.admin_district); deliberately not keyed by postcodes.io's own codes.nuts, which turned out to be a different vintage/numbering for Scotland and Wales (silently wrong/missing ITL2, e.g. Cardiff/Edinburgh). 'byName' is a fallback keyed by lowercased LAD name (postcodes.io's admin_district) for the rare case where even LAD GSS codes have drifted between vintages (observed for Sheffield: E08000019 here vs E08000039 from postcodes.io) — LAD names are far more stable than either code scheme. Northern Ireland's 11 LAD entries are included for completeness but unused in practice — NI postcodes are handled via data/ni-postcode-sample.json, whose district names match these LAD names directly.",
+  "byLad": {
+    "E06000001": {
+      "itl1": "North East (England)",
+      "itl2": "Tees Valley and Durham",
+      "itl3": "Hartlepool and Stockton-on-Tees"
+    },
+    "E06000002": {
+      "itl1": "North East (England)",
+      "itl2": "Tees Valley and Durham",
+      "itl3": "South Teesside"
+    },
+    "E06000003": {
+      "itl1": "North East (England)",
+      "itl2": "Tees Valley and Durham",
+      "itl3": "South Teesside"
+    },
+    "E06000004": {
+      "itl1": "North East (England)",
+      "itl2": "Tees Valley and Durham",
+      "itl3": "Hartlepool and Stockton-on-Tees"
+    },
+    "E06000005": {
+      "itl1": "North East (England)",
+      "itl2": "Tees Valley and Durham",
+      "itl3": "Darlington"
+    },
+    "E06000006": {
+      "itl1": "North West (England)",
+      "itl2": "Merseyside",
+      "itl3": "East Merseyside"
+    },
+    "E06000007": {
+      "itl1": "North West (England)",
+      "itl2": "Cheshire",
+      "itl3": "Warrington"
+    },
+    "E06000008": {
+      "itl1": "North West (England)",
+      "itl2": "Lancashire",
+      "itl3": "Blackburn with Darwen"
+    },
+    "E06000009": {
+      "itl1": "North West (England)",
+      "itl2": "Lancashire",
+      "itl3": "Blackpool"
+    },
+    "E06000010": {
+      "itl1": "Yorkshire and The Humber",
+      "itl2": "East Yorkshire and Northern Lincolnshire",
+      "itl3": "Kingston upon Hull, City of"
+    },
+    "E06000011": {
+      "itl1": "Yorkshire and The Humber",
+      "itl2": "East Yorkshire and Northern Lincolnshire",
+      "itl3": "East Riding of Yorkshire"
+    },
+    "E06000012": {
+      "itl1": "Yorkshire and The Humber",
+      "itl2": "East Yorkshire and Northern Lincolnshire",
+      "itl3": "North and North East Lincolnshire"
+    },
+    "E06000013": {
+      "itl1": "Yorkshire and The Humber",
+      "itl2": "East Yorkshire and Northern Lincolnshire",
+      "itl3": "North and North East Lincolnshire"
+    },
+    "E06000014": {
+      "itl1": "Yorkshire and The Humber",
+      "itl2": "North Yorkshire",
+      "itl3": "York"
+    },
+    "E06000015": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Derbyshire and Nottinghamshire",
+      "itl3": "Derby"
+    },
+    "E06000016": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Leicestershire, Rutland and Northamptonshire",
+      "itl3": "Leicester"
+    },
+    "E06000017": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Leicestershire, Rutland and Northamptonshire",
+      "itl3": "Leicestershire CC and Rutland"
+    },
+    "E06000018": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Derbyshire and Nottinghamshire",
+      "itl3": "Nottingham"
+    },
+    "E06000019": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Herefordshire, Worcestershire and Warwickshire",
+      "itl3": "Herefordshire, County of"
+    },
+    "E06000020": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Shropshire and Staffordshire",
+      "itl3": "Telford and Wrekin"
+    },
+    "E06000021": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Shropshire and Staffordshire",
+      "itl3": "Stoke-on-Trent"
+    },
+    "E06000022": {
+      "itl1": "South West (England)",
+      "itl2": "Gloucestershire, Wiltshire and Bath/Bristol area",
+      "itl3": "Bath and North East Somerset, North Somerset and South Gloucestershire"
+    },
+    "E06000023": {
+      "itl1": "South West (England)",
+      "itl2": "Gloucestershire, Wiltshire and Bath/Bristol area",
+      "itl3": "Bristol, City of"
+    },
+    "E06000024": {
+      "itl1": "South West (England)",
+      "itl2": "Gloucestershire, Wiltshire and Bath/Bristol area",
+      "itl3": "Bath and North East Somerset, North Somerset and South Gloucestershire"
+    },
+    "E06000025": {
+      "itl1": "South West (England)",
+      "itl2": "Gloucestershire, Wiltshire and Bath/Bristol area",
+      "itl3": "Bath and North East Somerset, North Somerset and South Gloucestershire"
+    },
+    "E06000026": {
+      "itl1": "South West (England)",
+      "itl2": "Devon",
+      "itl3": "Plymouth"
+    },
+    "E06000027": {
+      "itl1": "South West (England)",
+      "itl2": "Devon",
+      "itl3": "Torbay"
+    },
+    "E06000030": {
+      "itl1": "South West (England)",
+      "itl2": "Gloucestershire, Wiltshire and Bath/Bristol area",
+      "itl3": "Swindon"
+    },
+    "E06000031": {
+      "itl1": "East",
+      "itl2": "East Anglia",
+      "itl3": "Peterborough"
+    },
+    "E06000032": {
+      "itl1": "East",
+      "itl2": "Bedfordshire and Hertfordshire",
+      "itl3": "Luton"
+    },
+    "E06000033": {
+      "itl1": "East",
+      "itl2": "Essex",
+      "itl3": "Southend-on-Sea"
+    },
+    "E06000034": {
+      "itl1": "East",
+      "itl2": "Essex",
+      "itl3": "Thurrock"
+    },
+    "E06000035": {
+      "itl1": "South East (England)",
+      "itl2": "Kent",
+      "itl3": "Medway"
+    },
+    "E06000036": {
+      "itl1": "South East (England)",
+      "itl2": "Berkshire, Buckinghamshire and Oxfordshire",
+      "itl3": "Berkshire"
+    },
+    "E06000037": {
+      "itl1": "South East (England)",
+      "itl2": "Berkshire, Buckinghamshire and Oxfordshire",
+      "itl3": "Berkshire"
+    },
+    "E06000038": {
+      "itl1": "South East (England)",
+      "itl2": "Berkshire, Buckinghamshire and Oxfordshire",
+      "itl3": "Berkshire"
+    },
+    "E06000039": {
+      "itl1": "South East (England)",
+      "itl2": "Berkshire, Buckinghamshire and Oxfordshire",
+      "itl3": "Berkshire"
+    },
+    "E06000040": {
+      "itl1": "South East (England)",
+      "itl2": "Berkshire, Buckinghamshire and Oxfordshire",
+      "itl3": "Berkshire"
+    },
+    "E06000041": {
+      "itl1": "South East (England)",
+      "itl2": "Berkshire, Buckinghamshire and Oxfordshire",
+      "itl3": "Berkshire"
+    },
+    "E06000042": {
+      "itl1": "South East (England)",
+      "itl2": "Berkshire, Buckinghamshire and Oxfordshire",
+      "itl3": "Milton Keynes"
+    },
+    "E06000043": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "Brighton and Hove"
+    },
+    "E06000044": {
+      "itl1": "South East (England)",
+      "itl2": "Hampshire and Isle of Wight",
+      "itl3": "Portsmouth"
+    },
+    "E06000045": {
+      "itl1": "South East (England)",
+      "itl2": "Hampshire and Isle of Wight",
+      "itl3": "Southampton"
+    },
+    "E06000046": {
+      "itl1": "South East (England)",
+      "itl2": "Hampshire and Isle of Wight",
+      "itl3": "Isle of Wight"
+    },
+    "E06000047": {
+      "itl1": "North East (England)",
+      "itl2": "Tees Valley and Durham",
+      "itl3": "Durham"
+    },
+    "E06000049": {
+      "itl1": "North West (England)",
+      "itl2": "Cheshire",
+      "itl3": "Cheshire East"
+    },
+    "E06000050": {
+      "itl1": "North West (England)",
+      "itl2": "Cheshire",
+      "itl3": "Cheshire West and Chester"
+    },
+    "E06000051": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Shropshire and Staffordshire",
+      "itl3": "Shropshire"
+    },
+    "E06000052": {
+      "itl1": "South West (England)",
+      "itl2": "Cornwall and Isles of Scilly",
+      "itl3": "Cornwall and Isles of Scilly"
+    },
+    "E06000053": {
+      "itl1": "South West (England)",
+      "itl2": "Cornwall and Isles of Scilly",
+      "itl3": "Cornwall and Isles of Scilly"
+    },
+    "E06000054": {
+      "itl1": "South West (England)",
+      "itl2": "Gloucestershire, Wiltshire and Bath/Bristol area",
+      "itl3": "Wiltshire"
+    },
+    "E06000055": {
+      "itl1": "East",
+      "itl2": "Bedfordshire and Hertfordshire",
+      "itl3": "Bedford"
+    },
+    "E06000056": {
+      "itl1": "East",
+      "itl2": "Bedfordshire and Hertfordshire",
+      "itl3": "Central Bedfordshire"
+    },
+    "E06000057": {
+      "itl1": "North East (England)",
+      "itl2": "Northumberland, and Tyne and Wear",
+      "itl3": "Northumberland"
+    },
+    "E06000058": {
+      "itl1": "South West (England)",
+      "itl2": "Dorset and Somerset",
+      "itl3": "Bournemouth, Christchurch and Poole"
+    },
+    "E06000059": {
+      "itl1": "South West (England)",
+      "itl2": "Dorset and Somerset",
+      "itl3": "Dorset"
+    },
+    "E06000060": {
+      "itl1": "South East (England)",
+      "itl2": "Berkshire, Buckinghamshire and Oxfordshire",
+      "itl3": "Buckinghamshire"
+    },
+    "E06000061": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Leicestershire, Rutland and Northamptonshire",
+      "itl3": "North Northamptonshire"
+    },
+    "E06000062": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Leicestershire, Rutland and Northamptonshire",
+      "itl3": "West Northamptonshire"
+    },
+    "E06000063": {
+      "itl1": "North West (England)",
+      "itl2": "Cumbria",
+      "itl3": "East Cumbria"
+    },
+    "E06000064": {
+      "itl1": "North West (England)",
+      "itl2": "Cumbria",
+      "itl3": "East Cumbria"
+    },
+    "E06000065": {
+      "itl1": "Yorkshire and The Humber",
+      "itl2": "North Yorkshire",
+      "itl3": "North Yorkshire CC"
+    },
+    "E06000066": {
+      "itl1": "South West (England)",
+      "itl2": "Dorset and Somerset",
+      "itl3": "Somerset CC"
+    },
+    "E07000008": {
+      "itl1": "East",
+      "itl2": "East Anglia",
+      "itl3": "Cambridgeshire CC"
+    },
+    "E07000009": {
+      "itl1": "East",
+      "itl2": "East Anglia",
+      "itl3": "Cambridgeshire CC"
+    },
+    "E07000010": {
+      "itl1": "East",
+      "itl2": "East Anglia",
+      "itl3": "Cambridgeshire CC"
+    },
+    "E07000011": {
+      "itl1": "East",
+      "itl2": "East Anglia",
+      "itl3": "Cambridgeshire CC"
+    },
+    "E07000012": {
+      "itl1": "East",
+      "itl2": "East Anglia",
+      "itl3": "Cambridgeshire CC"
+    },
+    "E07000032": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Derbyshire and Nottinghamshire",
+      "itl3": "South and West Derbyshire"
+    },
+    "E07000033": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Derbyshire and Nottinghamshire",
+      "itl3": "East Derbyshire"
+    },
+    "E07000034": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Derbyshire and Nottinghamshire",
+      "itl3": "East Derbyshire"
+    },
+    "E07000035": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Derbyshire and Nottinghamshire",
+      "itl3": "South and West Derbyshire"
+    },
+    "E07000036": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Derbyshire and Nottinghamshire",
+      "itl3": "South and West Derbyshire"
+    },
+    "E07000037": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Derbyshire and Nottinghamshire",
+      "itl3": "South and West Derbyshire"
+    },
+    "E07000038": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Derbyshire and Nottinghamshire",
+      "itl3": "East Derbyshire"
+    },
+    "E07000039": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Derbyshire and Nottinghamshire",
+      "itl3": "South and West Derbyshire"
+    },
+    "E07000040": {
+      "itl1": "South West (England)",
+      "itl2": "Devon",
+      "itl3": "Devon CC"
+    },
+    "E07000041": {
+      "itl1": "South West (England)",
+      "itl2": "Devon",
+      "itl3": "Devon CC"
+    },
+    "E07000042": {
+      "itl1": "South West (England)",
+      "itl2": "Devon",
+      "itl3": "Devon CC"
+    },
+    "E07000043": {
+      "itl1": "South West (England)",
+      "itl2": "Devon",
+      "itl3": "Devon CC"
+    },
+    "E07000044": {
+      "itl1": "South West (England)",
+      "itl2": "Devon",
+      "itl3": "Devon CC"
+    },
+    "E07000045": {
+      "itl1": "South West (England)",
+      "itl2": "Devon",
+      "itl3": "Devon CC"
+    },
+    "E07000046": {
+      "itl1": "South West (England)",
+      "itl2": "Devon",
+      "itl3": "Devon CC"
+    },
+    "E07000047": {
+      "itl1": "South West (England)",
+      "itl2": "Devon",
+      "itl3": "Devon CC"
+    },
+    "E07000061": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "East Sussex CC"
+    },
+    "E07000062": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "East Sussex CC"
+    },
+    "E07000063": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "East Sussex CC"
+    },
+    "E07000064": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "East Sussex CC"
+    },
+    "E07000065": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "East Sussex CC"
+    },
+    "E07000066": {
+      "itl1": "East",
+      "itl2": "Essex",
+      "itl3": "Essex Thames Gateway"
+    },
+    "E07000067": {
+      "itl1": "East",
+      "itl2": "Essex",
+      "itl3": "Essex Haven Gateway"
+    },
+    "E07000068": {
+      "itl1": "East",
+      "itl2": "Essex",
+      "itl3": "Heart of Essex"
+    },
+    "E07000069": {
+      "itl1": "East",
+      "itl2": "Essex",
+      "itl3": "Essex Thames Gateway"
+    },
+    "E07000070": {
+      "itl1": "East",
+      "itl2": "Essex",
+      "itl3": "Heart of Essex"
+    },
+    "E07000071": {
+      "itl1": "East",
+      "itl2": "Essex",
+      "itl3": "Essex Haven Gateway"
+    },
+    "E07000072": {
+      "itl1": "East",
+      "itl2": "Essex",
+      "itl3": "West Essex"
+    },
+    "E07000073": {
+      "itl1": "East",
+      "itl2": "Essex",
+      "itl3": "West Essex"
+    },
+    "E07000074": {
+      "itl1": "East",
+      "itl2": "Essex",
+      "itl3": "Heart of Essex"
+    },
+    "E07000075": {
+      "itl1": "East",
+      "itl2": "Essex",
+      "itl3": "Essex Thames Gateway"
+    },
+    "E07000076": {
+      "itl1": "East",
+      "itl2": "Essex",
+      "itl3": "Essex Haven Gateway"
+    },
+    "E07000077": {
+      "itl1": "East",
+      "itl2": "Essex",
+      "itl3": "West Essex"
+    },
+    "E07000078": {
+      "itl1": "South West (England)",
+      "itl2": "Gloucestershire, Wiltshire and Bath/Bristol area",
+      "itl3": "Gloucestershire CC"
+    },
+    "E07000079": {
+      "itl1": "South West (England)",
+      "itl2": "Gloucestershire, Wiltshire and Bath/Bristol area",
+      "itl3": "Gloucestershire CC"
+    },
+    "E07000080": {
+      "itl1": "South West (England)",
+      "itl2": "Gloucestershire, Wiltshire and Bath/Bristol area",
+      "itl3": "Gloucestershire CC"
+    },
+    "E07000081": {
+      "itl1": "South West (England)",
+      "itl2": "Gloucestershire, Wiltshire and Bath/Bristol area",
+      "itl3": "Gloucestershire CC"
+    },
+    "E07000082": {
+      "itl1": "South West (England)",
+      "itl2": "Gloucestershire, Wiltshire and Bath/Bristol area",
+      "itl3": "Gloucestershire CC"
+    },
+    "E07000083": {
+      "itl1": "South West (England)",
+      "itl2": "Gloucestershire, Wiltshire and Bath/Bristol area",
+      "itl3": "Gloucestershire CC"
+    },
+    "E07000084": {
+      "itl1": "South East (England)",
+      "itl2": "Hampshire and Isle of Wight",
+      "itl3": "North Hampshire"
+    },
+    "E07000085": {
+      "itl1": "South East (England)",
+      "itl2": "Hampshire and Isle of Wight",
+      "itl3": "Central Hampshire"
+    },
+    "E07000086": {
+      "itl1": "South East (England)",
+      "itl2": "Hampshire and Isle of Wight",
+      "itl3": "South Hampshire"
+    },
+    "E07000087": {
+      "itl1": "South East (England)",
+      "itl2": "Hampshire and Isle of Wight",
+      "itl3": "South Hampshire"
+    },
+    "E07000088": {
+      "itl1": "South East (England)",
+      "itl2": "Hampshire and Isle of Wight",
+      "itl3": "South Hampshire"
+    },
+    "E07000089": {
+      "itl1": "South East (England)",
+      "itl2": "Hampshire and Isle of Wight",
+      "itl3": "North Hampshire"
+    },
+    "E07000090": {
+      "itl1": "South East (England)",
+      "itl2": "Hampshire and Isle of Wight",
+      "itl3": "South Hampshire"
+    },
+    "E07000091": {
+      "itl1": "South East (England)",
+      "itl2": "Hampshire and Isle of Wight",
+      "itl3": "Central Hampshire"
+    },
+    "E07000092": {
+      "itl1": "South East (England)",
+      "itl2": "Hampshire and Isle of Wight",
+      "itl3": "North Hampshire"
+    },
+    "E07000093": {
+      "itl1": "South East (England)",
+      "itl2": "Hampshire and Isle of Wight",
+      "itl3": "Central Hampshire"
+    },
+    "E07000094": {
+      "itl1": "South East (England)",
+      "itl2": "Hampshire and Isle of Wight",
+      "itl3": "Central Hampshire"
+    },
+    "E07000095": {
+      "itl1": "East",
+      "itl2": "Bedfordshire and Hertfordshire",
+      "itl3": "Hertfordshire CC"
+    },
+    "E07000096": {
+      "itl1": "East",
+      "itl2": "Bedfordshire and Hertfordshire",
+      "itl3": "Hertfordshire CC"
+    },
+    "E07000098": {
+      "itl1": "East",
+      "itl2": "Bedfordshire and Hertfordshire",
+      "itl3": "Hertfordshire CC"
+    },
+    "E07000099": {
+      "itl1": "East",
+      "itl2": "Bedfordshire and Hertfordshire",
+      "itl3": "Hertfordshire CC"
+    },
+    "E07000102": {
+      "itl1": "East",
+      "itl2": "Bedfordshire and Hertfordshire",
+      "itl3": "Hertfordshire CC"
+    },
+    "E07000103": {
+      "itl1": "East",
+      "itl2": "Bedfordshire and Hertfordshire",
+      "itl3": "Hertfordshire CC"
+    },
+    "E07000105": {
+      "itl1": "South East (England)",
+      "itl2": "Kent",
+      "itl3": "Mid Kent"
+    },
+    "E07000106": {
+      "itl1": "South East (England)",
+      "itl2": "Kent",
+      "itl3": "East Kent"
+    },
+    "E07000107": {
+      "itl1": "South East (England)",
+      "itl2": "Kent",
+      "itl3": "Kent Thames Gateway"
+    },
+    "E07000108": {
+      "itl1": "South East (England)",
+      "itl2": "Kent",
+      "itl3": "East Kent"
+    },
+    "E07000109": {
+      "itl1": "South East (England)",
+      "itl2": "Kent",
+      "itl3": "Kent Thames Gateway"
+    },
+    "E07000110": {
+      "itl1": "South East (England)",
+      "itl2": "Kent",
+      "itl3": "Mid Kent"
+    },
+    "E07000111": {
+      "itl1": "South East (England)",
+      "itl2": "Kent",
+      "itl3": "West Kent"
+    },
+    "E07000112": {
+      "itl1": "South East (England)",
+      "itl2": "Kent",
+      "itl3": "East Kent"
+    },
+    "E07000113": {
+      "itl1": "South East (England)",
+      "itl2": "Kent",
+      "itl3": "Kent Thames Gateway"
+    },
+    "E07000114": {
+      "itl1": "South East (England)",
+      "itl2": "Kent",
+      "itl3": "East Kent"
+    },
+    "E07000115": {
+      "itl1": "South East (England)",
+      "itl2": "Kent",
+      "itl3": "West Kent"
+    },
+    "E07000116": {
+      "itl1": "South East (England)",
+      "itl2": "Kent",
+      "itl3": "West Kent"
+    },
+    "E07000117": {
+      "itl1": "North West (England)",
+      "itl2": "Lancashire",
+      "itl3": "East Lancashire"
+    },
+    "E07000118": {
+      "itl1": "North West (England)",
+      "itl2": "Lancashire",
+      "itl3": "Chorley and West Lancashire"
+    },
+    "E07000119": {
+      "itl1": "North West (England)",
+      "itl2": "Lancashire",
+      "itl3": "Mid Lancashire"
+    },
+    "E07000120": {
+      "itl1": "North West (England)",
+      "itl2": "Lancashire",
+      "itl3": "East Lancashire"
+    },
+    "E07000121": {
+      "itl1": "North West (England)",
+      "itl2": "Lancashire",
+      "itl3": "Lancaster and Wyre"
+    },
+    "E07000122": {
+      "itl1": "North West (England)",
+      "itl2": "Lancashire",
+      "itl3": "East Lancashire"
+    },
+    "E07000123": {
+      "itl1": "North West (England)",
+      "itl2": "Lancashire",
+      "itl3": "Mid Lancashire"
+    },
+    "E07000124": {
+      "itl1": "North West (England)",
+      "itl2": "Lancashire",
+      "itl3": "Mid Lancashire"
+    },
+    "E07000125": {
+      "itl1": "North West (England)",
+      "itl2": "Lancashire",
+      "itl3": "East Lancashire"
+    },
+    "E07000126": {
+      "itl1": "North West (England)",
+      "itl2": "Lancashire",
+      "itl3": "Mid Lancashire"
+    },
+    "E07000127": {
+      "itl1": "North West (England)",
+      "itl2": "Lancashire",
+      "itl3": "Chorley and West Lancashire"
+    },
+    "E07000128": {
+      "itl1": "North West (England)",
+      "itl2": "Lancashire",
+      "itl3": "Lancaster and Wyre"
+    },
+    "E07000129": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Leicestershire, Rutland and Northamptonshire",
+      "itl3": "Leicestershire CC and Rutland"
+    },
+    "E07000130": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Leicestershire, Rutland and Northamptonshire",
+      "itl3": "Leicestershire CC and Rutland"
+    },
+    "E07000131": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Leicestershire, Rutland and Northamptonshire",
+      "itl3": "Leicestershire CC and Rutland"
+    },
+    "E07000132": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Leicestershire, Rutland and Northamptonshire",
+      "itl3": "Leicestershire CC and Rutland"
+    },
+    "E07000133": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Leicestershire, Rutland and Northamptonshire",
+      "itl3": "Leicestershire CC and Rutland"
+    },
+    "E07000134": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Leicestershire, Rutland and Northamptonshire",
+      "itl3": "Leicestershire CC and Rutland"
+    },
+    "E07000135": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Leicestershire, Rutland and Northamptonshire",
+      "itl3": "Leicestershire CC and Rutland"
+    },
+    "E07000136": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Lincolnshire",
+      "itl3": "Lincolnshire CC"
+    },
+    "E07000137": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Lincolnshire",
+      "itl3": "Lincolnshire CC"
+    },
+    "E07000138": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Lincolnshire",
+      "itl3": "Lincolnshire CC"
+    },
+    "E07000139": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Lincolnshire",
+      "itl3": "Lincolnshire CC"
+    },
+    "E07000140": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Lincolnshire",
+      "itl3": "Lincolnshire CC"
+    },
+    "E07000141": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Lincolnshire",
+      "itl3": "Lincolnshire CC"
+    },
+    "E07000142": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Lincolnshire",
+      "itl3": "Lincolnshire CC"
+    },
+    "E07000143": {
+      "itl1": "East",
+      "itl2": "East Anglia",
+      "itl3": "Breckland and South Norfolk"
+    },
+    "E07000144": {
+      "itl1": "East",
+      "itl2": "East Anglia",
+      "itl3": "Norwich and East Norfolk"
+    },
+    "E07000145": {
+      "itl1": "East",
+      "itl2": "East Anglia",
+      "itl3": "Norwich and East Norfolk"
+    },
+    "E07000146": {
+      "itl1": "East",
+      "itl2": "East Anglia",
+      "itl3": "North and West Norfolk"
+    },
+    "E07000147": {
+      "itl1": "East",
+      "itl2": "East Anglia",
+      "itl3": "North and West Norfolk"
+    },
+    "E07000148": {
+      "itl1": "East",
+      "itl2": "East Anglia",
+      "itl3": "Norwich and East Norfolk"
+    },
+    "E07000149": {
+      "itl1": "East",
+      "itl2": "East Anglia",
+      "itl3": "Breckland and South Norfolk"
+    },
+    "E07000170": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Derbyshire and Nottinghamshire",
+      "itl3": "North Nottinghamshire"
+    },
+    "E07000171": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Derbyshire and Nottinghamshire",
+      "itl3": "North Nottinghamshire"
+    },
+    "E07000172": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Derbyshire and Nottinghamshire",
+      "itl3": "South Nottinghamshire"
+    },
+    "E07000173": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Derbyshire and Nottinghamshire",
+      "itl3": "South Nottinghamshire"
+    },
+    "E07000174": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Derbyshire and Nottinghamshire",
+      "itl3": "North Nottinghamshire"
+    },
+    "E07000175": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Derbyshire and Nottinghamshire",
+      "itl3": "North Nottinghamshire"
+    },
+    "E07000176": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Derbyshire and Nottinghamshire",
+      "itl3": "South Nottinghamshire"
+    },
+    "E07000177": {
+      "itl1": "South East (England)",
+      "itl2": "Berkshire, Buckinghamshire and Oxfordshire",
+      "itl3": "Oxfordshire CC"
+    },
+    "E07000178": {
+      "itl1": "South East (England)",
+      "itl2": "Berkshire, Buckinghamshire and Oxfordshire",
+      "itl3": "Oxfordshire CC"
+    },
+    "E07000179": {
+      "itl1": "South East (England)",
+      "itl2": "Berkshire, Buckinghamshire and Oxfordshire",
+      "itl3": "Oxfordshire CC"
+    },
+    "E07000180": {
+      "itl1": "South East (England)",
+      "itl2": "Berkshire, Buckinghamshire and Oxfordshire",
+      "itl3": "Oxfordshire CC"
+    },
+    "E07000181": {
+      "itl1": "South East (England)",
+      "itl2": "Berkshire, Buckinghamshire and Oxfordshire",
+      "itl3": "Oxfordshire CC"
+    },
+    "E07000192": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Shropshire and Staffordshire",
+      "itl3": "Staffordshire CC"
+    },
+    "E07000193": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Shropshire and Staffordshire",
+      "itl3": "Staffordshire CC"
+    },
+    "E07000194": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Shropshire and Staffordshire",
+      "itl3": "Staffordshire CC"
+    },
+    "E07000195": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Shropshire and Staffordshire",
+      "itl3": "Staffordshire CC"
+    },
+    "E07000196": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Shropshire and Staffordshire",
+      "itl3": "Staffordshire CC"
+    },
+    "E07000197": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Shropshire and Staffordshire",
+      "itl3": "Staffordshire CC"
+    },
+    "E07000198": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Shropshire and Staffordshire",
+      "itl3": "Staffordshire CC"
+    },
+    "E07000199": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Shropshire and Staffordshire",
+      "itl3": "Staffordshire CC"
+    },
+    "E07000200": {
+      "itl1": "East",
+      "itl2": "East Anglia",
+      "itl3": "Suffolk CC"
+    },
+    "E07000202": {
+      "itl1": "East",
+      "itl2": "East Anglia",
+      "itl3": "Suffolk CC"
+    },
+    "E07000203": {
+      "itl1": "East",
+      "itl2": "East Anglia",
+      "itl3": "Suffolk CC"
+    },
+    "E07000207": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "West Surrey"
+    },
+    "E07000208": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "East Surrey"
+    },
+    "E07000209": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "West Surrey"
+    },
+    "E07000210": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "East Surrey"
+    },
+    "E07000211": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "East Surrey"
+    },
+    "E07000212": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "West Surrey"
+    },
+    "E07000213": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "West Surrey"
+    },
+    "E07000214": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "West Surrey"
+    },
+    "E07000215": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "East Surrey"
+    },
+    "E07000216": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "West Surrey"
+    },
+    "E07000217": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "West Surrey"
+    },
+    "E07000218": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Herefordshire, Worcestershire and Warwickshire",
+      "itl3": "Warwickshire CC"
+    },
+    "E07000219": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Herefordshire, Worcestershire and Warwickshire",
+      "itl3": "Warwickshire CC"
+    },
+    "E07000220": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Herefordshire, Worcestershire and Warwickshire",
+      "itl3": "Warwickshire CC"
+    },
+    "E07000221": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Herefordshire, Worcestershire and Warwickshire",
+      "itl3": "Warwickshire CC"
+    },
+    "E07000222": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Herefordshire, Worcestershire and Warwickshire",
+      "itl3": "Warwickshire CC"
+    },
+    "E07000223": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "West Sussex (South West)"
+    },
+    "E07000224": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "West Sussex (South West)"
+    },
+    "E07000225": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "West Sussex (South West)"
+    },
+    "E07000226": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "West Sussex (North East)"
+    },
+    "E07000227": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "West Sussex (North East)"
+    },
+    "E07000228": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "West Sussex (North East)"
+    },
+    "E07000229": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "West Sussex (South West)"
+    },
+    "E07000234": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Herefordshire, Worcestershire and Warwickshire",
+      "itl3": "Worcestershire CC"
+    },
+    "E07000235": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Herefordshire, Worcestershire and Warwickshire",
+      "itl3": "Worcestershire CC"
+    },
+    "E07000236": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Herefordshire, Worcestershire and Warwickshire",
+      "itl3": "Worcestershire CC"
+    },
+    "E07000237": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Herefordshire, Worcestershire and Warwickshire",
+      "itl3": "Worcestershire CC"
+    },
+    "E07000238": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Herefordshire, Worcestershire and Warwickshire",
+      "itl3": "Worcestershire CC"
+    },
+    "E07000239": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Herefordshire, Worcestershire and Warwickshire",
+      "itl3": "Worcestershire CC"
+    },
+    "E07000240": {
+      "itl1": "East",
+      "itl2": "Bedfordshire and Hertfordshire",
+      "itl3": "Hertfordshire CC"
+    },
+    "E07000241": {
+      "itl1": "East",
+      "itl2": "Bedfordshire and Hertfordshire",
+      "itl3": "Hertfordshire CC"
+    },
+    "E07000242": {
+      "itl1": "East",
+      "itl2": "Bedfordshire and Hertfordshire",
+      "itl3": "Hertfordshire CC"
+    },
+    "E07000243": {
+      "itl1": "East",
+      "itl2": "Bedfordshire and Hertfordshire",
+      "itl3": "Hertfordshire CC"
+    },
+    "E07000244": {
+      "itl1": "East",
+      "itl2": "East Anglia",
+      "itl3": "Suffolk CC"
+    },
+    "E07000245": {
+      "itl1": "East",
+      "itl2": "East Anglia",
+      "itl3": "Suffolk CC"
+    },
+    "E08000001": {
+      "itl1": "North West (England)",
+      "itl2": "Greater Manchester",
+      "itl3": "Greater Manchester North West"
+    },
+    "E08000002": {
+      "itl1": "North West (England)",
+      "itl2": "Greater Manchester",
+      "itl3": "Greater Manchester North East"
+    },
+    "E08000003": {
+      "itl1": "North West (England)",
+      "itl2": "Greater Manchester",
+      "itl3": "Manchester"
+    },
+    "E08000004": {
+      "itl1": "North West (England)",
+      "itl2": "Greater Manchester",
+      "itl3": "Greater Manchester North East"
+    },
+    "E08000005": {
+      "itl1": "North West (England)",
+      "itl2": "Greater Manchester",
+      "itl3": "Greater Manchester North East"
+    },
+    "E08000006": {
+      "itl1": "North West (England)",
+      "itl2": "Greater Manchester",
+      "itl3": "Greater Manchester South West"
+    },
+    "E08000007": {
+      "itl1": "North West (England)",
+      "itl2": "Greater Manchester",
+      "itl3": "Greater Manchester South East"
+    },
+    "E08000008": {
+      "itl1": "North West (England)",
+      "itl2": "Greater Manchester",
+      "itl3": "Greater Manchester South East"
+    },
+    "E08000009": {
+      "itl1": "North West (England)",
+      "itl2": "Greater Manchester",
+      "itl3": "Greater Manchester South West"
+    },
+    "E08000010": {
+      "itl1": "North West (England)",
+      "itl2": "Greater Manchester",
+      "itl3": "Greater Manchester North West"
+    },
+    "E08000011": {
+      "itl1": "North West (England)",
+      "itl2": "Merseyside",
+      "itl3": "East Merseyside"
+    },
+    "E08000012": {
+      "itl1": "North West (England)",
+      "itl2": "Merseyside",
+      "itl3": "Liverpool"
+    },
+    "E08000013": {
+      "itl1": "North West (England)",
+      "itl2": "Merseyside",
+      "itl3": "East Merseyside"
+    },
+    "E08000014": {
+      "itl1": "North West (England)",
+      "itl2": "Merseyside",
+      "itl3": "Sefton"
+    },
+    "E08000015": {
+      "itl1": "North West (England)",
+      "itl2": "Merseyside",
+      "itl3": "Wirral"
+    },
+    "E08000016": {
+      "itl1": "Yorkshire and The Humber",
+      "itl2": "South Yorkshire",
+      "itl3": "Barnsley, Doncaster and Rotherham"
+    },
+    "E08000017": {
+      "itl1": "Yorkshire and The Humber",
+      "itl2": "South Yorkshire",
+      "itl3": "Barnsley, Doncaster and Rotherham"
+    },
+    "E08000018": {
+      "itl1": "Yorkshire and The Humber",
+      "itl2": "South Yorkshire",
+      "itl3": "Barnsley, Doncaster and Rotherham"
+    },
+    "E08000019": {
+      "itl1": "Yorkshire and The Humber",
+      "itl2": "South Yorkshire",
+      "itl3": "Sheffield"
+    },
+    "E08000021": {
+      "itl1": "North East (England)",
+      "itl2": "Northumberland, and Tyne and Wear",
+      "itl3": "Tyneside"
+    },
+    "E08000022": {
+      "itl1": "North East (England)",
+      "itl2": "Northumberland, and Tyne and Wear",
+      "itl3": "Tyneside"
+    },
+    "E08000023": {
+      "itl1": "North East (England)",
+      "itl2": "Northumberland, and Tyne and Wear",
+      "itl3": "Tyneside"
+    },
+    "E08000024": {
+      "itl1": "North East (England)",
+      "itl2": "Northumberland, and Tyne and Wear",
+      "itl3": "Sunderland"
+    },
+    "E08000025": {
+      "itl1": "West Midlands (England)",
+      "itl2": "West Midlands",
+      "itl3": "Birmingham"
+    },
+    "E08000026": {
+      "itl1": "West Midlands (England)",
+      "itl2": "West Midlands",
+      "itl3": "Coventry"
+    },
+    "E08000027": {
+      "itl1": "West Midlands (England)",
+      "itl2": "West Midlands",
+      "itl3": "Dudley"
+    },
+    "E08000028": {
+      "itl1": "West Midlands (England)",
+      "itl2": "West Midlands",
+      "itl3": "Sandwell"
+    },
+    "E08000029": {
+      "itl1": "West Midlands (England)",
+      "itl2": "West Midlands",
+      "itl3": "Solihull"
+    },
+    "E08000030": {
+      "itl1": "West Midlands (England)",
+      "itl2": "West Midlands",
+      "itl3": "Walsall"
+    },
+    "E08000031": {
+      "itl1": "West Midlands (England)",
+      "itl2": "West Midlands",
+      "itl3": "Wolverhampton"
+    },
+    "E08000032": {
+      "itl1": "Yorkshire and The Humber",
+      "itl2": "West Yorkshire",
+      "itl3": "Bradford"
+    },
+    "E08000033": {
+      "itl1": "Yorkshire and The Humber",
+      "itl2": "West Yorkshire",
+      "itl3": "Calderdale and Kirklees"
+    },
+    "E08000034": {
+      "itl1": "Yorkshire and The Humber",
+      "itl2": "West Yorkshire",
+      "itl3": "Calderdale and Kirklees"
+    },
+    "E08000035": {
+      "itl1": "Yorkshire and The Humber",
+      "itl2": "West Yorkshire",
+      "itl3": "Leeds"
+    },
+    "E08000036": {
+      "itl1": "Yorkshire and The Humber",
+      "itl2": "West Yorkshire",
+      "itl3": "Wakefield"
+    },
+    "E08000037": {
+      "itl1": "North East (England)",
+      "itl2": "Northumberland, and Tyne and Wear",
+      "itl3": "Tyneside"
+    },
+    "E09000001": {
+      "itl1": "London",
+      "itl2": "Inner London - West",
+      "itl3": "Camden and City of London"
+    },
+    "E09000002": {
+      "itl1": "London",
+      "itl2": "Outer London - East and North East",
+      "itl3": "Barking & Dagenham and Havering"
+    },
+    "E09000003": {
+      "itl1": "London",
+      "itl2": "Outer London - West and North West",
+      "itl3": "Barnet"
+    },
+    "E09000004": {
+      "itl1": "London",
+      "itl2": "Outer London - East and North East",
+      "itl3": "Bexley and Greenwich"
+    },
+    "E09000005": {
+      "itl1": "London",
+      "itl2": "Outer London - West and North West",
+      "itl3": "Brent"
+    },
+    "E09000006": {
+      "itl1": "London",
+      "itl2": "Outer London - South",
+      "itl3": "Bromley"
+    },
+    "E09000007": {
+      "itl1": "London",
+      "itl2": "Inner London - West",
+      "itl3": "Camden and City of London"
+    },
+    "E09000008": {
+      "itl1": "London",
+      "itl2": "Outer London - South",
+      "itl3": "Croydon"
+    },
+    "E09000009": {
+      "itl1": "London",
+      "itl2": "Outer London - West and North West",
+      "itl3": "Ealing"
+    },
+    "E09000010": {
+      "itl1": "London",
+      "itl2": "Outer London - East and North East",
+      "itl3": "Enfield"
+    },
+    "E09000011": {
+      "itl1": "London",
+      "itl2": "Outer London - East and North East",
+      "itl3": "Bexley and Greenwich"
+    },
+    "E09000012": {
+      "itl1": "London",
+      "itl2": "Inner London - East",
+      "itl3": "Hackney and Newham"
+    },
+    "E09000013": {
+      "itl1": "London",
+      "itl2": "Inner London - West",
+      "itl3": "Kensington & Chelsea and Hammersmith & Fulham"
+    },
+    "E09000014": {
+      "itl1": "London",
+      "itl2": "Inner London - East",
+      "itl3": "Haringey and Islington"
+    },
+    "E09000015": {
+      "itl1": "London",
+      "itl2": "Outer London - West and North West",
+      "itl3": "Harrow and Hillingdon"
+    },
+    "E09000016": {
+      "itl1": "London",
+      "itl2": "Outer London - East and North East",
+      "itl3": "Barking & Dagenham and Havering"
+    },
+    "E09000017": {
+      "itl1": "London",
+      "itl2": "Outer London - West and North West",
+      "itl3": "Harrow and Hillingdon"
+    },
+    "E09000018": {
+      "itl1": "London",
+      "itl2": "Outer London - West and North West",
+      "itl3": "Hounslow and Richmond upon Thames"
+    },
+    "E09000019": {
+      "itl1": "London",
+      "itl2": "Inner London - East",
+      "itl3": "Haringey and Islington"
+    },
+    "E09000020": {
+      "itl1": "London",
+      "itl2": "Inner London - West",
+      "itl3": "Kensington & Chelsea and Hammersmith & Fulham"
+    },
+    "E09000021": {
+      "itl1": "London",
+      "itl2": "Outer London - South",
+      "itl3": "Merton, Kingston upon Thames and Sutton"
+    },
+    "E09000022": {
+      "itl1": "London",
+      "itl2": "Inner London - East",
+      "itl3": "Lambeth"
+    },
+    "E09000023": {
+      "itl1": "London",
+      "itl2": "Inner London - East",
+      "itl3": "Lewisham and Southwark"
+    },
+    "E09000024": {
+      "itl1": "London",
+      "itl2": "Outer London - South",
+      "itl3": "Merton, Kingston upon Thames and Sutton"
+    },
+    "E09000025": {
+      "itl1": "London",
+      "itl2": "Inner London - East",
+      "itl3": "Hackney and Newham"
+    },
+    "E09000026": {
+      "itl1": "London",
+      "itl2": "Outer London - East and North East",
+      "itl3": "Redbridge and Waltham Forest"
+    },
+    "E09000027": {
+      "itl1": "London",
+      "itl2": "Outer London - West and North West",
+      "itl3": "Hounslow and Richmond upon Thames"
+    },
+    "E09000028": {
+      "itl1": "London",
+      "itl2": "Inner London - East",
+      "itl3": "Lewisham and Southwark"
+    },
+    "E09000029": {
+      "itl1": "London",
+      "itl2": "Outer London - South",
+      "itl3": "Merton, Kingston upon Thames and Sutton"
+    },
+    "E09000030": {
+      "itl1": "London",
+      "itl2": "Inner London - East",
+      "itl3": "Tower Hamlets"
+    },
+    "E09000031": {
+      "itl1": "London",
+      "itl2": "Outer London - East and North East",
+      "itl3": "Redbridge and Waltham Forest"
+    },
+    "E09000032": {
+      "itl1": "London",
+      "itl2": "Inner London - West",
+      "itl3": "Wandsworth"
+    },
+    "E09000033": {
+      "itl1": "London",
+      "itl2": "Inner London - West",
+      "itl3": "Westminster"
+    },
+    "N09000001": {
+      "itl1": "Northern Ireland",
+      "itl2": "Northern Ireland",
+      "itl3": "Antrim and Newtownabbey"
+    },
+    "N09000002": {
+      "itl1": "Northern Ireland",
+      "itl2": "Northern Ireland",
+      "itl3": "Armagh City, Banbridge and Craigavon"
+    },
+    "N09000003": {
+      "itl1": "Northern Ireland",
+      "itl2": "Northern Ireland",
+      "itl3": "Belfast"
+    },
+    "N09000004": {
+      "itl1": "Northern Ireland",
+      "itl2": "Northern Ireland",
+      "itl3": "Causeway Coast and Glens"
+    },
+    "N09000005": {
+      "itl1": "Northern Ireland",
+      "itl2": "Northern Ireland",
+      "itl3": "Derry City and Strabane"
+    },
+    "N09000006": {
+      "itl1": "Northern Ireland",
+      "itl2": "Northern Ireland",
+      "itl3": "Fermanagh and Omagh"
+    },
+    "N09000007": {
+      "itl1": "Northern Ireland",
+      "itl2": "Northern Ireland",
+      "itl3": "Lisburn and Castlereagh"
+    },
+    "N09000008": {
+      "itl1": "Northern Ireland",
+      "itl2": "Northern Ireland",
+      "itl3": "Mid and East Antrim"
+    },
+    "N09000009": {
+      "itl1": "Northern Ireland",
+      "itl2": "Northern Ireland",
+      "itl3": "Mid Ulster"
+    },
+    "N09000010": {
+      "itl1": "Northern Ireland",
+      "itl2": "Northern Ireland",
+      "itl3": "Newry, Mourne and Down"
+    },
+    "N09000011": {
+      "itl1": "Northern Ireland",
+      "itl2": "Northern Ireland",
+      "itl3": "Ards and North Down"
+    },
+    "S12000005": {
+      "itl1": "Scotland",
+      "itl2": "Eastern Scotland",
+      "itl3": "Clackmannanshire and Fife"
+    },
+    "S12000006": {
+      "itl1": "Scotland",
+      "itl2": "Southern Scotland",
+      "itl3": "Dumfries and Galloway"
+    },
+    "S12000008": {
+      "itl1": "Scotland",
+      "itl2": "Southern Scotland",
+      "itl3": "East Ayrshire and North Ayrshire mainland"
+    },
+    "S12000010": {
+      "itl1": "Scotland",
+      "itl2": "Eastern Scotland",
+      "itl3": "East Lothian and Midlothian"
+    },
+    "S12000011": {
+      "itl1": "Scotland",
+      "itl2": "West Central Scotland",
+      "itl3": "Inverclyde, East Renfrewshire, and Renfrewshire"
+    },
+    "S12000013": {
+      "itl1": "Scotland",
+      "itl2": "Highlands and Islands",
+      "itl3": "Na h-Eileanan Siar"
+    },
+    "S12000014": {
+      "itl1": "Scotland",
+      "itl2": "Eastern Scotland",
+      "itl3": "Falkirk"
+    },
+    "S12000017": {
+      "itl1": "Scotland",
+      "itl2": "Highlands and Islands",
+      "itl3": "Lochaber, Skye and Lochalsh, Arran and Cumbrae, and Argyll and Bute"
+    },
+    "S12000018": {
+      "itl1": "Scotland",
+      "itl2": "West Central Scotland",
+      "itl3": "Inverclyde, East Renfrewshire, and Renfrewshire"
+    },
+    "S12000019": {
+      "itl1": "Scotland",
+      "itl2": "Eastern Scotland",
+      "itl3": "East Lothian and Midlothian"
+    },
+    "S12000020": {
+      "itl1": "Scotland",
+      "itl2": "Highlands and Islands",
+      "itl3": "Inverness and Nairn, Moray, and Badenoch and Strathspey"
+    },
+    "S12000021": {
+      "itl1": "Scotland",
+      "itl2": "Southern Scotland",
+      "itl3": "East Ayrshire and North Ayrshire mainland"
+    },
+    "S12000023": {
+      "itl1": "Scotland",
+      "itl2": "Highlands and Islands",
+      "itl3": "Orkney Islands"
+    },
+    "S12000026": {
+      "itl1": "Scotland",
+      "itl2": "Southern Scotland",
+      "itl3": "Scottish Borders"
+    },
+    "S12000027": {
+      "itl1": "Scotland",
+      "itl2": "Highlands and Islands",
+      "itl3": "Shetland Islands"
+    },
+    "S12000028": {
+      "itl1": "Scotland",
+      "itl2": "Southern Scotland",
+      "itl3": "South Ayrshire"
+    },
+    "S12000029": {
+      "itl1": "Scotland",
+      "itl2": "Southern Scotland",
+      "itl3": "South Lanarkshire"
+    },
+    "S12000030": {
+      "itl1": "Scotland",
+      "itl2": "Eastern Scotland",
+      "itl3": "Perth and Kinross, and Stirling"
+    },
+    "S12000033": {
+      "itl1": "Scotland",
+      "itl2": "North Eastern Scotland",
+      "itl3": "Aberdeen City and Aberdeenshire"
+    },
+    "S12000034": {
+      "itl1": "Scotland",
+      "itl2": "North Eastern Scotland",
+      "itl3": "Aberdeen City and Aberdeenshire"
+    },
+    "S12000035": {
+      "itl1": "Scotland",
+      "itl2": "West Central Scotland",
+      "itl3": "East Dunbartonshire, West Dunbartonshire, and Helensburgh and Lomond"
+    },
+    "S12000036": {
+      "itl1": "Scotland",
+      "itl2": "Eastern Scotland",
+      "itl3": "City of Edinburgh"
+    },
+    "S12000038": {
+      "itl1": "Scotland",
+      "itl2": "West Central Scotland",
+      "itl3": "Inverclyde, East Renfrewshire, and Renfrewshire"
+    },
+    "S12000039": {
+      "itl1": "Scotland",
+      "itl2": "West Central Scotland",
+      "itl3": "East Dunbartonshire, West Dunbartonshire, and Helensburgh and Lomond"
+    },
+    "S12000040": {
+      "itl1": "Scotland",
+      "itl2": "Eastern Scotland",
+      "itl3": "West Lothian"
+    },
+    "S12000041": {
+      "itl1": "Scotland",
+      "itl2": "Eastern Scotland",
+      "itl3": "Angus and Dundee City"
+    },
+    "S12000042": {
+      "itl1": "Scotland",
+      "itl2": "Eastern Scotland",
+      "itl3": "Angus and Dundee City"
+    },
+    "S12000045": {
+      "itl1": "Scotland",
+      "itl2": "West Central Scotland",
+      "itl3": "East Dunbartonshire, West Dunbartonshire, and Helensburgh and Lomond"
+    },
+    "S12000047": {
+      "itl1": "Scotland",
+      "itl2": "Eastern Scotland",
+      "itl3": "Clackmannanshire and Fife"
+    },
+    "S12000048": {
+      "itl1": "Scotland",
+      "itl2": "Eastern Scotland",
+      "itl3": "Perth and Kinross, and Stirling"
+    },
+    "S12000049": {
+      "itl1": "Scotland",
+      "itl2": "West Central Scotland",
+      "itl3": "Glasgow City"
+    },
+    "S12000050": {
+      "itl1": "Scotland",
+      "itl2": "West Central Scotland",
+      "itl3": "North Lanarkshire"
+    },
+    "W06000001": {
+      "itl1": "Wales",
+      "itl2": "West Wales and The Valleys",
+      "itl3": "Isle of Anglesey"
+    },
+    "W06000002": {
+      "itl1": "Wales",
+      "itl2": "West Wales and The Valleys",
+      "itl3": "Gwynedd"
+    },
+    "W06000003": {
+      "itl1": "Wales",
+      "itl2": "West Wales and The Valleys",
+      "itl3": "Conwy and Denbighshire"
+    },
+    "W06000004": {
+      "itl1": "Wales",
+      "itl2": "West Wales and The Valleys",
+      "itl3": "Conwy and Denbighshire"
+    },
+    "W06000005": {
+      "itl1": "Wales",
+      "itl2": "East Wales",
+      "itl3": "Flintshire and Wrexham"
+    },
+    "W06000006": {
+      "itl1": "Wales",
+      "itl2": "East Wales",
+      "itl3": "Flintshire and Wrexham"
+    },
+    "W06000008": {
+      "itl1": "Wales",
+      "itl2": "West Wales and The Valleys",
+      "itl3": "South West Wales"
+    },
+    "W06000009": {
+      "itl1": "Wales",
+      "itl2": "West Wales and The Valleys",
+      "itl3": "South West Wales"
+    },
+    "W06000010": {
+      "itl1": "Wales",
+      "itl2": "West Wales and The Valleys",
+      "itl3": "South West Wales"
+    },
+    "W06000011": {
+      "itl1": "Wales",
+      "itl2": "West Wales and The Valleys",
+      "itl3": "Swansea"
+    },
+    "W06000012": {
+      "itl1": "Wales",
+      "itl2": "West Wales and The Valleys",
+      "itl3": "Bridgend and Neath Port Talbot"
+    },
+    "W06000013": {
+      "itl1": "Wales",
+      "itl2": "West Wales and The Valleys",
+      "itl3": "Bridgend and Neath Port Talbot"
+    },
+    "W06000014": {
+      "itl1": "Wales",
+      "itl2": "East Wales",
+      "itl3": "Cardiff and Vale of Glamorgan"
+    },
+    "W06000015": {
+      "itl1": "Wales",
+      "itl2": "East Wales",
+      "itl3": "Cardiff and Vale of Glamorgan"
+    },
+    "W06000016": {
+      "itl1": "Wales",
+      "itl2": "West Wales and The Valleys",
+      "itl3": "Central Valleys"
+    },
+    "W06000018": {
+      "itl1": "Wales",
+      "itl2": "West Wales and The Valleys",
+      "itl3": "Gwent Valleys"
+    },
+    "W06000019": {
+      "itl1": "Wales",
+      "itl2": "West Wales and The Valleys",
+      "itl3": "Gwent Valleys"
+    },
+    "W06000020": {
+      "itl1": "Wales",
+      "itl2": "West Wales and The Valleys",
+      "itl3": "Gwent Valleys"
+    },
+    "W06000021": {
+      "itl1": "Wales",
+      "itl2": "East Wales",
+      "itl3": "Monmouthshire and Newport"
+    },
+    "W06000022": {
+      "itl1": "Wales",
+      "itl2": "East Wales",
+      "itl3": "Monmouthshire and Newport"
+    },
+    "W06000023": {
+      "itl1": "Wales",
+      "itl2": "East Wales",
+      "itl3": "Powys"
+    },
+    "W06000024": {
+      "itl1": "Wales",
+      "itl2": "West Wales and The Valleys",
+      "itl3": "Central Valleys"
+    }
+  },
+  "byName": {
+    "aberdeen city": {
+      "itl1": "Scotland",
+      "itl2": "North Eastern Scotland",
+      "itl3": "Aberdeen City and Aberdeenshire"
+    },
+    "aberdeenshire": {
+      "itl1": "Scotland",
+      "itl2": "North Eastern Scotland",
+      "itl3": "Aberdeen City and Aberdeenshire"
+    },
+    "adur": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "West Sussex (South West)"
+    },
+    "amber valley": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Derbyshire and Nottinghamshire",
+      "itl3": "South and West Derbyshire"
+    },
+    "angus": {
+      "itl1": "Scotland",
+      "itl2": "Eastern Scotland",
+      "itl3": "Angus and Dundee City"
+    },
+    "antrim and newtownabbey": {
+      "itl1": "Northern Ireland",
+      "itl2": "Northern Ireland",
+      "itl3": "Antrim and Newtownabbey"
+    },
+    "ards and north down": {
+      "itl1": "Northern Ireland",
+      "itl2": "Northern Ireland",
+      "itl3": "Ards and North Down"
+    },
+    "argyll and bute": {
+      "itl1": "Scotland",
+      "itl2": "West Central Scotland",
+      "itl3": "East Dunbartonshire, West Dunbartonshire, and Helensburgh and Lomond"
+    },
+    "armagh city, banbridge and craigavon": {
+      "itl1": "Northern Ireland",
+      "itl2": "Northern Ireland",
+      "itl3": "Armagh City, Banbridge and Craigavon"
+    },
+    "arun": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "West Sussex (South West)"
+    },
+    "ashfield": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Derbyshire and Nottinghamshire",
+      "itl3": "North Nottinghamshire"
+    },
+    "ashford": {
+      "itl1": "South East (England)",
+      "itl2": "Kent",
+      "itl3": "Mid Kent"
+    },
+    "babergh": {
+      "itl1": "East",
+      "itl2": "East Anglia",
+      "itl3": "Suffolk CC"
+    },
+    "barking and dagenham": {
+      "itl1": "London",
+      "itl2": "Outer London - East and North East",
+      "itl3": "Barking & Dagenham and Havering"
+    },
+    "barnet": {
+      "itl1": "London",
+      "itl2": "Outer London - West and North West",
+      "itl3": "Barnet"
+    },
+    "barnsley": {
+      "itl1": "Yorkshire and The Humber",
+      "itl2": "South Yorkshire",
+      "itl3": "Barnsley, Doncaster and Rotherham"
+    },
+    "basildon": {
+      "itl1": "East",
+      "itl2": "Essex",
+      "itl3": "Essex Thames Gateway"
+    },
+    "basingstoke and deane": {
+      "itl1": "South East (England)",
+      "itl2": "Hampshire and Isle of Wight",
+      "itl3": "North Hampshire"
+    },
+    "bassetlaw": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Derbyshire and Nottinghamshire",
+      "itl3": "North Nottinghamshire"
+    },
+    "bath and north east somerset": {
+      "itl1": "South West (England)",
+      "itl2": "Gloucestershire, Wiltshire and Bath/Bristol area",
+      "itl3": "Bath and North East Somerset, North Somerset and South Gloucestershire"
+    },
+    "bedford": {
+      "itl1": "East",
+      "itl2": "Bedfordshire and Hertfordshire",
+      "itl3": "Bedford"
+    },
+    "belfast": {
+      "itl1": "Northern Ireland",
+      "itl2": "Northern Ireland",
+      "itl3": "Belfast"
+    },
+    "bexley": {
+      "itl1": "London",
+      "itl2": "Outer London - East and North East",
+      "itl3": "Bexley and Greenwich"
+    },
+    "birmingham": {
+      "itl1": "West Midlands (England)",
+      "itl2": "West Midlands",
+      "itl3": "Birmingham"
+    },
+    "blaby": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Leicestershire, Rutland and Northamptonshire",
+      "itl3": "Leicestershire CC and Rutland"
+    },
+    "blackburn with darwen": {
+      "itl1": "North West (England)",
+      "itl2": "Lancashire",
+      "itl3": "Blackburn with Darwen"
+    },
+    "blackpool": {
+      "itl1": "North West (England)",
+      "itl2": "Lancashire",
+      "itl3": "Blackpool"
+    },
+    "blaenau gwent": {
+      "itl1": "Wales",
+      "itl2": "West Wales and The Valleys",
+      "itl3": "Gwent Valleys"
+    },
+    "bolsover": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Derbyshire and Nottinghamshire",
+      "itl3": "East Derbyshire"
+    },
+    "bolton": {
+      "itl1": "North West (England)",
+      "itl2": "Greater Manchester",
+      "itl3": "Greater Manchester North West"
+    },
+    "boston": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Lincolnshire",
+      "itl3": "Lincolnshire CC"
+    },
+    "bournemouth, christchurch and poole": {
+      "itl1": "South West (England)",
+      "itl2": "Dorset and Somerset",
+      "itl3": "Bournemouth, Christchurch and Poole"
+    },
+    "bracknell forest": {
+      "itl1": "South East (England)",
+      "itl2": "Berkshire, Buckinghamshire and Oxfordshire",
+      "itl3": "Berkshire"
+    },
+    "bradford": {
+      "itl1": "Yorkshire and The Humber",
+      "itl2": "West Yorkshire",
+      "itl3": "Bradford"
+    },
+    "braintree": {
+      "itl1": "East",
+      "itl2": "Essex",
+      "itl3": "Essex Haven Gateway"
+    },
+    "breckland": {
+      "itl1": "East",
+      "itl2": "East Anglia",
+      "itl3": "Breckland and South Norfolk"
+    },
+    "brent": {
+      "itl1": "London",
+      "itl2": "Outer London - West and North West",
+      "itl3": "Brent"
+    },
+    "brentwood": {
+      "itl1": "East",
+      "itl2": "Essex",
+      "itl3": "Heart of Essex"
+    },
+    "bridgend": {
+      "itl1": "Wales",
+      "itl2": "West Wales and The Valleys",
+      "itl3": "Bridgend and Neath Port Talbot"
+    },
+    "brighton and hove": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "Brighton and Hove"
+    },
+    "bristol, city of": {
+      "itl1": "South West (England)",
+      "itl2": "Gloucestershire, Wiltshire and Bath/Bristol area",
+      "itl3": "Bristol, City of"
+    },
+    "broadland": {
+      "itl1": "East",
+      "itl2": "East Anglia",
+      "itl3": "Norwich and East Norfolk"
+    },
+    "bromley": {
+      "itl1": "London",
+      "itl2": "Outer London - South",
+      "itl3": "Bromley"
+    },
+    "bromsgrove": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Herefordshire, Worcestershire and Warwickshire",
+      "itl3": "Worcestershire CC"
+    },
+    "broxbourne": {
+      "itl1": "East",
+      "itl2": "Bedfordshire and Hertfordshire",
+      "itl3": "Hertfordshire CC"
+    },
+    "broxtowe": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Derbyshire and Nottinghamshire",
+      "itl3": "South Nottinghamshire"
+    },
+    "buckinghamshire": {
+      "itl1": "South East (England)",
+      "itl2": "Berkshire, Buckinghamshire and Oxfordshire",
+      "itl3": "Buckinghamshire"
+    },
+    "burnley": {
+      "itl1": "North West (England)",
+      "itl2": "Lancashire",
+      "itl3": "East Lancashire"
+    },
+    "bury": {
+      "itl1": "North West (England)",
+      "itl2": "Greater Manchester",
+      "itl3": "Greater Manchester North East"
+    },
+    "caerphilly": {
+      "itl1": "Wales",
+      "itl2": "West Wales and The Valleys",
+      "itl3": "Gwent Valleys"
+    },
+    "calderdale": {
+      "itl1": "Yorkshire and The Humber",
+      "itl2": "West Yorkshire",
+      "itl3": "Calderdale and Kirklees"
+    },
+    "cambridge": {
+      "itl1": "East",
+      "itl2": "East Anglia",
+      "itl3": "Cambridgeshire CC"
+    },
+    "camden": {
+      "itl1": "London",
+      "itl2": "Inner London - West",
+      "itl3": "Camden and City of London"
+    },
+    "cannock chase": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Shropshire and Staffordshire",
+      "itl3": "Staffordshire CC"
+    },
+    "canterbury": {
+      "itl1": "South East (England)",
+      "itl2": "Kent",
+      "itl3": "East Kent"
+    },
+    "cardiff": {
+      "itl1": "Wales",
+      "itl2": "East Wales",
+      "itl3": "Cardiff and Vale of Glamorgan"
+    },
+    "carmarthenshire": {
+      "itl1": "Wales",
+      "itl2": "West Wales and The Valleys",
+      "itl3": "South West Wales"
+    },
+    "castle point": {
+      "itl1": "East",
+      "itl2": "Essex",
+      "itl3": "Essex Thames Gateway"
+    },
+    "causeway coast and glens": {
+      "itl1": "Northern Ireland",
+      "itl2": "Northern Ireland",
+      "itl3": "Causeway Coast and Glens"
+    },
+    "central bedfordshire": {
+      "itl1": "East",
+      "itl2": "Bedfordshire and Hertfordshire",
+      "itl3": "Central Bedfordshire"
+    },
+    "ceredigion": {
+      "itl1": "Wales",
+      "itl2": "West Wales and The Valleys",
+      "itl3": "South West Wales"
+    },
+    "charnwood": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Leicestershire, Rutland and Northamptonshire",
+      "itl3": "Leicestershire CC and Rutland"
+    },
+    "chelmsford": {
+      "itl1": "East",
+      "itl2": "Essex",
+      "itl3": "Heart of Essex"
+    },
+    "cheltenham": {
+      "itl1": "South West (England)",
+      "itl2": "Gloucestershire, Wiltshire and Bath/Bristol area",
+      "itl3": "Gloucestershire CC"
+    },
+    "cherwell": {
+      "itl1": "South East (England)",
+      "itl2": "Berkshire, Buckinghamshire and Oxfordshire",
+      "itl3": "Oxfordshire CC"
+    },
+    "cheshire east": {
+      "itl1": "North West (England)",
+      "itl2": "Cheshire",
+      "itl3": "Cheshire East"
+    },
+    "cheshire west and chester": {
+      "itl1": "North West (England)",
+      "itl2": "Cheshire",
+      "itl3": "Cheshire West and Chester"
+    },
+    "chesterfield": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Derbyshire and Nottinghamshire",
+      "itl3": "East Derbyshire"
+    },
+    "chichester": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "West Sussex (South West)"
+    },
+    "chorley": {
+      "itl1": "North West (England)",
+      "itl2": "Lancashire",
+      "itl3": "Chorley and West Lancashire"
+    },
+    "city of edinburgh": {
+      "itl1": "Scotland",
+      "itl2": "Eastern Scotland",
+      "itl3": "City of Edinburgh"
+    },
+    "city of london": {
+      "itl1": "London",
+      "itl2": "Inner London - West",
+      "itl3": "Camden and City of London"
+    },
+    "clackmannanshire": {
+      "itl1": "Scotland",
+      "itl2": "Eastern Scotland",
+      "itl3": "Clackmannanshire and Fife"
+    },
+    "colchester": {
+      "itl1": "East",
+      "itl2": "Essex",
+      "itl3": "Essex Haven Gateway"
+    },
+    "conwy": {
+      "itl1": "Wales",
+      "itl2": "West Wales and The Valleys",
+      "itl3": "Conwy and Denbighshire"
+    },
+    "cornwall": {
+      "itl1": "South West (England)",
+      "itl2": "Cornwall and Isles of Scilly",
+      "itl3": "Cornwall and Isles of Scilly"
+    },
+    "cotswold": {
+      "itl1": "South West (England)",
+      "itl2": "Gloucestershire, Wiltshire and Bath/Bristol area",
+      "itl3": "Gloucestershire CC"
+    },
+    "county durham": {
+      "itl1": "North East (England)",
+      "itl2": "Tees Valley and Durham",
+      "itl3": "Durham"
+    },
+    "coventry": {
+      "itl1": "West Midlands (England)",
+      "itl2": "West Midlands",
+      "itl3": "Coventry"
+    },
+    "crawley": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "West Sussex (North East)"
+    },
+    "croydon": {
+      "itl1": "London",
+      "itl2": "Outer London - South",
+      "itl3": "Croydon"
+    },
+    "cumberland": {
+      "itl1": "North West (England)",
+      "itl2": "Cumbria",
+      "itl3": "East Cumbria"
+    },
+    "dacorum": {
+      "itl1": "East",
+      "itl2": "Bedfordshire and Hertfordshire",
+      "itl3": "Hertfordshire CC"
+    },
+    "darlington": {
+      "itl1": "North East (England)",
+      "itl2": "Tees Valley and Durham",
+      "itl3": "Darlington"
+    },
+    "dartford": {
+      "itl1": "South East (England)",
+      "itl2": "Kent",
+      "itl3": "Kent Thames Gateway"
+    },
+    "denbighshire": {
+      "itl1": "Wales",
+      "itl2": "West Wales and The Valleys",
+      "itl3": "Conwy and Denbighshire"
+    },
+    "derby": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Derbyshire and Nottinghamshire",
+      "itl3": "Derby"
+    },
+    "derbyshire dales": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Derbyshire and Nottinghamshire",
+      "itl3": "South and West Derbyshire"
+    },
+    "derry city and strabane": {
+      "itl1": "Northern Ireland",
+      "itl2": "Northern Ireland",
+      "itl3": "Derry City and Strabane"
+    },
+    "doncaster": {
+      "itl1": "Yorkshire and The Humber",
+      "itl2": "South Yorkshire",
+      "itl3": "Barnsley, Doncaster and Rotherham"
+    },
+    "dorset": {
+      "itl1": "South West (England)",
+      "itl2": "Dorset and Somerset",
+      "itl3": "Dorset"
+    },
+    "dover": {
+      "itl1": "South East (England)",
+      "itl2": "Kent",
+      "itl3": "East Kent"
+    },
+    "dudley": {
+      "itl1": "West Midlands (England)",
+      "itl2": "West Midlands",
+      "itl3": "Dudley"
+    },
+    "dumfries and galloway": {
+      "itl1": "Scotland",
+      "itl2": "Southern Scotland",
+      "itl3": "Dumfries and Galloway"
+    },
+    "dundee city": {
+      "itl1": "Scotland",
+      "itl2": "Eastern Scotland",
+      "itl3": "Angus and Dundee City"
+    },
+    "ealing": {
+      "itl1": "London",
+      "itl2": "Outer London - West and North West",
+      "itl3": "Ealing"
+    },
+    "east ayrshire": {
+      "itl1": "Scotland",
+      "itl2": "Southern Scotland",
+      "itl3": "East Ayrshire and North Ayrshire mainland"
+    },
+    "east cambridgeshire": {
+      "itl1": "East",
+      "itl2": "East Anglia",
+      "itl3": "Cambridgeshire CC"
+    },
+    "east devon": {
+      "itl1": "South West (England)",
+      "itl2": "Devon",
+      "itl3": "Devon CC"
+    },
+    "east dunbartonshire": {
+      "itl1": "Scotland",
+      "itl2": "West Central Scotland",
+      "itl3": "East Dunbartonshire, West Dunbartonshire, and Helensburgh and Lomond"
+    },
+    "east hampshire": {
+      "itl1": "South East (England)",
+      "itl2": "Hampshire and Isle of Wight",
+      "itl3": "Central Hampshire"
+    },
+    "east hertfordshire": {
+      "itl1": "East",
+      "itl2": "Bedfordshire and Hertfordshire",
+      "itl3": "Hertfordshire CC"
+    },
+    "east lindsey": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Lincolnshire",
+      "itl3": "Lincolnshire CC"
+    },
+    "east lothian": {
+      "itl1": "Scotland",
+      "itl2": "Eastern Scotland",
+      "itl3": "East Lothian and Midlothian"
+    },
+    "east renfrewshire": {
+      "itl1": "Scotland",
+      "itl2": "West Central Scotland",
+      "itl3": "Inverclyde, East Renfrewshire, and Renfrewshire"
+    },
+    "east riding of yorkshire": {
+      "itl1": "Yorkshire and The Humber",
+      "itl2": "East Yorkshire and Northern Lincolnshire",
+      "itl3": "East Riding of Yorkshire"
+    },
+    "east staffordshire": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Shropshire and Staffordshire",
+      "itl3": "Staffordshire CC"
+    },
+    "east suffolk": {
+      "itl1": "East",
+      "itl2": "East Anglia",
+      "itl3": "Suffolk CC"
+    },
+    "eastbourne": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "East Sussex CC"
+    },
+    "eastleigh": {
+      "itl1": "South East (England)",
+      "itl2": "Hampshire and Isle of Wight",
+      "itl3": "South Hampshire"
+    },
+    "elmbridge": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "West Surrey"
+    },
+    "enfield": {
+      "itl1": "London",
+      "itl2": "Outer London - East and North East",
+      "itl3": "Enfield"
+    },
+    "epping forest": {
+      "itl1": "East",
+      "itl2": "Essex",
+      "itl3": "West Essex"
+    },
+    "epsom and ewell": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "East Surrey"
+    },
+    "erewash": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Derbyshire and Nottinghamshire",
+      "itl3": "South and West Derbyshire"
+    },
+    "exeter": {
+      "itl1": "South West (England)",
+      "itl2": "Devon",
+      "itl3": "Devon CC"
+    },
+    "falkirk": {
+      "itl1": "Scotland",
+      "itl2": "Eastern Scotland",
+      "itl3": "Falkirk"
+    },
+    "fareham": {
+      "itl1": "South East (England)",
+      "itl2": "Hampshire and Isle of Wight",
+      "itl3": "South Hampshire"
+    },
+    "fenland": {
+      "itl1": "East",
+      "itl2": "East Anglia",
+      "itl3": "Cambridgeshire CC"
+    },
+    "fermanagh and omagh": {
+      "itl1": "Northern Ireland",
+      "itl2": "Northern Ireland",
+      "itl3": "Fermanagh and Omagh"
+    },
+    "fife": {
+      "itl1": "Scotland",
+      "itl2": "Eastern Scotland",
+      "itl3": "Clackmannanshire and Fife"
+    },
+    "flintshire": {
+      "itl1": "Wales",
+      "itl2": "East Wales",
+      "itl3": "Flintshire and Wrexham"
+    },
+    "folkestone and hythe": {
+      "itl1": "South East (England)",
+      "itl2": "Kent",
+      "itl3": "East Kent"
+    },
+    "forest of dean": {
+      "itl1": "South West (England)",
+      "itl2": "Gloucestershire, Wiltshire and Bath/Bristol area",
+      "itl3": "Gloucestershire CC"
+    },
+    "fylde": {
+      "itl1": "North West (England)",
+      "itl2": "Lancashire",
+      "itl3": "Mid Lancashire"
+    },
+    "gateshead": {
+      "itl1": "North East (England)",
+      "itl2": "Northumberland, and Tyne and Wear",
+      "itl3": "Tyneside"
+    },
+    "gedling": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Derbyshire and Nottinghamshire",
+      "itl3": "South Nottinghamshire"
+    },
+    "glasgow city": {
+      "itl1": "Scotland",
+      "itl2": "West Central Scotland",
+      "itl3": "Glasgow City"
+    },
+    "gloucester": {
+      "itl1": "South West (England)",
+      "itl2": "Gloucestershire, Wiltshire and Bath/Bristol area",
+      "itl3": "Gloucestershire CC"
+    },
+    "gosport": {
+      "itl1": "South East (England)",
+      "itl2": "Hampshire and Isle of Wight",
+      "itl3": "South Hampshire"
+    },
+    "gravesham": {
+      "itl1": "South East (England)",
+      "itl2": "Kent",
+      "itl3": "Kent Thames Gateway"
+    },
+    "great yarmouth": {
+      "itl1": "East",
+      "itl2": "East Anglia",
+      "itl3": "Norwich and East Norfolk"
+    },
+    "greenwich": {
+      "itl1": "London",
+      "itl2": "Outer London - East and North East",
+      "itl3": "Bexley and Greenwich"
+    },
+    "guildford": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "West Surrey"
+    },
+    "gwynedd": {
+      "itl1": "Wales",
+      "itl2": "West Wales and The Valleys",
+      "itl3": "Gwynedd"
+    },
+    "hackney": {
+      "itl1": "London",
+      "itl2": "Inner London - East",
+      "itl3": "Hackney and Newham"
+    },
+    "halton": {
+      "itl1": "North West (England)",
+      "itl2": "Merseyside",
+      "itl3": "East Merseyside"
+    },
+    "hammersmith and fulham": {
+      "itl1": "London",
+      "itl2": "Inner London - West",
+      "itl3": "Kensington & Chelsea and Hammersmith & Fulham"
+    },
+    "harborough": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Leicestershire, Rutland and Northamptonshire",
+      "itl3": "Leicestershire CC and Rutland"
+    },
+    "haringey": {
+      "itl1": "London",
+      "itl2": "Inner London - East",
+      "itl3": "Haringey and Islington"
+    },
+    "harlow": {
+      "itl1": "East",
+      "itl2": "Essex",
+      "itl3": "West Essex"
+    },
+    "harrow": {
+      "itl1": "London",
+      "itl2": "Outer London - West and North West",
+      "itl3": "Harrow and Hillingdon"
+    },
+    "hart": {
+      "itl1": "South East (England)",
+      "itl2": "Hampshire and Isle of Wight",
+      "itl3": "North Hampshire"
+    },
+    "hartlepool": {
+      "itl1": "North East (England)",
+      "itl2": "Tees Valley and Durham",
+      "itl3": "Hartlepool and Stockton-on-Tees"
+    },
+    "hastings": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "East Sussex CC"
+    },
+    "havant": {
+      "itl1": "South East (England)",
+      "itl2": "Hampshire and Isle of Wight",
+      "itl3": "South Hampshire"
+    },
+    "havering": {
+      "itl1": "London",
+      "itl2": "Outer London - East and North East",
+      "itl3": "Barking & Dagenham and Havering"
+    },
+    "herefordshire, county of": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Herefordshire, Worcestershire and Warwickshire",
+      "itl3": "Herefordshire, County of"
+    },
+    "hertsmere": {
+      "itl1": "East",
+      "itl2": "Bedfordshire and Hertfordshire",
+      "itl3": "Hertfordshire CC"
+    },
+    "high peak": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Derbyshire and Nottinghamshire",
+      "itl3": "South and West Derbyshire"
+    },
+    "highland": {
+      "itl1": "Scotland",
+      "itl2": "Highlands and Islands",
+      "itl3": "Lochaber, Skye and Lochalsh, Arran and Cumbrae, and Argyll and Bute"
+    },
+    "hillingdon": {
+      "itl1": "London",
+      "itl2": "Outer London - West and North West",
+      "itl3": "Harrow and Hillingdon"
+    },
+    "hinckley and bosworth": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Leicestershire, Rutland and Northamptonshire",
+      "itl3": "Leicestershire CC and Rutland"
+    },
+    "horsham": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "West Sussex (North East)"
+    },
+    "hounslow": {
+      "itl1": "London",
+      "itl2": "Outer London - West and North West",
+      "itl3": "Hounslow and Richmond upon Thames"
+    },
+    "huntingdonshire": {
+      "itl1": "East",
+      "itl2": "East Anglia",
+      "itl3": "Cambridgeshire CC"
+    },
+    "hyndburn": {
+      "itl1": "North West (England)",
+      "itl2": "Lancashire",
+      "itl3": "East Lancashire"
+    },
+    "inverclyde": {
+      "itl1": "Scotland",
+      "itl2": "West Central Scotland",
+      "itl3": "Inverclyde, East Renfrewshire, and Renfrewshire"
+    },
+    "ipswich": {
+      "itl1": "East",
+      "itl2": "East Anglia",
+      "itl3": "Suffolk CC"
+    },
+    "isle of anglesey": {
+      "itl1": "Wales",
+      "itl2": "West Wales and The Valleys",
+      "itl3": "Isle of Anglesey"
+    },
+    "isle of wight": {
+      "itl1": "South East (England)",
+      "itl2": "Hampshire and Isle of Wight",
+      "itl3": "Isle of Wight"
+    },
+    "isles of scilly": {
+      "itl1": "South West (England)",
+      "itl2": "Cornwall and Isles of Scilly",
+      "itl3": "Cornwall and Isles of Scilly"
+    },
+    "islington": {
+      "itl1": "London",
+      "itl2": "Inner London - East",
+      "itl3": "Haringey and Islington"
+    },
+    "kensington and chelsea": {
+      "itl1": "London",
+      "itl2": "Inner London - West",
+      "itl3": "Kensington & Chelsea and Hammersmith & Fulham"
+    },
+    "king's lynn and west norfolk": {
+      "itl1": "East",
+      "itl2": "East Anglia",
+      "itl3": "North and West Norfolk"
+    },
+    "kingston upon hull, city of": {
+      "itl1": "Yorkshire and The Humber",
+      "itl2": "East Yorkshire and Northern Lincolnshire",
+      "itl3": "Kingston upon Hull, City of"
+    },
+    "kingston upon thames": {
+      "itl1": "London",
+      "itl2": "Outer London - South",
+      "itl3": "Merton, Kingston upon Thames and Sutton"
+    },
+    "kirklees": {
+      "itl1": "Yorkshire and The Humber",
+      "itl2": "West Yorkshire",
+      "itl3": "Calderdale and Kirklees"
+    },
+    "knowsley": {
+      "itl1": "North West (England)",
+      "itl2": "Merseyside",
+      "itl3": "East Merseyside"
+    },
+    "lambeth": {
+      "itl1": "London",
+      "itl2": "Inner London - East",
+      "itl3": "Lambeth"
+    },
+    "lancaster": {
+      "itl1": "North West (England)",
+      "itl2": "Lancashire",
+      "itl3": "Lancaster and Wyre"
+    },
+    "leeds": {
+      "itl1": "Yorkshire and The Humber",
+      "itl2": "West Yorkshire",
+      "itl3": "Leeds"
+    },
+    "leicester": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Leicestershire, Rutland and Northamptonshire",
+      "itl3": "Leicester"
+    },
+    "lewes": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "East Sussex CC"
+    },
+    "lewisham": {
+      "itl1": "London",
+      "itl2": "Inner London - East",
+      "itl3": "Lewisham and Southwark"
+    },
+    "lichfield": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Shropshire and Staffordshire",
+      "itl3": "Staffordshire CC"
+    },
+    "lincoln": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Lincolnshire",
+      "itl3": "Lincolnshire CC"
+    },
+    "lisburn and castlereagh": {
+      "itl1": "Northern Ireland",
+      "itl2": "Northern Ireland",
+      "itl3": "Lisburn and Castlereagh"
+    },
+    "liverpool": {
+      "itl1": "North West (England)",
+      "itl2": "Merseyside",
+      "itl3": "Liverpool"
+    },
+    "luton": {
+      "itl1": "East",
+      "itl2": "Bedfordshire and Hertfordshire",
+      "itl3": "Luton"
+    },
+    "maidstone": {
+      "itl1": "South East (England)",
+      "itl2": "Kent",
+      "itl3": "Mid Kent"
+    },
+    "maldon": {
+      "itl1": "East",
+      "itl2": "Essex",
+      "itl3": "Heart of Essex"
+    },
+    "malvern hills": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Herefordshire, Worcestershire and Warwickshire",
+      "itl3": "Worcestershire CC"
+    },
+    "manchester": {
+      "itl1": "North West (England)",
+      "itl2": "Greater Manchester",
+      "itl3": "Manchester"
+    },
+    "mansfield": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Derbyshire and Nottinghamshire",
+      "itl3": "North Nottinghamshire"
+    },
+    "medway": {
+      "itl1": "South East (England)",
+      "itl2": "Kent",
+      "itl3": "Medway"
+    },
+    "melton": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Leicestershire, Rutland and Northamptonshire",
+      "itl3": "Leicestershire CC and Rutland"
+    },
+    "merthyr tydfil": {
+      "itl1": "Wales",
+      "itl2": "West Wales and The Valleys",
+      "itl3": "Central Valleys"
+    },
+    "merton": {
+      "itl1": "London",
+      "itl2": "Outer London - South",
+      "itl3": "Merton, Kingston upon Thames and Sutton"
+    },
+    "mid and east antrim": {
+      "itl1": "Northern Ireland",
+      "itl2": "Northern Ireland",
+      "itl3": "Mid and East Antrim"
+    },
+    "mid devon": {
+      "itl1": "South West (England)",
+      "itl2": "Devon",
+      "itl3": "Devon CC"
+    },
+    "mid suffolk": {
+      "itl1": "East",
+      "itl2": "East Anglia",
+      "itl3": "Suffolk CC"
+    },
+    "mid sussex": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "West Sussex (North East)"
+    },
+    "mid ulster": {
+      "itl1": "Northern Ireland",
+      "itl2": "Northern Ireland",
+      "itl3": "Mid Ulster"
+    },
+    "middlesbrough": {
+      "itl1": "North East (England)",
+      "itl2": "Tees Valley and Durham",
+      "itl3": "South Teesside"
+    },
+    "midlothian": {
+      "itl1": "Scotland",
+      "itl2": "Eastern Scotland",
+      "itl3": "East Lothian and Midlothian"
+    },
+    "milton keynes": {
+      "itl1": "South East (England)",
+      "itl2": "Berkshire, Buckinghamshire and Oxfordshire",
+      "itl3": "Milton Keynes"
+    },
+    "mole valley": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "East Surrey"
+    },
+    "monmouthshire": {
+      "itl1": "Wales",
+      "itl2": "East Wales",
+      "itl3": "Monmouthshire and Newport"
+    },
+    "moray": {
+      "itl1": "Scotland",
+      "itl2": "Highlands and Islands",
+      "itl3": "Inverness and Nairn, Moray, and Badenoch and Strathspey"
+    },
+    "na h-eileanan siar": {
+      "itl1": "Scotland",
+      "itl2": "Highlands and Islands",
+      "itl3": "Na h-Eileanan Siar"
+    },
+    "neath port talbot": {
+      "itl1": "Wales",
+      "itl2": "West Wales and The Valleys",
+      "itl3": "Bridgend and Neath Port Talbot"
+    },
+    "new forest": {
+      "itl1": "South East (England)",
+      "itl2": "Hampshire and Isle of Wight",
+      "itl3": "Central Hampshire"
+    },
+    "newark and sherwood": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Derbyshire and Nottinghamshire",
+      "itl3": "North Nottinghamshire"
+    },
+    "newcastle upon tyne": {
+      "itl1": "North East (England)",
+      "itl2": "Northumberland, and Tyne and Wear",
+      "itl3": "Tyneside"
+    },
+    "newcastle-under-lyme": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Shropshire and Staffordshire",
+      "itl3": "Staffordshire CC"
+    },
+    "newham": {
+      "itl1": "London",
+      "itl2": "Inner London - East",
+      "itl3": "Hackney and Newham"
+    },
+    "newport": {
+      "itl1": "Wales",
+      "itl2": "East Wales",
+      "itl3": "Monmouthshire and Newport"
+    },
+    "newry, mourne and down": {
+      "itl1": "Northern Ireland",
+      "itl2": "Northern Ireland",
+      "itl3": "Newry, Mourne and Down"
+    },
+    "north ayrshire": {
+      "itl1": "Scotland",
+      "itl2": "Southern Scotland",
+      "itl3": "East Ayrshire and North Ayrshire mainland"
+    },
+    "north devon": {
+      "itl1": "South West (England)",
+      "itl2": "Devon",
+      "itl3": "Devon CC"
+    },
+    "north east derbyshire": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Derbyshire and Nottinghamshire",
+      "itl3": "East Derbyshire"
+    },
+    "north east lincolnshire": {
+      "itl1": "Yorkshire and The Humber",
+      "itl2": "East Yorkshire and Northern Lincolnshire",
+      "itl3": "North and North East Lincolnshire"
+    },
+    "north hertfordshire": {
+      "itl1": "East",
+      "itl2": "Bedfordshire and Hertfordshire",
+      "itl3": "Hertfordshire CC"
+    },
+    "north kesteven": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Lincolnshire",
+      "itl3": "Lincolnshire CC"
+    },
+    "north lanarkshire": {
+      "itl1": "Scotland",
+      "itl2": "West Central Scotland",
+      "itl3": "North Lanarkshire"
+    },
+    "north lincolnshire": {
+      "itl1": "Yorkshire and The Humber",
+      "itl2": "East Yorkshire and Northern Lincolnshire",
+      "itl3": "North and North East Lincolnshire"
+    },
+    "north norfolk": {
+      "itl1": "East",
+      "itl2": "East Anglia",
+      "itl3": "North and West Norfolk"
+    },
+    "north northamptonshire": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Leicestershire, Rutland and Northamptonshire",
+      "itl3": "North Northamptonshire"
+    },
+    "north somerset": {
+      "itl1": "South West (England)",
+      "itl2": "Gloucestershire, Wiltshire and Bath/Bristol area",
+      "itl3": "Bath and North East Somerset, North Somerset and South Gloucestershire"
+    },
+    "north tyneside": {
+      "itl1": "North East (England)",
+      "itl2": "Northumberland, and Tyne and Wear",
+      "itl3": "Tyneside"
+    },
+    "north warwickshire": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Herefordshire, Worcestershire and Warwickshire",
+      "itl3": "Warwickshire CC"
+    },
+    "north west leicestershire": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Leicestershire, Rutland and Northamptonshire",
+      "itl3": "Leicestershire CC and Rutland"
+    },
+    "north yorkshire": {
+      "itl1": "Yorkshire and The Humber",
+      "itl2": "North Yorkshire",
+      "itl3": "North Yorkshire CC"
+    },
+    "northumberland": {
+      "itl1": "North East (England)",
+      "itl2": "Northumberland, and Tyne and Wear",
+      "itl3": "Northumberland"
+    },
+    "norwich": {
+      "itl1": "East",
+      "itl2": "East Anglia",
+      "itl3": "Norwich and East Norfolk"
+    },
+    "nottingham": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Derbyshire and Nottinghamshire",
+      "itl3": "Nottingham"
+    },
+    "nuneaton and bedworth": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Herefordshire, Worcestershire and Warwickshire",
+      "itl3": "Warwickshire CC"
+    },
+    "oadby and wigston": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Leicestershire, Rutland and Northamptonshire",
+      "itl3": "Leicestershire CC and Rutland"
+    },
+    "oldham": {
+      "itl1": "North West (England)",
+      "itl2": "Greater Manchester",
+      "itl3": "Greater Manchester North East"
+    },
+    "orkney islands": {
+      "itl1": "Scotland",
+      "itl2": "Highlands and Islands",
+      "itl3": "Orkney Islands"
+    },
+    "oxford": {
+      "itl1": "South East (England)",
+      "itl2": "Berkshire, Buckinghamshire and Oxfordshire",
+      "itl3": "Oxfordshire CC"
+    },
+    "pembrokeshire": {
+      "itl1": "Wales",
+      "itl2": "West Wales and The Valleys",
+      "itl3": "South West Wales"
+    },
+    "pendle": {
+      "itl1": "North West (England)",
+      "itl2": "Lancashire",
+      "itl3": "East Lancashire"
+    },
+    "perth and kinross": {
+      "itl1": "Scotland",
+      "itl2": "Eastern Scotland",
+      "itl3": "Perth and Kinross, and Stirling"
+    },
+    "peterborough": {
+      "itl1": "East",
+      "itl2": "East Anglia",
+      "itl3": "Peterborough"
+    },
+    "plymouth": {
+      "itl1": "South West (England)",
+      "itl2": "Devon",
+      "itl3": "Plymouth"
+    },
+    "portsmouth": {
+      "itl1": "South East (England)",
+      "itl2": "Hampshire and Isle of Wight",
+      "itl3": "Portsmouth"
+    },
+    "powys": {
+      "itl1": "Wales",
+      "itl2": "East Wales",
+      "itl3": "Powys"
+    },
+    "preston": {
+      "itl1": "North West (England)",
+      "itl2": "Lancashire",
+      "itl3": "Mid Lancashire"
+    },
+    "reading": {
+      "itl1": "South East (England)",
+      "itl2": "Berkshire, Buckinghamshire and Oxfordshire",
+      "itl3": "Berkshire"
+    },
+    "redbridge": {
+      "itl1": "London",
+      "itl2": "Outer London - East and North East",
+      "itl3": "Redbridge and Waltham Forest"
+    },
+    "redcar and cleveland": {
+      "itl1": "North East (England)",
+      "itl2": "Tees Valley and Durham",
+      "itl3": "South Teesside"
+    },
+    "redditch": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Herefordshire, Worcestershire and Warwickshire",
+      "itl3": "Worcestershire CC"
+    },
+    "reigate and banstead": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "East Surrey"
+    },
+    "renfrewshire": {
+      "itl1": "Scotland",
+      "itl2": "West Central Scotland",
+      "itl3": "Inverclyde, East Renfrewshire, and Renfrewshire"
+    },
+    "rhondda cynon taf": {
+      "itl1": "Wales",
+      "itl2": "West Wales and The Valleys",
+      "itl3": "Central Valleys"
+    },
+    "ribble valley": {
+      "itl1": "North West (England)",
+      "itl2": "Lancashire",
+      "itl3": "Mid Lancashire"
+    },
+    "richmond upon thames": {
+      "itl1": "London",
+      "itl2": "Outer London - West and North West",
+      "itl3": "Hounslow and Richmond upon Thames"
+    },
+    "rochdale": {
+      "itl1": "North West (England)",
+      "itl2": "Greater Manchester",
+      "itl3": "Greater Manchester North East"
+    },
+    "rochford": {
+      "itl1": "East",
+      "itl2": "Essex",
+      "itl3": "Essex Thames Gateway"
+    },
+    "rossendale": {
+      "itl1": "North West (England)",
+      "itl2": "Lancashire",
+      "itl3": "East Lancashire"
+    },
+    "rother": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "East Sussex CC"
+    },
+    "rotherham": {
+      "itl1": "Yorkshire and The Humber",
+      "itl2": "South Yorkshire",
+      "itl3": "Barnsley, Doncaster and Rotherham"
+    },
+    "rugby": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Herefordshire, Worcestershire and Warwickshire",
+      "itl3": "Warwickshire CC"
+    },
+    "runnymede": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "West Surrey"
+    },
+    "rushcliffe": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Derbyshire and Nottinghamshire",
+      "itl3": "South Nottinghamshire"
+    },
+    "rushmoor": {
+      "itl1": "South East (England)",
+      "itl2": "Hampshire and Isle of Wight",
+      "itl3": "North Hampshire"
+    },
+    "rutland": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Leicestershire, Rutland and Northamptonshire",
+      "itl3": "Leicestershire CC and Rutland"
+    },
+    "salford": {
+      "itl1": "North West (England)",
+      "itl2": "Greater Manchester",
+      "itl3": "Greater Manchester South West"
+    },
+    "sandwell": {
+      "itl1": "West Midlands (England)",
+      "itl2": "West Midlands",
+      "itl3": "Sandwell"
+    },
+    "scottish borders": {
+      "itl1": "Scotland",
+      "itl2": "Southern Scotland",
+      "itl3": "Scottish Borders"
+    },
+    "sefton": {
+      "itl1": "North West (England)",
+      "itl2": "Merseyside",
+      "itl3": "Sefton"
+    },
+    "sevenoaks": {
+      "itl1": "South East (England)",
+      "itl2": "Kent",
+      "itl3": "West Kent"
+    },
+    "sheffield": {
+      "itl1": "Yorkshire and The Humber",
+      "itl2": "South Yorkshire",
+      "itl3": "Sheffield"
+    },
+    "shetland islands": {
+      "itl1": "Scotland",
+      "itl2": "Highlands and Islands",
+      "itl3": "Shetland Islands"
+    },
+    "shropshire": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Shropshire and Staffordshire",
+      "itl3": "Shropshire"
+    },
+    "slough": {
+      "itl1": "South East (England)",
+      "itl2": "Berkshire, Buckinghamshire and Oxfordshire",
+      "itl3": "Berkshire"
+    },
+    "solihull": {
+      "itl1": "West Midlands (England)",
+      "itl2": "West Midlands",
+      "itl3": "Solihull"
+    },
+    "somerset": {
+      "itl1": "South West (England)",
+      "itl2": "Dorset and Somerset",
+      "itl3": "Somerset CC"
+    },
+    "south ayrshire": {
+      "itl1": "Scotland",
+      "itl2": "Southern Scotland",
+      "itl3": "South Ayrshire"
+    },
+    "south cambridgeshire": {
+      "itl1": "East",
+      "itl2": "East Anglia",
+      "itl3": "Cambridgeshire CC"
+    },
+    "south derbyshire": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Derbyshire and Nottinghamshire",
+      "itl3": "South and West Derbyshire"
+    },
+    "south gloucestershire": {
+      "itl1": "South West (England)",
+      "itl2": "Gloucestershire, Wiltshire and Bath/Bristol area",
+      "itl3": "Bath and North East Somerset, North Somerset and South Gloucestershire"
+    },
+    "south hams": {
+      "itl1": "South West (England)",
+      "itl2": "Devon",
+      "itl3": "Devon CC"
+    },
+    "south holland": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Lincolnshire",
+      "itl3": "Lincolnshire CC"
+    },
+    "south kesteven": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Lincolnshire",
+      "itl3": "Lincolnshire CC"
+    },
+    "south lanarkshire": {
+      "itl1": "Scotland",
+      "itl2": "Southern Scotland",
+      "itl3": "South Lanarkshire"
+    },
+    "south norfolk": {
+      "itl1": "East",
+      "itl2": "East Anglia",
+      "itl3": "Breckland and South Norfolk"
+    },
+    "south oxfordshire": {
+      "itl1": "South East (England)",
+      "itl2": "Berkshire, Buckinghamshire and Oxfordshire",
+      "itl3": "Oxfordshire CC"
+    },
+    "south ribble": {
+      "itl1": "North West (England)",
+      "itl2": "Lancashire",
+      "itl3": "Mid Lancashire"
+    },
+    "south staffordshire": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Shropshire and Staffordshire",
+      "itl3": "Staffordshire CC"
+    },
+    "south tyneside": {
+      "itl1": "North East (England)",
+      "itl2": "Northumberland, and Tyne and Wear",
+      "itl3": "Tyneside"
+    },
+    "southampton": {
+      "itl1": "South East (England)",
+      "itl2": "Hampshire and Isle of Wight",
+      "itl3": "Southampton"
+    },
+    "southend-on-sea": {
+      "itl1": "East",
+      "itl2": "Essex",
+      "itl3": "Southend-on-Sea"
+    },
+    "southwark": {
+      "itl1": "London",
+      "itl2": "Inner London - East",
+      "itl3": "Lewisham and Southwark"
+    },
+    "spelthorne": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "West Surrey"
+    },
+    "st albans": {
+      "itl1": "East",
+      "itl2": "Bedfordshire and Hertfordshire",
+      "itl3": "Hertfordshire CC"
+    },
+    "st. helens": {
+      "itl1": "North West (England)",
+      "itl2": "Merseyside",
+      "itl3": "East Merseyside"
+    },
+    "stafford": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Shropshire and Staffordshire",
+      "itl3": "Staffordshire CC"
+    },
+    "staffordshire moorlands": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Shropshire and Staffordshire",
+      "itl3": "Staffordshire CC"
+    },
+    "stevenage": {
+      "itl1": "East",
+      "itl2": "Bedfordshire and Hertfordshire",
+      "itl3": "Hertfordshire CC"
+    },
+    "stirling": {
+      "itl1": "Scotland",
+      "itl2": "Eastern Scotland",
+      "itl3": "Perth and Kinross, and Stirling"
+    },
+    "stockport": {
+      "itl1": "North West (England)",
+      "itl2": "Greater Manchester",
+      "itl3": "Greater Manchester South East"
+    },
+    "stockton-on-tees": {
+      "itl1": "North East (England)",
+      "itl2": "Tees Valley and Durham",
+      "itl3": "Hartlepool and Stockton-on-Tees"
+    },
+    "stoke-on-trent": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Shropshire and Staffordshire",
+      "itl3": "Stoke-on-Trent"
+    },
+    "stratford-on-avon": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Herefordshire, Worcestershire and Warwickshire",
+      "itl3": "Warwickshire CC"
+    },
+    "stroud": {
+      "itl1": "South West (England)",
+      "itl2": "Gloucestershire, Wiltshire and Bath/Bristol area",
+      "itl3": "Gloucestershire CC"
+    },
+    "sunderland": {
+      "itl1": "North East (England)",
+      "itl2": "Northumberland, and Tyne and Wear",
+      "itl3": "Sunderland"
+    },
+    "surrey heath": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "West Surrey"
+    },
+    "sutton": {
+      "itl1": "London",
+      "itl2": "Outer London - South",
+      "itl3": "Merton, Kingston upon Thames and Sutton"
+    },
+    "swale": {
+      "itl1": "South East (England)",
+      "itl2": "Kent",
+      "itl3": "Kent Thames Gateway"
+    },
+    "swansea": {
+      "itl1": "Wales",
+      "itl2": "West Wales and The Valleys",
+      "itl3": "Swansea"
+    },
+    "swindon": {
+      "itl1": "South West (England)",
+      "itl2": "Gloucestershire, Wiltshire and Bath/Bristol area",
+      "itl3": "Swindon"
+    },
+    "tameside": {
+      "itl1": "North West (England)",
+      "itl2": "Greater Manchester",
+      "itl3": "Greater Manchester South East"
+    },
+    "tamworth": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Shropshire and Staffordshire",
+      "itl3": "Staffordshire CC"
+    },
+    "tandridge": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "East Surrey"
+    },
+    "teignbridge": {
+      "itl1": "South West (England)",
+      "itl2": "Devon",
+      "itl3": "Devon CC"
+    },
+    "telford and wrekin": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Shropshire and Staffordshire",
+      "itl3": "Telford and Wrekin"
+    },
+    "tendring": {
+      "itl1": "East",
+      "itl2": "Essex",
+      "itl3": "Essex Haven Gateway"
+    },
+    "test valley": {
+      "itl1": "South East (England)",
+      "itl2": "Hampshire and Isle of Wight",
+      "itl3": "Central Hampshire"
+    },
+    "tewkesbury": {
+      "itl1": "South West (England)",
+      "itl2": "Gloucestershire, Wiltshire and Bath/Bristol area",
+      "itl3": "Gloucestershire CC"
+    },
+    "thanet": {
+      "itl1": "South East (England)",
+      "itl2": "Kent",
+      "itl3": "East Kent"
+    },
+    "three rivers": {
+      "itl1": "East",
+      "itl2": "Bedfordshire and Hertfordshire",
+      "itl3": "Hertfordshire CC"
+    },
+    "thurrock": {
+      "itl1": "East",
+      "itl2": "Essex",
+      "itl3": "Thurrock"
+    },
+    "tonbridge and malling": {
+      "itl1": "South East (England)",
+      "itl2": "Kent",
+      "itl3": "West Kent"
+    },
+    "torbay": {
+      "itl1": "South West (England)",
+      "itl2": "Devon",
+      "itl3": "Torbay"
+    },
+    "torfaen": {
+      "itl1": "Wales",
+      "itl2": "West Wales and The Valleys",
+      "itl3": "Gwent Valleys"
+    },
+    "torridge": {
+      "itl1": "South West (England)",
+      "itl2": "Devon",
+      "itl3": "Devon CC"
+    },
+    "tower hamlets": {
+      "itl1": "London",
+      "itl2": "Inner London - East",
+      "itl3": "Tower Hamlets"
+    },
+    "trafford": {
+      "itl1": "North West (England)",
+      "itl2": "Greater Manchester",
+      "itl3": "Greater Manchester South West"
+    },
+    "tunbridge wells": {
+      "itl1": "South East (England)",
+      "itl2": "Kent",
+      "itl3": "West Kent"
+    },
+    "uttlesford": {
+      "itl1": "East",
+      "itl2": "Essex",
+      "itl3": "West Essex"
+    },
+    "vale of glamorgan": {
+      "itl1": "Wales",
+      "itl2": "East Wales",
+      "itl3": "Cardiff and Vale of Glamorgan"
+    },
+    "vale of white horse": {
+      "itl1": "South East (England)",
+      "itl2": "Berkshire, Buckinghamshire and Oxfordshire",
+      "itl3": "Oxfordshire CC"
+    },
+    "wakefield": {
+      "itl1": "Yorkshire and The Humber",
+      "itl2": "West Yorkshire",
+      "itl3": "Wakefield"
+    },
+    "walsall": {
+      "itl1": "West Midlands (England)",
+      "itl2": "West Midlands",
+      "itl3": "Walsall"
+    },
+    "waltham forest": {
+      "itl1": "London",
+      "itl2": "Outer London - East and North East",
+      "itl3": "Redbridge and Waltham Forest"
+    },
+    "wandsworth": {
+      "itl1": "London",
+      "itl2": "Inner London - West",
+      "itl3": "Wandsworth"
+    },
+    "warrington": {
+      "itl1": "North West (England)",
+      "itl2": "Cheshire",
+      "itl3": "Warrington"
+    },
+    "warwick": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Herefordshire, Worcestershire and Warwickshire",
+      "itl3": "Warwickshire CC"
+    },
+    "watford": {
+      "itl1": "East",
+      "itl2": "Bedfordshire and Hertfordshire",
+      "itl3": "Hertfordshire CC"
+    },
+    "waverley": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "West Surrey"
+    },
+    "wealden": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "East Sussex CC"
+    },
+    "welwyn hatfield": {
+      "itl1": "East",
+      "itl2": "Bedfordshire and Hertfordshire",
+      "itl3": "Hertfordshire CC"
+    },
+    "west berkshire": {
+      "itl1": "South East (England)",
+      "itl2": "Berkshire, Buckinghamshire and Oxfordshire",
+      "itl3": "Berkshire"
+    },
+    "west devon": {
+      "itl1": "South West (England)",
+      "itl2": "Devon",
+      "itl3": "Devon CC"
+    },
+    "west dunbartonshire": {
+      "itl1": "Scotland",
+      "itl2": "West Central Scotland",
+      "itl3": "East Dunbartonshire, West Dunbartonshire, and Helensburgh and Lomond"
+    },
+    "west lancashire": {
+      "itl1": "North West (England)",
+      "itl2": "Lancashire",
+      "itl3": "Chorley and West Lancashire"
+    },
+    "west lindsey": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Lincolnshire",
+      "itl3": "Lincolnshire CC"
+    },
+    "west lothian": {
+      "itl1": "Scotland",
+      "itl2": "Eastern Scotland",
+      "itl3": "West Lothian"
+    },
+    "west northamptonshire": {
+      "itl1": "East Midlands (England)",
+      "itl2": "Leicestershire, Rutland and Northamptonshire",
+      "itl3": "West Northamptonshire"
+    },
+    "west oxfordshire": {
+      "itl1": "South East (England)",
+      "itl2": "Berkshire, Buckinghamshire and Oxfordshire",
+      "itl3": "Oxfordshire CC"
+    },
+    "west suffolk": {
+      "itl1": "East",
+      "itl2": "East Anglia",
+      "itl3": "Suffolk CC"
+    },
+    "westminster": {
+      "itl1": "London",
+      "itl2": "Inner London - West",
+      "itl3": "Westminster"
+    },
+    "westmorland and furness": {
+      "itl1": "North West (England)",
+      "itl2": "Cumbria",
+      "itl3": "East Cumbria"
+    },
+    "wigan": {
+      "itl1": "North West (England)",
+      "itl2": "Greater Manchester",
+      "itl3": "Greater Manchester North West"
+    },
+    "wiltshire": {
+      "itl1": "South West (England)",
+      "itl2": "Gloucestershire, Wiltshire and Bath/Bristol area",
+      "itl3": "Wiltshire"
+    },
+    "winchester": {
+      "itl1": "South East (England)",
+      "itl2": "Hampshire and Isle of Wight",
+      "itl3": "Central Hampshire"
+    },
+    "windsor and maidenhead": {
+      "itl1": "South East (England)",
+      "itl2": "Berkshire, Buckinghamshire and Oxfordshire",
+      "itl3": "Berkshire"
+    },
+    "wirral": {
+      "itl1": "North West (England)",
+      "itl2": "Merseyside",
+      "itl3": "Wirral"
+    },
+    "woking": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "West Surrey"
+    },
+    "wokingham": {
+      "itl1": "South East (England)",
+      "itl2": "Berkshire, Buckinghamshire and Oxfordshire",
+      "itl3": "Berkshire"
+    },
+    "wolverhampton": {
+      "itl1": "West Midlands (England)",
+      "itl2": "West Midlands",
+      "itl3": "Wolverhampton"
+    },
+    "worcester": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Herefordshire, Worcestershire and Warwickshire",
+      "itl3": "Worcestershire CC"
+    },
+    "worthing": {
+      "itl1": "South East (England)",
+      "itl2": "Surrey, East and West Sussex",
+      "itl3": "West Sussex (South West)"
+    },
+    "wrexham": {
+      "itl1": "Wales",
+      "itl2": "East Wales",
+      "itl3": "Flintshire and Wrexham"
+    },
+    "wychavon": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Herefordshire, Worcestershire and Warwickshire",
+      "itl3": "Worcestershire CC"
+    },
+    "wyre": {
+      "itl1": "North West (England)",
+      "itl2": "Lancashire",
+      "itl3": "Lancaster and Wyre"
+    },
+    "wyre forest": {
+      "itl1": "West Midlands (England)",
+      "itl2": "Herefordshire, Worcestershire and Warwickshire",
+      "itl3": "Worcestershire CC"
+    },
+    "york": {
+      "itl1": "Yorkshire and The Humber",
+      "itl2": "North Yorkshire",
+      "itl3": "York"
+    }
+  }
+}

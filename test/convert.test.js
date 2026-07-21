@@ -99,7 +99,6 @@ test('convertLine end-to-end for an Irish grid reference (no network required)',
   assert.equal(result.type, TYPES.IRISH_GRID);
   assert.equal(result.error, null);
   assert.ok(Math.abs(result.lat - 54.597) < 0.05);
-  assert.equal(result.country, 'Northern Ireland');
 });
 
 test('convertLine flags unparseable input', async () => {

@@ -31,8 +31,9 @@ function blankResult(input) {
     eastingIrish: null,
     northingIrish: null,
     postcode: null,
-    region: null,
-    country: null,
+    itl1: null,
+    itl2: null,
+    itl3: null,
   };
 }
 
@@ -139,7 +140,6 @@ async function convertLine(raw) {
         const wgs84 = irishGrid.irishGridToWgs84(parsed.easting, parsed.northing);
         result.lat = wgs84.lat;
         result.lon = wgs84.lon;
-        result.country = 'Northern Ireland';
         break;
       }
 
@@ -153,8 +153,9 @@ async function convertLine(raw) {
         result.lat = looked.lat;
         result.lon = looked.lon;
         result.postcode = looked.postcode;
-        result.region = looked.region;
-        result.country = looked.country;
+        result.itl1 = looked.itl1;
+        result.itl2 = looked.itl2;
+        result.itl3 = looked.itl3;
         populateDerivedGrids(result);
         break;
       }
@@ -166,19 +167,18 @@ async function convertLine(raw) {
     result.error = err.message || 'Conversion failed';
   }
 
-  // Best-effort reverse geocode a postcode/region for grid/coordinate inputs
-  // that resolved to a GB point but didn't come from a postcode already.
+  // Best-effort reverse geocode a postcode/ITL region for grid/coordinate
+  // inputs that resolved to a GB point but didn't come from a postcode already.
   if (!result.postcode && !result.error && result.lat != null && within(GB_BBOX, result.lat, result.lon)) {
     const nearest = await nearestGbPostcode(result.lat, result.lon);
     if (nearest) {
-      result.postcode = `~${nearest.postcode}`; // '~' marks this as approximate/reverse-geocoded
-      result.region = result.region || nearest.region;
+      // The nearest postcode to a converted coordinate, not looked up
+      // directly — see the "Postcode" column header note in the UI.
+      result.postcode = nearest.postcode;
+      result.itl1 = result.itl1 || nearest.itl1;
+      result.itl2 = result.itl2 || nearest.itl2;
+      result.itl3 = result.itl3 || nearest.itl3;
     }
-  }
-
-  if (!result.country && result.lat != null) {
-    if (within(IE_BBOX, result.lat, result.lon)) result.country = 'Northern Ireland / Ireland';
-    else if (within(GB_BBOX, result.lat, result.lon)) result.country = 'Great Britain';
   }
 
   return result;
