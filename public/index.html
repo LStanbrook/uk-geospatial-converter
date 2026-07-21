@@ -69,7 +69,7 @@
     <div class="display-style-control" id="display-style-control">
       <div class="display-style-row">
         <label><input type="radio" name="display-style" value="points" checked /> Points</label>
-        <label><input type="radio" name="display-style" value="area" /> Regions <span class="experimental-badge">experimental</span></label>
+        <label><input type="radio" name="display-style" value="area" /> Regions <span class="experimental-badge" title="I built this boundary dataset from publicly available sources myself. Testing suggests it's pretty accurate, but I can't vouch for it 100% — treat it as indicative, not official.">experimental</span></label>
       </div>
       <div class="region-size-row" id="region-size-row" hidden>
         <label>Size:
@@ -109,9 +109,10 @@
             <th>Irish Grid Ref</th>
             <th>Lat</th>
             <th>Lon</th>
-            <th>Postcode</th>
-            <th>Region</th>
-            <th>Country</th>
+            <th>Postcode <span class="info-hint" title="For inputs that weren't already a postcode (grid refs, lat/lon, etc.), this is the nearest postcode to the converted coordinate, not an exact match — treat it as approximate.">&#9432;</span></th>
+            <th>ITL1</th>
+            <th>ITL2</th>
+            <th>ITL3</th>
           </tr>
         </thead>
         <tbody id="results-body"></tbody>
