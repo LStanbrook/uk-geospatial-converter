@@ -51,6 +51,30 @@ coarser level and reports what it actually returned in the `level` field
 (vs. `requested`, what you asked for). The frontend surfaces this in the
 map popup.
 
+## Known data issues (fixed locally, not upstream)
+
+The unit postcode **CB25 9JZ** had a corrupted 3rd sub-polygon in its
+`output/` dataset geometry — a crude 74-point shape spanning roughly
+lat 49.5–61.2, lon -18.3–-4.0 (basically the whole UK/Ireland), wrongly
+merged in alongside its real, correct shape. Because `sector/`, `district/`,
+and `area/` files are aggregated from unit-level shapes, this one bad
+feature silently propagated up into `sector/CB25/CB25 9.geojson`,
+`district/CB25.geojson`, and `area/CB.geojson` too — causing those files
+to falsely match points anywhere in that huge bounding box (found via a
+tree-location grid ref that reverse-geocoded to "CB25" despite being in
+Inverness).
+
+Fixed by stripping just that one bogus sub-polygon from all four affected
+files (script used: filter each feature's `MultiPolygon.coordinates` to
+drop any sub-polygon whose bounding box exceeds ~2° in either dimension,
+collapsing back to a plain `Polygon` if only one sub-shape remains). This
+fix lives only in the local/deployed dataset files, which are gitignored
+— if this dataset is ever re-downloaded or regenerated from scratch, the
+same defect (and fix) may need reapplying. Worth spot-checking new
+datasets for other similarly oversized sub-polygons before trusting them
+(see the one-off scan approach: bounding-box each sub-polygon, flag any
+matching or exceeding a plausible single-postcode-area size).
+
 ## Swapping in a different dataset
 
 If you replace this with another dataset (e.g. real ONS Open Geography
