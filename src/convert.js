@@ -7,6 +7,7 @@ const { detectType, TYPES } = require('./detect');
 const osGrid = require('./osGridRef');
 const irishGrid = require('./irishGrid');
 const { lookupPostcode, nearestGbPostcode } = require('./postcode');
+const { isWithinGreatBritain } = require('./boundaries');
 
 // Loose bounding boxes used only to decide which "native" grid conversions
 // are meaningful to show, not for strict validation.
@@ -125,6 +126,16 @@ async function convertLine(raw) {
         const wgs84 = osGrid.osGridToWgs84(parsed.easting, parsed.northing);
         result.lat = wgs84.lat;
         result.lon = wgs84.lon;
+        // A 100km grid square only needs to touch GB *somewhere* to be a
+        // real, used square (e.g. "NW" — a sliver near the Kintyre
+        // peninsula) — so a specific easting/northing within it can still
+        // land in the sea or Northern Ireland instead. isWithinGreatBritain
+        // returns null (skip the check) if the boundary dataset isn't
+        // available, rather than false-flagging every grid ref.
+        if (isWithinGreatBritain(result.lat, result.lon) === false) {
+          result.error =
+            'This grid reference falls outside Great Britain — the British National Grid only covers England, Scotland and Wales (not Northern Ireland, the Isle of Man, or open sea), even though the 100km square it\'s in also covers some real GB territory elsewhere.';
+        }
         break;
       }
 

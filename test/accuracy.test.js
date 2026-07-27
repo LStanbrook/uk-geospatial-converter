@@ -125,3 +125,28 @@ test('Irish Grid <-> WGS84 round-trips across Northern Ireland and the Republic'
     assert.ok(Math.abs(back.lon - p.lon) < 1e-6, `${p.name} lon drift: ${back.lon}`);
   }
 });
+
+test('OS Grid References that land outside GB are flagged, not silently accepted', async (t) => {
+  // A 100km grid square only needs to touch GB *somewhere* to be a real,
+  // used square — e.g. "NW" is legitimate because a sliver of it covers
+  // the Kintyre peninsula — but a specific easting/northing within it can
+  // still land in the sea, Northern Ireland, or the Isle of Man instead.
+  // This depends on the (gitignored, multi-GB) boundary dataset actually
+  // being present locally, so skip gracefully if it isn't.
+  const { isWithinGreatBritain } = require('../src/boundaries');
+  if (isWithinGreatBritain(51.5, -0.1) === null) {
+    t.skip('boundary dataset not present locally (data/postcode-boundaries is gitignored)');
+    return;
+  }
+
+  const { convertLine } = require('../src/convert');
+
+  const outsideGb = await convertLine('NW2519589660'); // real square (Kintyre), but this point is over the North Channel/NI
+  assert.match(outsideGb.error || '', /outside Great Britain/);
+
+  const isleOfMan = await convertLine('SC385750'); // real square (Cumbria/Galloway coast), but this point is over the Isle of Man
+  assert.match(isleOfMan.error || '', /outside Great Britain/);
+
+  const realGbPoint = await convertLine('TQ 300 803'); // central London
+  assert.equal(realGbPoint.error, null);
+});

@@ -321,6 +321,55 @@ function findDistrictForPoint(lat, lon) {
   return areaCode; // point is in this area, but not clearly inside any one district's polygon
 }
 
+/**
+ * Whether a point falls within an actual GB postcode area (any area file
+ * except "BT", Northern Ireland's, which is a different grid system —
+ * the British National Grid was never surveyed over NI). Used to catch OS
+ * Grid References that are mathematically well-formed and even fall
+ * within a genuinely-used 100km grid square (a square only needs to touch
+ * GB *somewhere* to be real and used — e.g. "NW" is legitimate because a
+ * sliver of it covers the Kintyre peninsula, ~20km from Northern Ireland
+ * at the closest point), but whose specific easting/northing lands in the
+ * sea or Northern Ireland instead of the square's small real GB portion.
+ *
+ * The GB and NI boundary polygons were generated as two independent
+ * Voronoi tessellations that don't know about each other across the
+ * water, so right at their maritime border (the North Channel, between
+ * Kintyre and Antrim) both datasets' polygons can claim the same point.
+ * A point inside BT's own polygon is therefore treated as *not* reliably
+ * GB even if some GB area's polygon also happens to claim it — ambiguous
+ * is closer to "no" than "yes" for this check's purpose.
+ *
+ * Returns null (rather than false) if the boundary dataset isn't
+ * available, so callers can treat "can't tell" differently from "no".
+ */
+function isWithinGreatBritain(lat, lon) {
+  const ds = resolveDatasetRoot();
+  if (!ds) return null;
+
+  const btFile = path.join(ds.root, ds.subdirs.area, 'BT.geojson');
+  const btData = loadFile(btFile);
+  if (btData?.features?.some((f) => pointInGeometry(lon, lat, f.geometry))) return false;
+
+  let filenames;
+  try {
+    filenames = fs
+      .readdirSync(path.join(ds.root, ds.subdirs.area))
+      .filter((f) => f.endsWith('.geojson') && !/^bt\.geojson$/i.test(f));
+  } catch {
+    return null;
+  }
+
+  for (const filename of filenames) {
+    const data = loadFile(path.join(ds.root, ds.subdirs.area, filename));
+    if (!data || !Array.isArray(data.features)) continue;
+    for (const feature of data.features) {
+      if (pointInGeometry(lon, lat, feature.geometry)) return true;
+    }
+  }
+  return false;
+}
+
 /** Called once at server startup, purely to log whether a dataset was found. */
 function loadBoundaries() {
   const ds = resolveDatasetRoot();
@@ -331,4 +380,4 @@ function loadBoundaries() {
   }
 }
 
-module.exports = { loadBoundaries, findBoundary, findDistrictForPoint };
+module.exports = { loadBoundaries, findBoundary, findDistrictForPoint, isWithinGreatBritain };
