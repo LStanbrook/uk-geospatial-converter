@@ -80,7 +80,7 @@ async function convertLine(raw) {
   result.type = type;
 
   if (!type || type === TYPES.UNKNOWN) {
-    result.error = 'Could not detect input type';
+    result.error = 'Unrecognised format';
     return result;
   }
 
@@ -117,7 +117,7 @@ async function convertLine(raw) {
       case TYPES.OS_GRID: {
         const parsed = osGrid.parseGridRef(raw);
         if (!parsed) {
-          result.error = 'Could not parse OS Grid Reference';
+          result.error = 'Invalid OS grid ref';
           break;
         }
         const wgs84 = osGrid.osGridToWgs84(parsed.easting, parsed.northing);
@@ -147,9 +147,11 @@ async function convertLine(raw) {
           result.type = TYPES.IRISH_GRID;
         } else if (inGb === false) {
           // Genuinely nowhere recognisable (open sea, Isle of Man, Channel
-          // Islands) — nothing useful to show instead.
-          result.error =
-            "This grid reference doesn't fall within Great Britain or Ireland, even though the 100km square it's in also covers some real GB territory elsewhere.";
+          // Islands) — nothing useful to show instead. Kept short since it
+          // renders inline in the results table's Type column; the fuller
+          // "why" (100km square touches GB somewhere, this point doesn't)
+          // is in the code comment above and the accuracy test, not here.
+          result.error = 'Outside Great Britain/Ireland';
         } else {
           result.easting = parsed.easting;
           result.northing = parsed.northing;
@@ -161,7 +163,7 @@ async function convertLine(raw) {
       case TYPES.IRISH_GRID: {
         const parsed = irishGrid.parseIrishGridRef(raw);
         if (!parsed) {
-          result.error = 'Could not parse Irish Grid Reference';
+          result.error = 'Invalid Irish grid ref';
           break;
         }
         result.eastingIrish = parsed.easting;
@@ -191,7 +193,7 @@ async function convertLine(raw) {
       }
 
       default:
-        result.error = 'Unsupported input type';
+        result.error = 'Unsupported input';
     }
   } catch (err) {
     result.error = err.message || 'Conversion failed';
