@@ -19,6 +19,7 @@
 const path = require('path');
 const niSample = require(path.join('..', 'data', 'ni-postcode-sample.json'));
 const { byLad: ITL_BY_LAD, byName: ITL_BY_LAD_NAME } = require(path.join('..', 'data', 'itl-lookup.json'));
+const { findDistrictForPoint } = require('./boundaries');
 
 const POSTCODES_IO_BASE = 'https://api.postcodes.io';
 
@@ -151,26 +152,37 @@ async function lookupPostcode(postcode) {
 // reason not to always ask for the widest search.
 const NEAREST_POSTCODE_RADIUS_METRES = 2000;
 
-/** Reverse-geocode a WGS84 point to its nearest GB postcode (GB only — see class docs). */
+/**
+ * Reverse-geocode a WGS84 point to its nearest GB postcode (GB only — see
+ * class docs). Points with no addressed postcode within
+ * NEAREST_POSTCODE_RADIUS_METRES (rural moorland, etc. — postcodes are an
+ * addressing system, not a gapless tiling of the land) fall back to a
+ * spatial lookup against our own boundary dataset instead, which — being a
+ * Voronoi/Thiessen tessellation — always has *some* containing district
+ * even where there's no nearby address. That district code (e.g. "TA1")
+ * is then fed through the normal outward-code lookup path to get proper
+ * ITL info, same as if the user had typed it as a partial postcode.
+ */
 async function nearestGbPostcode(lat, lon) {
   const url = `${POSTCODES_IO_BASE}/postcodes?lon=${lon}&lat=${lat}&radius=${NEAREST_POSTCODE_RADIUS_METRES}&limit=1`;
   try {
     const res = await fetch(url);
-    if (!res.ok) return null;
-    const body = await res.json();
-    const match = body?.result?.[0];
-    if (!match) return null;
-    const { itl1, itl2, itl3 } = itlFromLad(match.codes?.admin_district, match.admin_district);
-    return {
-      postcode: match.postcode,
-      itl1,
-      itl2,
-      itl3,
-      distanceMetres: match.distance,
-    };
+    if (res.ok) {
+      const body = await res.json();
+      const match = body?.result?.[0];
+      if (match) {
+        const { itl1, itl2, itl3 } = itlFromLad(match.codes?.admin_district, match.admin_district);
+        return { postcode: match.postcode, itl1, itl2, itl3, distanceMetres: match.distance };
+      }
+    }
   } catch {
-    return null;
+    // fall through to the spatial fallback below
   }
+
+  const district = findDistrictForPoint(lat, lon);
+  if (!district) return null;
+  const fallback = await lookupGbPostcode(district).catch(() => null);
+  return fallback && { postcode: district, itl1: fallback.itl1, itl2: fallback.itl2, itl3: fallback.itl3 };
 }
 
 /**

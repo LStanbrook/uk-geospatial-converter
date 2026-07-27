@@ -217,6 +217,110 @@ function findBoundary(postcode, requestedLevel = 'district') {
   return null;
 }
 
+// ---------------------------------------------------------------------
+// Reverse spatial lookup: which district contains an arbitrary point?
+// ---------------------------------------------------------------------
+//
+// findBoundary() above only answers "what does this postcode's boundary
+// look like" — it needs a postcode to start from. Reverse-geocoding a grid
+// ref/lat-lon to a postcode (see src/postcode.js) instead asks "which
+// postcode is near this point", via postcodes.io's nearest-*address*
+// search — which can come back empty for points genuinely far from any
+// addressed postcode (rural moorland, etc.), even though this boundary
+// dataset, being a gapless Voronoi/Thiessen tessellation, always has some
+// district that geographically contains the point. findDistrictForPoint()
+// answers that different question — point-in-polygon against the
+// boundary polygons themselves, no nearby address required.
+
+/** Ray-casting point-in-ring test. `point` and `ring` are [lon, lat] pairs. */
+function pointInRing(lon, lat, ring) {
+  let inside = false;
+  for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+    const [xi, yi] = ring[i];
+    const [xj, yj] = ring[j];
+    const intersects = yi > lat !== yj > lat && lon < ((xj - xi) * (lat - yi)) / (yj - yi) + xi;
+    if (intersects) inside = !inside;
+  }
+  return inside;
+}
+
+/** A point is inside a polygon (rings: [outer, ...holes]) iff inside the outer ring and no hole. */
+function pointInPolygonRings(lon, lat, rings) {
+  if (!rings.length || !pointInRing(lon, lat, rings[0])) return false;
+  for (let i = 1; i < rings.length; i++) {
+    if (pointInRing(lon, lat, rings[i])) return false;
+  }
+  return true;
+}
+
+/** Handles both GeoJSON Polygon and MultiPolygon geometries. */
+function pointInGeometry(lon, lat, geometry) {
+  if (!geometry) return false;
+  if (geometry.type === 'Polygon') return pointInPolygonRings(lon, lat, geometry.coordinates);
+  if (geometry.type === 'MultiPolygon') {
+    return geometry.coordinates.some((rings) => pointInPolygonRings(lon, lat, rings));
+  }
+  return false;
+}
+
+/** Finds the code (from feature properties) of whichever polygon in `dir` contains the point, or null. */
+function findContainingFeatureCode(dir, lat, lon) {
+  let filenames;
+  try {
+    filenames = fs.readdirSync(dir).filter((f) => f.endsWith('.geojson'));
+  } catch {
+    return null;
+  }
+
+  for (const filename of filenames) {
+    const data = loadFile(path.join(dir, filename));
+    if (!data || !Array.isArray(data.features)) continue;
+    for (const feature of data.features) {
+      if (pointInGeometry(lon, lat, feature.geometry)) {
+        return normaliseMapitCode(feature.properties) || filename.replace(/\.geojson$/i, '');
+      }
+    }
+  }
+  return null;
+}
+
+/**
+ * Spatially resolves a lat/lon to the postcode district (e.g. "TA1") whose
+ * boundary polygon contains it, even where no address-based postcode
+ * search finds anything nearby. Falls back to just the area (e.g. "TA")
+ * if no single district file matches. Returns null only if there's no
+ * dataset at all, or the point genuinely falls outside its coverage (e.g.
+ * off the coast, or Northern Ireland, which this GB-only dataset excludes).
+ */
+function findDistrictForPoint(lat, lon) {
+  const ds = resolveDatasetRoot();
+  if (!ds) return null;
+
+  const areaCode = findContainingFeatureCode(path.join(ds.root, ds.subdirs.area), lat, lon);
+  if (!areaCode) return null;
+
+  let districtFilenames;
+  try {
+    districtFilenames = fs
+      .readdirSync(path.join(ds.root, ds.subdirs.district))
+      .filter((f) => new RegExp(`^${areaCode}\\d+\\.geojson$`, 'i').test(f));
+  } catch {
+    districtFilenames = [];
+  }
+
+  for (const filename of districtFilenames) {
+    const data = loadFile(path.join(ds.root, ds.subdirs.district, filename));
+    if (!data || !Array.isArray(data.features)) continue;
+    for (const feature of data.features) {
+      if (pointInGeometry(lon, lat, feature.geometry)) {
+        return normaliseMapitCode(feature.properties) || filename.replace(/\.geojson$/i, '');
+      }
+    }
+  }
+
+  return areaCode; // point is in this area, but not clearly inside any one district's polygon
+}
+
 /** Called once at server startup, purely to log whether a dataset was found. */
 function loadBoundaries() {
   const ds = resolveDatasetRoot();
@@ -227,4 +331,4 @@ function loadBoundaries() {
   }
 }
 
-module.exports = { loadBoundaries, findBoundary };
+module.exports = { loadBoundaries, findBoundary, findDistrictForPoint };
