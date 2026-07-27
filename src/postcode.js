@@ -142,9 +142,18 @@ async function lookupPostcode(postcode) {
   }
 }
 
+// postcodes.io's nearest-postcode search defaults to a tight ~100m radius
+// when unspecified, so a point that's genuinely served by a postcode just
+// slightly further away (rural addresses, big rural delivery areas, etc.)
+// comes back with no match at all even though one exists nearby. 2000m is
+// postcodes.io's documented maximum and costs nothing extra — it's still a
+// single spatial query either way, sorted by distance — so there's no
+// reason not to always ask for the widest search.
+const NEAREST_POSTCODE_RADIUS_METRES = 2000;
+
 /** Reverse-geocode a WGS84 point to its nearest GB postcode (GB only — see class docs). */
 async function nearestGbPostcode(lat, lon) {
-  const url = `${POSTCODES_IO_BASE}/postcodes?lon=${lon}&lat=${lat}&limit=1`;
+  const url = `${POSTCODES_IO_BASE}/postcodes?lon=${lon}&lat=${lat}&radius=${NEAREST_POSTCODE_RADIUS_METRES}&limit=1`;
   try {
     const res = await fetch(url);
     if (!res.ok) return null;
