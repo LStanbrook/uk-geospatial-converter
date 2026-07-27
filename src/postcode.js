@@ -118,10 +118,20 @@ function lookupNiPostcode(postcode) {
   const entry = district && niSample[district];
   if (!entry) return null;
 
+  const compact = normalisePostcode(postcode);
+  const isFull = /^[A-Z]{1,2}\d[A-Z\d]?\d[A-Z]{2}$/.test(compact);
+
   return {
     lat: entry.lat,
     lon: entry.lon,
-    postcode: district,
+    // We only have district-level (outward code) data for NI, so a full
+    // postcode's inward code is never actually validated or geocoded more
+    // precisely than the district centroid — but it's still echoed back
+    // as typed (normalised), same as a full GB postcode is echoed back
+    // exactly as postcodes.io resolved it, rather than silently truncated
+    // to just the district. A partial/outward-only input still just shows
+    // the district, since that's genuinely all that was given.
+    postcode: isFull ? `${compact.slice(0, -3)} ${compact.slice(-3)}` : district,
     // NI has no ITL2 subdivision — ITL1 and ITL2 are both simply "Northern
     // Ireland", with ITL3 splitting into its 11 local government districts.
     itl1: 'Northern Ireland',
