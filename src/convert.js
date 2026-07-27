@@ -139,6 +139,12 @@ async function convertLine(raw) {
           result.eastingIrish = Math.round(ig.easting);
           result.northingIrish = Math.round(ig.northing);
           result.irishGridRef = irishGrid.formatIrishGridRef(ig.easting, ig.northing);
+          // The row now shows Irish Grid data, not OS Grid data — relabel
+          // the detected type to match what's actually displayed, rather
+          // than leaving a stale "OS Grid Ref" badge next to Irish Grid
+          // content (input format alone can't tell the two apart; e.g.
+          // "NW6630929647" reads exactly like a valid OS ref).
+          result.type = TYPES.IRISH_GRID;
         } else if (inGb === false) {
           // Genuinely nowhere recognisable (open sea, Isle of Man, Channel
           // Islands) — nothing useful to show instead.

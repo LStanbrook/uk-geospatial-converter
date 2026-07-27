@@ -142,11 +142,13 @@ test('OS Grid References that land outside GB fall back to Irish Grid or are fla
   }
 
   const { convertLine } = require('../src/convert');
+  const { TYPES } = require('../src/detect');
 
   const overNi = await convertLine('NW2519589660'); // real square (Kintyre), but this point is over the North Channel/NI
   assert.equal(overNi.error, null);
   assert.equal(overNi.osGridRef, null);
   assert.ok(overNi.irishGridRef, 'expected an Irish Grid Ref instead');
+  assert.equal(overNi.type, TYPES.IRISH_GRID, 'type badge should match what is actually shown, not the input format');
 
   const isleOfMan = await convertLine('SC385750'); // real square (Cumbria/Galloway coast), but this point is over the Isle of Man
   assert.match(isleOfMan.error || '', /doesn't fall within Great Britain or Ireland/);
