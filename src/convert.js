@@ -120,21 +120,34 @@ async function convertLine(raw) {
           result.error = 'Could not parse OS Grid Reference';
           break;
         }
-        result.easting = parsed.easting;
-        result.northing = parsed.northing;
-        result.osGridRef = osGrid.formatGridRef(parsed.easting, parsed.northing);
         const wgs84 = osGrid.osGridToWgs84(parsed.easting, parsed.northing);
         result.lat = wgs84.lat;
         result.lon = wgs84.lon;
+
         // A 100km grid square only needs to touch GB *somewhere* to be a
         // real, used square (e.g. "NW" — a sliver near the Kintyre
         // peninsula) — so a specific easting/northing within it can still
-        // land in the sea or Northern Ireland instead. isWithinGreatBritain
+        // land in Northern Ireland/Ireland instead, which uses a completely
+        // different grid system. Same treatment as every other input type
+        // already gets via populateDerivedGrids: show the Irish Grid Ref
+        // instead of a meaningless OS one, don't error. isWithinGreatBritain
         // returns null (skip the check) if the boundary dataset isn't
-        // available, rather than false-flagging every grid ref.
-        if (isWithinGreatBritain(result.lat, result.lon) === false) {
+        // available, in which case this behaves as it always did.
+        const inGb = isWithinGreatBritain(result.lat, result.lon);
+        if (inGb === false && within(IE_BBOX, result.lat, result.lon)) {
+          const ig = irishGrid.wgs84ToIrishGrid(result.lat, result.lon);
+          result.eastingIrish = Math.round(ig.easting);
+          result.northingIrish = Math.round(ig.northing);
+          result.irishGridRef = irishGrid.formatIrishGridRef(ig.easting, ig.northing);
+        } else if (inGb === false) {
+          // Genuinely nowhere recognisable (open sea, Isle of Man, Channel
+          // Islands) — nothing useful to show instead.
           result.error =
-            'This grid reference falls outside Great Britain — the British National Grid only covers England, Scotland and Wales (not Northern Ireland, the Isle of Man, or open sea), even though the 100km square it\'s in also covers some real GB territory elsewhere.';
+            "This grid reference doesn't fall within Great Britain or Ireland, even though the 100km square it's in also covers some real GB territory elsewhere.";
+        } else {
+          result.easting = parsed.easting;
+          result.northing = parsed.northing;
+          result.osGridRef = osGrid.formatGridRef(parsed.easting, parsed.northing);
         }
         break;
       }
