@@ -284,20 +284,13 @@ function findContainingFeatureCode(dir, lat, lon) {
   return null;
 }
 
-/**
- * Spatially resolves a lat/lon to the postcode district (e.g. "TA1") whose
- * boundary polygon contains it, even where no address-based postcode
- * search finds anything nearby. Falls back to just the area (e.g. "TA")
- * if no single district file matches. Returns null only if there's no
- * dataset at all, or the point genuinely falls outside its coverage (e.g.
- * off the coast, or Northern Ireland, which this GB-only dataset excludes).
- */
-function findDistrictForPoint(lat, lon) {
+/** Shared by findDistrictForPoint and findNearestPostcodeForPoint. */
+function resolveAreaAndDistrict(lat, lon) {
   const ds = resolveDatasetRoot();
   if (!ds) return null;
 
   const areaCode = findContainingFeatureCode(path.join(ds.root, ds.subdirs.area), lat, lon);
-  if (!areaCode) return null;
+  if (!areaCode) return { ds, areaCode: null, districtCode: null };
 
   let districtFilenames;
   try {
@@ -313,12 +306,57 @@ function findDistrictForPoint(lat, lon) {
     if (!data || !Array.isArray(data.features)) continue;
     for (const feature of data.features) {
       if (pointInGeometry(lon, lat, feature.geometry)) {
-        return normaliseMapitCode(feature.properties) || filename.replace(/\.geojson$/i, '');
+        const districtCode = normaliseMapitCode(feature.properties) || filename.replace(/\.geojson$/i, '');
+        return { ds, areaCode, districtCode };
       }
     }
   }
 
-  return areaCode; // point is in this area, but not clearly inside any one district's polygon
+  return { ds, areaCode, districtCode: null };
+}
+
+/**
+ * Spatially resolves a lat/lon to the postcode district (e.g. "TA1") whose
+ * boundary polygon contains it, even where no address-based postcode
+ * search finds anything nearby. Falls back to just the area (e.g. "TA")
+ * if no single district file matches. Returns null only if there's no
+ * dataset at all, or the point genuinely falls outside its coverage (e.g.
+ * off the coast, or Northern Ireland, which this GB-only dataset excludes).
+ */
+function findDistrictForPoint(lat, lon) {
+  const resolved = resolveAreaAndDistrict(lat, lon);
+  if (!resolved) return null;
+  return resolved.districtCode || resolved.areaCode || null;
+}
+
+/**
+ * Spatially resolves a lat/lon to the *specific unit postcode* whose
+ * Voronoi/Thiessen cell contains it — i.e. the genuinely nearest postcode,
+ * with no distance limit. This exists because postcodes.io's own nearest-
+ * postcode search hard-caps its radius at 2000m (their documented max,
+ * not something a larger request value can override) and returns nothing
+ * beyond that, even when the "obviously nearest" postcode is only a few
+ * hundred metres past the cap. A Voronoi cell *is* "closer to this
+ * postcode than any other" by definition, so point-in-polygon against our
+ * own unit-level dataset answers the same question without that cap.
+ * Falls back to null (caller should fall back to findDistrictForPoint) if
+ * the district resolves but no single unit polygon clearly contains the
+ * point (possible at cell edges/simplification artifacts).
+ */
+function findNearestPostcodeForPoint(lat, lon) {
+  const resolved = resolveAreaAndDistrict(lat, lon);
+  if (!resolved?.districtCode) return null;
+
+  const { ds, districtCode } = resolved;
+  const data = loadFile(path.join(ds.root, ds.subdirs.unit, `${districtCode}.geojson`));
+  if (!data || !Array.isArray(data.features)) return null;
+
+  for (const feature of data.features) {
+    if (pointInGeometry(lon, lat, feature.geometry)) {
+      return normaliseMapitCode(feature.properties);
+    }
+  }
+  return null;
 }
 
 /**
@@ -380,4 +418,10 @@ function loadBoundaries() {
   }
 }
 
-module.exports = { loadBoundaries, findBoundary, findDistrictForPoint, isWithinGreatBritain };
+module.exports = {
+  loadBoundaries,
+  findBoundary,
+  findDistrictForPoint,
+  findNearestPostcodeForPoint,
+  isWithinGreatBritain,
+};

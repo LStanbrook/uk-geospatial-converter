@@ -19,7 +19,7 @@
 const path = require('path');
 const niSample = require(path.join('..', 'data', 'ni-postcode-sample.json'));
 const { byLad: ITL_BY_LAD, byName: ITL_BY_LAD_NAME } = require(path.join('..', 'data', 'itl-lookup.json'));
-const { findDistrictForPoint } = require('./boundaries');
+const { findDistrictForPoint, findNearestPostcodeForPoint } = require('./boundaries');
 
 const POSTCODES_IO_BASE = 'https://api.postcodes.io';
 
@@ -164,14 +164,22 @@ const NEAREST_POSTCODE_RADIUS_METRES = 2000;
 
 /**
  * Reverse-geocode a WGS84 point to its nearest GB postcode (GB only — see
- * class docs). Points with no addressed postcode within
- * NEAREST_POSTCODE_RADIUS_METRES (rural moorland, etc. — postcodes are an
- * addressing system, not a gapless tiling of the land) fall back to a
- * spatial lookup against our own boundary dataset instead, which — being a
- * Voronoi/Thiessen tessellation — always has *some* containing district
- * even where there's no nearby address. That district code (e.g. "TA1")
- * is then fed through the normal outward-code lookup path to get proper
- * ITL info, same as if the user had typed it as a partial postcode.
+ * class docs).
+ *
+ * postcodes.io's own nearest-postcode search hard-caps at
+ * NEAREST_POSTCODE_RADIUS_METRES (2000m — their documented maximum, not
+ * something a larger request value can override) and returns nothing
+ * beyond that, even when the actual nearest postcode is only a few hundred
+ * metres past the cap. So when it comes back empty, we don't just give up:
+ * our own unit-level boundary dataset is a Voronoi/Thiessen tessellation —
+ * "closer to this postcode than any other" is literally what a Voronoi
+ * cell means — so point-in-polygon against it (findNearestPostcodeForPoint)
+ * answers the same "what's genuinely nearest" question with no distance
+ * limit at all. Only if that can't pin down a specific unit (cell-edge/
+ * simplification artifacts, or an area with only district-level polygons)
+ * do we fall back further to just the district (e.g. "TA1"), fed through
+ * the normal outward-code lookup path to get proper ITL info, same as if
+ * the user had typed it as a partial postcode.
  */
 async function nearestGbPostcode(lat, lon) {
   const url = `${POSTCODES_IO_BASE}/postcodes?lon=${lon}&lat=${lat}&radius=${NEAREST_POSTCODE_RADIUS_METRES}&limit=1`;
@@ -186,7 +194,13 @@ async function nearestGbPostcode(lat, lon) {
       }
     }
   } catch {
-    // fall through to the spatial fallback below
+    // fall through to the spatial fallbacks below
+  }
+
+  const unitPostcode = findNearestPostcodeForPoint(lat, lon);
+  if (unitPostcode) {
+    const looked = await lookupGbPostcode(unitPostcode).catch(() => null);
+    if (looked) return { postcode: looked.postcode, itl1: looked.itl1, itl2: looked.itl2, itl3: looked.itl3 };
   }
 
   const district = findDistrictForPoint(lat, lon);
