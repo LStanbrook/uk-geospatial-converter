@@ -104,5 +104,5 @@ test('convertLine end-to-end for an Irish grid reference (no network required)',
 test('convertLine flags unparseable input', async () => {
   const { convertLine } = require('../src/convert');
   const result = await convertLine('not a real location@@@');
-  assert.equal(result.error, 'Could not detect input type');
+  assert.equal(result.error, 'Unrecognised format');
 });
