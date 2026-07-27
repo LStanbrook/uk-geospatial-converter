@@ -126,13 +126,15 @@ test('Irish Grid <-> WGS84 round-trips across Northern Ireland and the Republic'
   }
 });
 
-test('OS Grid References that land outside GB are flagged, not silently accepted', async (t) => {
+test('OS Grid References that land outside GB fall back to Irish Grid or are flagged', async (t) => {
   // A 100km grid square only needs to touch GB *somewhere* to be a real,
   // used square — e.g. "NW" is legitimate because a sliver of it covers
   // the Kintyre peninsula — but a specific easting/northing within it can
-  // still land in the sea, Northern Ireland, or the Isle of Man instead.
-  // This depends on the (gitignored, multi-GB) boundary dataset actually
-  // being present locally, so skip gracefully if it isn't.
+  // still land in Northern Ireland/Ireland instead (shown as an Irish Grid
+  // Ref, same treatment every other input type already gets), or somewhere
+  // genuinely unrecognisable like the Isle of Man (flagged, nothing useful
+  // to show instead). This depends on the (gitignored, multi-GB) boundary
+  // dataset actually being present locally, so skip gracefully if it isn't.
   const { isWithinGreatBritain } = require('../src/boundaries');
   if (isWithinGreatBritain(51.5, -0.1) === null) {
     t.skip('boundary dataset not present locally (data/postcode-boundaries is gitignored)');
@@ -141,12 +143,15 @@ test('OS Grid References that land outside GB are flagged, not silently accepted
 
   const { convertLine } = require('../src/convert');
 
-  const outsideGb = await convertLine('NW2519589660'); // real square (Kintyre), but this point is over the North Channel/NI
-  assert.match(outsideGb.error || '', /outside Great Britain/);
+  const overNi = await convertLine('NW2519589660'); // real square (Kintyre), but this point is over the North Channel/NI
+  assert.equal(overNi.error, null);
+  assert.equal(overNi.osGridRef, null);
+  assert.ok(overNi.irishGridRef, 'expected an Irish Grid Ref instead');
 
   const isleOfMan = await convertLine('SC385750'); // real square (Cumbria/Galloway coast), but this point is over the Isle of Man
-  assert.match(isleOfMan.error || '', /outside Great Britain/);
+  assert.match(isleOfMan.error || '', /doesn't fall within Great Britain or Ireland/);
 
   const realGbPoint = await convertLine('TQ 300 803'); // central London
   assert.equal(realGbPoint.error, null);
+  assert.ok(realGbPoint.osGridRef);
 });
