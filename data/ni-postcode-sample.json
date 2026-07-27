@@ -1,25 +1,403 @@
 {
-  "_readme": "SAMPLE / DEMO DATA ONLY. Northern Ireland postcode-to-coordinate data (unit level) is published by Land & Property Services (LPS) as the 'Pointer' dataset via the NI Open Data portal (opendatani.gov.uk) under the NI Open Government Licence. It is not bundled with ONSPD/Code-Point Open in the same way GB data is, which is why it needs handling separately (see README). This file contains a small number of approximate DISTRICT-level (outward code) centroids, for demo purposes, so the app works end-to-end out of the box. Replace src/postcode.js's NI provider with a loader for the real Pointer CSV for production use.",
-  "BT1": { "lat": 54.5973, "lon": -5.9301, "district": "Belfast" },
-  "BT2": { "lat": 54.5952, "lon": -5.9327, "district": "Belfast" },
-  "BT7": { "lat": 54.5825, "lon": -5.9301, "district": "Belfast" },
-  "BT9": { "lat": 54.5794, "lon": -5.9459, "district": "Belfast" },
-  "BT12": { "lat": 54.5967, "lon": -5.9558, "district": "Belfast" },
-  "BT15": { "lat": 54.6221, "lon": -5.9412, "district": "Belfast" },
-  "BT23": { "lat": 54.5237, "lon": -5.7008, "district": "Ards and North Down" },
-  "BT28": { "lat": 54.4577, "lon": -6.0364, "district": "Lisburn and Castlereagh" },
-  "BT35": { "lat": 54.1750, "lon": -6.3400, "district": "Newry, Mourne and Down" },
-  "BT36": { "lat": 54.6800, "lon": -5.9300, "district": "Antrim and Newtownabbey" },
-  "BT40": { "lat": 54.7180, "lon": -5.8000, "district": "Mid and East Antrim" },
-  "BT41": { "lat": 54.6620, "lon": -6.2130, "district": "Antrim and Newtownabbey" },
-  "BT43": { "lat": 54.8580, "lon": -6.3350, "district": "Mid and East Antrim" },
-  "BT48": { "lat": 55.0000, "lon": -7.3200, "district": "Derry City and Strabane" },
-  "BT52": { "lat": 55.0270, "lon": -6.6660, "district": "Causeway Coast and Glens" },
-  "BT60": { "lat": 54.3500, "lon": -6.6500, "district": "Armagh City, Banbridge and Craigavon" },
-  "BT63": { "lat": 54.4500, "lon": -6.3500, "district": "Armagh City, Banbridge and Craigavon" },
-  "BT66": { "lat": 54.4570, "lon": -6.3350, "district": "Armagh City, Banbridge and Craigavon" },
-  "BT74": { "lat": 54.3450, "lon": -7.6350, "district": "Fermanagh and Omagh" },
-  "BT78": { "lat": 54.6000, "lon": -7.3000, "district": "Fermanagh and Omagh" },
-  "BT80": { "lat": 54.7100, "lon": -6.7300, "district": "Mid Ulster" },
-  "BT94": { "lat": 54.3500, "lon": -7.6400, "district": "Fermanagh and Omagh" }
+  "_readme": "SAMPLE / DEMO DATA ONLY. Northern Ireland postcode-to-coordinate data (unit level) is published by Land & Property Services (LPS) as the 'Pointer' dataset via the NI Open Data portal (opendatani.gov.uk) under the NI Open Government Licence. It is not bundled with ONSPD/Code-Point Open in the same way GB data is, which is why it needs handling separately (see README). This file covers all ~80 real NI postcode districts (outward codes) with an approximate centroid each — mostly the district's post town (geocoded via OpenStreetMap Nominatim), except Belfast's own sub-districts (BT1/2/7/9/12/15) which have distinct, more specific coordinates. This is still DISTRICT-level, not unit-level — replace src/postcode.js's NI provider with a loader for the real Pointer CSV for production/unit-level accuracy.",
+  "BT1": {
+    "lat": 54.5973,
+    "lon": -5.9301,
+    "district": "Belfast"
+  },
+  "BT2": {
+    "lat": 54.5952,
+    "lon": -5.9327,
+    "district": "Belfast"
+  },
+  "BT3": {
+    "lat": 54.5964,
+    "lon": -5.9302,
+    "district": "Belfast"
+  },
+  "BT4": {
+    "lat": 54.5964,
+    "lon": -5.9302,
+    "district": "Belfast"
+  },
+  "BT5": {
+    "lat": 54.5964,
+    "lon": -5.9302,
+    "district": "Belfast"
+  },
+  "BT6": {
+    "lat": 54.5964,
+    "lon": -5.9302,
+    "district": "Belfast"
+  },
+  "BT7": {
+    "lat": 54.5825,
+    "lon": -5.9301,
+    "district": "Belfast"
+  },
+  "BT8": {
+    "lat": 54.5964,
+    "lon": -5.9302,
+    "district": "Belfast"
+  },
+  "BT9": {
+    "lat": 54.5794,
+    "lon": -5.9459,
+    "district": "Belfast"
+  },
+  "BT10": {
+    "lat": 54.5964,
+    "lon": -5.9302,
+    "district": "Belfast"
+  },
+  "BT11": {
+    "lat": 54.5964,
+    "lon": -5.9302,
+    "district": "Belfast"
+  },
+  "BT12": {
+    "lat": 54.5967,
+    "lon": -5.9558,
+    "district": "Belfast"
+  },
+  "BT13": {
+    "lat": 54.5964,
+    "lon": -5.9302,
+    "district": "Belfast"
+  },
+  "BT14": {
+    "lat": 54.5964,
+    "lon": -5.9302,
+    "district": "Belfast"
+  },
+  "BT15": {
+    "lat": 54.6221,
+    "lon": -5.9412,
+    "district": "Belfast"
+  },
+  "BT16": {
+    "lat": 54.5964,
+    "lon": -5.9302,
+    "district": "Lisburn and Castlereagh"
+  },
+  "BT17": {
+    "lat": 54.5964,
+    "lon": -5.9302,
+    "district": "Belfast"
+  },
+  "BT18": {
+    "lat": 54.6404,
+    "lon": -5.8362,
+    "district": "Ards and North Down"
+  },
+  "BT19": {
+    "lat": 54.6626,
+    "lon": -5.6679,
+    "district": "Ards and North Down"
+  },
+  "BT20": {
+    "lat": 54.6626,
+    "lon": -5.6679,
+    "district": "Ards and North Down"
+  },
+  "BT21": {
+    "lat": 54.6425,
+    "lon": -5.5376,
+    "district": "Ards and North Down"
+  },
+  "BT22": {
+    "lat": 54.5934,
+    "lon": -5.6961,
+    "district": "Ards and North Down"
+  },
+  "BT23": {
+    "lat": 54.5237,
+    "lon": -5.7008,
+    "district": "Ards and North Down"
+  },
+  "BT24": {
+    "lat": 54.4026,
+    "lon": -5.896,
+    "district": "Newry, Mourne and Down"
+  },
+  "BT25": {
+    "lat": 54.4153,
+    "lon": -6.1495,
+    "district": "Armagh City, Banbridge and Craigavon"
+  },
+  "BT26": {
+    "lat": 54.4628,
+    "lon": -6.0831,
+    "district": "Lisburn and Castlereagh"
+  },
+  "BT27": {
+    "lat": 54.5113,
+    "lon": -6.0467,
+    "district": "Lisburn and Castlereagh"
+  },
+  "BT28": {
+    "lat": 54.4577,
+    "lon": -6.0364,
+    "district": "Lisburn and Castlereagh"
+  },
+  "BT29": {
+    "lat": 54.6206,
+    "lon": -6.2149,
+    "district": "Antrim and Newtownabbey"
+  },
+  "BT30": {
+    "lat": 54.3279,
+    "lon": -5.7165,
+    "district": "Newry, Mourne and Down"
+  },
+  "BT31": {
+    "lat": 54.2574,
+    "lon": -5.9435,
+    "district": "Newry, Mourne and Down"
+  },
+  "BT32": {
+    "lat": 54.3514,
+    "lon": -6.2715,
+    "district": "Armagh City, Banbridge and Craigavon"
+  },
+  "BT33": {
+    "lat": 54.2118,
+    "lon": -5.8897,
+    "district": "Newry, Mourne and Down"
+  },
+  "BT34": {
+    "lat": 54.1775,
+    "lon": -6.3375,
+    "district": "Newry, Mourne and Down"
+  },
+  "BT35": {
+    "lat": 54.175,
+    "lon": -6.34,
+    "district": "Newry, Mourne and Down"
+  },
+  "BT36": {
+    "lat": 54.68,
+    "lon": -5.93,
+    "district": "Antrim and Newtownabbey"
+  },
+  "BT37": {
+    "lat": 54.6779,
+    "lon": -5.9249,
+    "district": "Antrim and Newtownabbey"
+  },
+  "BT38": {
+    "lat": 54.7136,
+    "lon": -5.8073,
+    "district": "Mid and East Antrim"
+  },
+  "BT39": {
+    "lat": 54.7525,
+    "lon": -6.0011,
+    "district": "Antrim and Newtownabbey"
+  },
+  "BT40": {
+    "lat": 54.718,
+    "lon": -5.8,
+    "district": "Mid and East Antrim"
+  },
+  "BT41": {
+    "lat": 54.662,
+    "lon": -6.213,
+    "district": "Antrim and Newtownabbey"
+  },
+  "BT42": {
+    "lat": 54.8663,
+    "lon": -6.276,
+    "district": "Mid and East Antrim"
+  },
+  "BT43": {
+    "lat": 54.858,
+    "lon": -6.335,
+    "district": "Mid and East Antrim"
+  },
+  "BT44": {
+    "lat": 54.8663,
+    "lon": -6.276,
+    "district": "Mid and East Antrim"
+  },
+  "BT45": {
+    "lat": 54.7545,
+    "lon": -6.6078,
+    "district": "Mid Ulster"
+  },
+  "BT46": {
+    "lat": 54.8448,
+    "lon": -6.6719,
+    "district": "Mid Ulster"
+  },
+  "BT47": {
+    "lat": 54.9979,
+    "lon": -7.3213,
+    "district": "Derry City and Strabane"
+  },
+  "BT48": {
+    "lat": 55,
+    "lon": -7.32,
+    "district": "Derry City and Strabane"
+  },
+  "BT49": {
+    "lat": 55.0505,
+    "lon": -6.9505,
+    "district": "Causeway Coast and Glens"
+  },
+  "BT51": {
+    "lat": 55.1316,
+    "lon": -6.6719,
+    "district": "Causeway Coast and Glens"
+  },
+  "BT52": {
+    "lat": 55.027,
+    "lon": -6.666,
+    "district": "Causeway Coast and Glens"
+  },
+  "BT53": {
+    "lat": 55.0703,
+    "lon": -6.5173,
+    "district": "Causeway Coast and Glens"
+  },
+  "BT54": {
+    "lat": 55.2007,
+    "lon": -6.2503,
+    "district": "Causeway Coast and Glens"
+  },
+  "BT55": {
+    "lat": 55.1829,
+    "lon": -6.7187,
+    "district": "Causeway Coast and Glens"
+  },
+  "BT56": {
+    "lat": 55.206,
+    "lon": -6.654,
+    "district": "Causeway Coast and Glens"
+  },
+  "BT57": {
+    "lat": 55.206,
+    "lon": -6.5234,
+    "district": "Causeway Coast and Glens"
+  },
+  "BT60": {
+    "lat": 54.35,
+    "lon": -6.65,
+    "district": "Armagh City, Banbridge and Craigavon"
+  },
+  "BT61": {
+    "lat": 54.3161,
+    "lon": -6.7189,
+    "district": "Armagh City, Banbridge and Craigavon"
+  },
+  "BT62": {
+    "lat": 54.4507,
+    "lon": -6.3922,
+    "district": "Armagh City, Banbridge and Craigavon"
+  },
+  "BT63": {
+    "lat": 54.45,
+    "lon": -6.35,
+    "district": "Armagh City, Banbridge and Craigavon"
+  },
+  "BT64": {
+    "lat": 54.4507,
+    "lon": -6.3922,
+    "district": "Armagh City, Banbridge and Craigavon"
+  },
+  "BT65": {
+    "lat": 54.4507,
+    "lon": -6.3922,
+    "district": "Armagh City, Banbridge and Craigavon"
+  },
+  "BT66": {
+    "lat": 54.457,
+    "lon": -6.335,
+    "district": "Armagh City, Banbridge and Craigavon"
+  },
+  "BT67": {
+    "lat": 54.4507,
+    "lon": -6.3922,
+    "district": "Armagh City, Banbridge and Craigavon"
+  },
+  "BT68": {
+    "lat": 54.351,
+    "lon": -6.8378,
+    "district": "Mid Ulster"
+  },
+  "BT69": {
+    "lat": 54.4148,
+    "lon": -6.9763,
+    "district": "Mid Ulster"
+  },
+  "BT70": {
+    "lat": 54.5039,
+    "lon": -6.7704,
+    "district": "Mid Ulster"
+  },
+  "BT71": {
+    "lat": 54.5039,
+    "lon": -6.7704,
+    "district": "Mid Ulster"
+  },
+  "BT74": {
+    "lat": 54.345,
+    "lon": -7.635,
+    "district": "Fermanagh and Omagh"
+  },
+  "BT75": {
+    "lat": 54.3785,
+    "lon": -7.3154,
+    "district": "Fermanagh and Omagh"
+  },
+  "BT76": {
+    "lat": 54.413,
+    "lon": -7.1689,
+    "district": "Fermanagh and Omagh"
+  },
+  "BT77": {
+    "lat": 54.4283,
+    "lon": -7.132,
+    "district": "Fermanagh and Omagh"
+  },
+  "BT78": {
+    "lat": 54.6,
+    "lon": -7.3,
+    "district": "Fermanagh and Omagh"
+  },
+  "BT79": {
+    "lat": 54.5992,
+    "lon": -7.303,
+    "district": "Fermanagh and Omagh"
+  },
+  "BT80": {
+    "lat": 54.71,
+    "lon": -6.73,
+    "district": "Mid Ulster"
+  },
+  "BT81": {
+    "lat": 54.7088,
+    "lon": -7.5931,
+    "district": "Derry City and Strabane"
+  },
+  "BT82": {
+    "lat": 54.8261,
+    "lon": -7.4628,
+    "district": "Derry City and Strabane"
+  },
+  "BT92": {
+    "lat": 54.3448,
+    "lon": -7.6389,
+    "district": "Fermanagh and Omagh"
+  },
+  "BT93": {
+    "lat": 54.3448,
+    "lon": -7.6389,
+    "district": "Fermanagh and Omagh"
+  },
+  "BT94": {
+    "lat": 54.35,
+    "lon": -7.64,
+    "district": "Fermanagh and Omagh"
+  }
 }
