@@ -57,13 +57,17 @@ function parseIrishGridRef(input) {
   const e100km = col;
   const n100km = 4 - rowFromTop; // north -> south becomes south -> north
 
+  // See the identical comment in osGridRef.js's parseGridRef — only trust
+  // exactly two equal-length space-separated groups verbatim; anything
+  // else (a stray extra space splitting one number in two, or no spaces
+  // at all) falls back to concatenating every digit and splitting evenly.
   const digitGroups = match[2].trim().split(/\s+/).filter(Boolean);
   let eDigits, nDigits;
-  if (digitGroups.length >= 2) {
+  if (digitGroups.length === 2 && digitGroups[0].length === digitGroups[1].length) {
     eDigits = digitGroups[0];
     nDigits = digitGroups[1];
   } else {
-    const digits = digitGroups[0] || '';
+    const digits = digitGroups.join('');
     if (digits.length % 2 !== 0 || digits.length === 0 || digits.length > 10) return null;
     const half = digits.length / 2;
     eDigits = digits.slice(0, half);
