@@ -177,13 +177,20 @@ function parseGridRef(input) {
   const { e100km, n100km } = gridLettersTo100km(l1, l2);
   if (e100km < 0 || e100km > 6 || n100km < 0 || n100km > 12) return null; // outside GB extent
 
+  // Standard grid ref notation is always two *equal-length* digit groups
+  // (e.g. "257 735", "68317 92365") — trust that split verbatim when it's
+  // exactly that shape. Anything else (a stray extra space splitting one
+  // of the numbers in two, e.g. "68 317 92365" instead of "68317 92365",
+  // or no spaces at all) falls back to concatenating every digit and
+  // splitting the total evenly, rather than silently taking the first two
+  // space-separated chunks and discarding the rest.
   const digitGroups = match[2].trim().split(/\s+/).filter(Boolean);
   let eDigits, nDigits;
-  if (digitGroups.length >= 2) {
+  if (digitGroups.length === 2 && digitGroups[0].length === digitGroups[1].length) {
     eDigits = digitGroups[0];
     nDigits = digitGroups[1];
   } else {
-    const digits = digitGroups[0] || '';
+    const digits = digitGroups.join('');
     if (digits.length % 2 !== 0 || digits.length === 0 || digits.length > 10) return null;
     const half = digits.length / 2;
     eDigits = digits.slice(0, half);

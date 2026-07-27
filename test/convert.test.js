@@ -31,6 +31,23 @@ test('OS grid reference parsing and round-trip formatting', () => {
   assert.equal(formatted, 'NT 257 735');
 });
 
+test('OS grid reference parsing tolerates a stray extra space splitting one number in two', () => {
+  // Real ground-truth data example: "SP 68 317 92365" — the easting
+  // (68317) has an accidental extra space in the middle, giving 3 groups
+  // instead of the usual 2, which used to make the parser take the first
+  // two groups ("68", "317") as easting/northing, silently discard the
+  // third, and reject the whole thing as a length mismatch.
+  const a = osGrid.parseGridRef('SP 68 317 92365');
+  const b = osGrid.parseGridRef('SP 68317 92365');
+  assert.deepEqual(a, b);
+  assert.equal(a.easting, 468317);
+  assert.equal(a.northing, 292365);
+
+  // Genuinely malformed (mismatched, non-recoverable group lengths) must
+  // still be rejected, not silently "recovered" into something wrong.
+  assert.equal(osGrid.parseGridRef('NT 25 735'), null);
+});
+
 test('OS grid ref -> WGS84 -> back is consistent for a known city (Edinburgh Castle, NT 253 735)', () => {
   const parsed = osGrid.parseGridRef('NT 253 735');
   const wgs84 = osGrid.osGridToWgs84(parsed.easting, parsed.northing);
