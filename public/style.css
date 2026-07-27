@@ -116,12 +116,14 @@ header h1 {
 
 main {
   display: grid;
+  /* No outer width cap — fills the window on any monitor. The left column
+     (input/results) still caps at a comfortable reading width; the map
+     column is 1fr, so it's what actually absorbs all the extra space on
+     a big screen rather than everything just growing (or plateauing). */
   grid-template-columns: minmax(380px, 640px) 1fr;
   grid-template-rows: auto 1fr;
   gap: 1.25rem;
   padding: 1.25rem 1.5rem 2.5rem;
-  max-width: 1900px;
-  margin: 0 auto;
 }
 
 .card {
@@ -336,15 +338,16 @@ button.secondary:hover {
   grid-row: 1 / 3;
   position: relative;
   overflow: hidden;
-  /* Scales with the window on a big monitor, but keeps a sane floor/ceiling
-     for short viewports and doesn't run away on an ultra-tall screen. */
-  min-height: min(75vh, 850px);
+  /* Pure viewport-relative height, no pixel ceiling — grows with a tall
+     monitor instead of plateauing. max() keeps a usable floor on a short
+     window (laptop in a small maximized pane, etc). */
+  min-height: max(75vh, 420px);
 }
 
 #map {
   width: 100%;
   height: 100%;
-  min-height: min(75vh, 850px);
+  min-height: max(75vh, 420px);
 }
 
 .display-style-control,
@@ -459,7 +462,7 @@ input[type="checkbox"] {
   display: flex;
   flex-direction: column;
   min-height: 0;
-  max-height: min(55vh, 640px);
+  max-height: max(55vh, 320px);
   overflow: hidden;
 }
 
