@@ -142,22 +142,22 @@
       "itl3": "Swindon"
     },
     "E06000031": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "East Anglia",
       "itl3": "Peterborough"
     },
     "E06000032": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Bedfordshire and Hertfordshire",
       "itl3": "Luton"
     },
     "E06000033": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Essex",
       "itl3": "Southend-on-Sea"
     },
     "E06000034": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Essex",
       "itl3": "Thurrock"
     },
@@ -257,12 +257,12 @@
       "itl3": "Wiltshire"
     },
     "E06000055": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Bedfordshire and Hertfordshire",
       "itl3": "Bedford"
     },
     "E06000056": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Bedfordshire and Hertfordshire",
       "itl3": "Central Bedfordshire"
     },
@@ -317,27 +317,27 @@
       "itl3": "Somerset CC"
     },
     "E07000008": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "East Anglia",
       "itl3": "Cambridgeshire CC"
     },
     "E07000009": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "East Anglia",
       "itl3": "Cambridgeshire CC"
     },
     "E07000010": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "East Anglia",
       "itl3": "Cambridgeshire CC"
     },
     "E07000011": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "East Anglia",
       "itl3": "Cambridgeshire CC"
     },
     "E07000012": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "East Anglia",
       "itl3": "Cambridgeshire CC"
     },
@@ -447,62 +447,62 @@
       "itl3": "East Sussex CC"
     },
     "E07000066": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Essex",
       "itl3": "Essex Thames Gateway"
     },
     "E07000067": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Essex",
       "itl3": "Essex Haven Gateway"
     },
     "E07000068": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Essex",
       "itl3": "Heart of Essex"
     },
     "E07000069": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Essex",
       "itl3": "Essex Thames Gateway"
     },
     "E07000070": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Essex",
       "itl3": "Heart of Essex"
     },
     "E07000071": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Essex",
       "itl3": "Essex Haven Gateway"
     },
     "E07000072": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Essex",
       "itl3": "West Essex"
     },
     "E07000073": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Essex",
       "itl3": "West Essex"
     },
     "E07000074": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Essex",
       "itl3": "Heart of Essex"
     },
     "E07000075": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Essex",
       "itl3": "Essex Thames Gateway"
     },
     "E07000076": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Essex",
       "itl3": "Essex Haven Gateway"
     },
     "E07000077": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Essex",
       "itl3": "West Essex"
     },
@@ -592,32 +592,32 @@
       "itl3": "Central Hampshire"
     },
     "E07000095": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Bedfordshire and Hertfordshire",
       "itl3": "Hertfordshire CC"
     },
     "E07000096": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Bedfordshire and Hertfordshire",
       "itl3": "Hertfordshire CC"
     },
     "E07000098": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Bedfordshire and Hertfordshire",
       "itl3": "Hertfordshire CC"
     },
     "E07000099": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Bedfordshire and Hertfordshire",
       "itl3": "Hertfordshire CC"
     },
     "E07000102": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Bedfordshire and Hertfordshire",
       "itl3": "Hertfordshire CC"
     },
     "E07000103": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Bedfordshire and Hertfordshire",
       "itl3": "Hertfordshire CC"
     },
@@ -812,37 +812,37 @@
       "itl3": "Lincolnshire CC"
     },
     "E07000143": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "East Anglia",
       "itl3": "Breckland and South Norfolk"
     },
     "E07000144": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "East Anglia",
       "itl3": "Norwich and East Norfolk"
     },
     "E07000145": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "East Anglia",
       "itl3": "Norwich and East Norfolk"
     },
     "E07000146": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "East Anglia",
       "itl3": "North and West Norfolk"
     },
     "E07000147": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "East Anglia",
       "itl3": "North and West Norfolk"
     },
     "E07000148": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "East Anglia",
       "itl3": "Norwich and East Norfolk"
     },
     "E07000149": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "East Anglia",
       "itl3": "Breckland and South Norfolk"
     },
@@ -947,17 +947,17 @@
       "itl3": "Staffordshire CC"
     },
     "E07000200": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "East Anglia",
       "itl3": "Suffolk CC"
     },
     "E07000202": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "East Anglia",
       "itl3": "Suffolk CC"
     },
     "E07000203": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "East Anglia",
       "itl3": "Suffolk CC"
     },
@@ -1107,32 +1107,32 @@
       "itl3": "Worcestershire CC"
     },
     "E07000240": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Bedfordshire and Hertfordshire",
       "itl3": "Hertfordshire CC"
     },
     "E07000241": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Bedfordshire and Hertfordshire",
       "itl3": "Hertfordshire CC"
     },
     "E07000242": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Bedfordshire and Hertfordshire",
       "itl3": "Hertfordshire CC"
     },
     "E07000243": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Bedfordshire and Hertfordshire",
       "itl3": "Hertfordshire CC"
     },
     "E07000244": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "East Anglia",
       "itl3": "Suffolk CC"
     },
     "E07000245": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "East Anglia",
       "itl3": "Suffolk CC"
     },
@@ -1869,7 +1869,7 @@
       "itl3": "Mid Kent"
     },
     "babergh": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "East Anglia",
       "itl3": "Suffolk CC"
     },
@@ -1889,7 +1889,7 @@
       "itl3": "Barnsley, Doncaster and Rotherham"
     },
     "basildon": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Essex",
       "itl3": "Essex Thames Gateway"
     },
@@ -1909,7 +1909,7 @@
       "itl3": "Bath and North East Somerset, North Somerset and South Gloucestershire"
     },
     "bedford": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Bedfordshire and Hertfordshire",
       "itl3": "Bedford"
     },
@@ -1979,12 +1979,12 @@
       "itl3": "Bradford"
     },
     "braintree": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Essex",
       "itl3": "Essex Haven Gateway"
     },
     "breckland": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "East Anglia",
       "itl3": "Breckland and South Norfolk"
     },
@@ -1994,7 +1994,7 @@
       "itl3": "Brent"
     },
     "brentwood": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Essex",
       "itl3": "Heart of Essex"
     },
@@ -2014,7 +2014,7 @@
       "itl3": "Bristol, City of"
     },
     "broadland": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "East Anglia",
       "itl3": "Norwich and East Norfolk"
     },
@@ -2029,7 +2029,7 @@
       "itl3": "Worcestershire CC"
     },
     "broxbourne": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Bedfordshire and Hertfordshire",
       "itl3": "Hertfordshire CC"
     },
@@ -2064,7 +2064,7 @@
       "itl3": "Calderdale and Kirklees"
     },
     "cambridge": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "East Anglia",
       "itl3": "Cambridgeshire CC"
     },
@@ -2094,7 +2094,7 @@
       "itl3": "South West Wales"
     },
     "castle point": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Essex",
       "itl3": "Essex Thames Gateway"
     },
@@ -2104,7 +2104,7 @@
       "itl3": "Causeway Coast and Glens"
     },
     "central bedfordshire": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Bedfordshire and Hertfordshire",
       "itl3": "Central Bedfordshire"
     },
@@ -2119,7 +2119,7 @@
       "itl3": "Leicestershire CC and Rutland"
     },
     "chelmsford": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Essex",
       "itl3": "Heart of Essex"
     },
@@ -2174,7 +2174,7 @@
       "itl3": "Clackmannanshire and Fife"
     },
     "colchester": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Essex",
       "itl3": "Essex Haven Gateway"
     },
@@ -2219,7 +2219,7 @@
       "itl3": "East Cumbria"
     },
     "dacorum": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Bedfordshire and Hertfordshire",
       "itl3": "Hertfordshire CC"
     },
@@ -2294,7 +2294,7 @@
       "itl3": "East Ayrshire and North Ayrshire mainland"
     },
     "east cambridgeshire": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "East Anglia",
       "itl3": "Cambridgeshire CC"
     },
@@ -2314,7 +2314,7 @@
       "itl3": "Central Hampshire"
     },
     "east hertfordshire": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Bedfordshire and Hertfordshire",
       "itl3": "Hertfordshire CC"
     },
@@ -2344,7 +2344,7 @@
       "itl3": "Staffordshire CC"
     },
     "east suffolk": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "East Anglia",
       "itl3": "Suffolk CC"
     },
@@ -2369,7 +2369,7 @@
       "itl3": "Enfield"
     },
     "epping forest": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Essex",
       "itl3": "West Essex"
     },
@@ -2399,7 +2399,7 @@
       "itl3": "South Hampshire"
     },
     "fenland": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "East Anglia",
       "itl3": "Cambridgeshire CC"
     },
@@ -2464,7 +2464,7 @@
       "itl3": "Kent Thames Gateway"
     },
     "great yarmouth": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "East Anglia",
       "itl3": "Norwich and East Norfolk"
     },
@@ -2509,7 +2509,7 @@
       "itl3": "Haringey and Islington"
     },
     "harlow": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Essex",
       "itl3": "West Essex"
     },
@@ -2549,7 +2549,7 @@
       "itl3": "Herefordshire, County of"
     },
     "hertsmere": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Bedfordshire and Hertfordshire",
       "itl3": "Hertfordshire CC"
     },
@@ -2584,7 +2584,7 @@
       "itl3": "Hounslow and Richmond upon Thames"
     },
     "huntingdonshire": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "East Anglia",
       "itl3": "Cambridgeshire CC"
     },
@@ -2599,7 +2599,7 @@
       "itl3": "Inverclyde, East Renfrewshire, and Renfrewshire"
     },
     "ipswich": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "East Anglia",
       "itl3": "Suffolk CC"
     },
@@ -2629,7 +2629,7 @@
       "itl3": "Kensington & Chelsea and Hammersmith & Fulham"
     },
     "king's lynn and west norfolk": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "East Anglia",
       "itl3": "North and West Norfolk"
     },
@@ -2704,7 +2704,7 @@
       "itl3": "Liverpool"
     },
     "luton": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Bedfordshire and Hertfordshire",
       "itl3": "Luton"
     },
@@ -2714,7 +2714,7 @@
       "itl3": "Mid Kent"
     },
     "maldon": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Essex",
       "itl3": "Heart of Essex"
     },
@@ -2764,7 +2764,7 @@
       "itl3": "Devon CC"
     },
     "mid suffolk": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "East Anglia",
       "itl3": "Suffolk CC"
     },
@@ -2874,7 +2874,7 @@
       "itl3": "North and North East Lincolnshire"
     },
     "north hertfordshire": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Bedfordshire and Hertfordshire",
       "itl3": "Hertfordshire CC"
     },
@@ -2894,7 +2894,7 @@
       "itl3": "North and North East Lincolnshire"
     },
     "north norfolk": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "East Anglia",
       "itl3": "North and West Norfolk"
     },
@@ -2934,7 +2934,7 @@
       "itl3": "Northumberland"
     },
     "norwich": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "East Anglia",
       "itl3": "Norwich and East Norfolk"
     },
@@ -2984,7 +2984,7 @@
       "itl3": "Perth and Kinross, and Stirling"
     },
     "peterborough": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "East Anglia",
       "itl3": "Peterborough"
     },
@@ -3059,7 +3059,7 @@
       "itl3": "Greater Manchester North East"
     },
     "rochford": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Essex",
       "itl3": "Essex Thames Gateway"
     },
@@ -3164,7 +3164,7 @@
       "itl3": "South Ayrshire"
     },
     "south cambridgeshire": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "East Anglia",
       "itl3": "Cambridgeshire CC"
     },
@@ -3199,7 +3199,7 @@
       "itl3": "South Lanarkshire"
     },
     "south norfolk": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "East Anglia",
       "itl3": "Breckland and South Norfolk"
     },
@@ -3229,7 +3229,7 @@
       "itl3": "Southampton"
     },
     "southend-on-sea": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Essex",
       "itl3": "Southend-on-Sea"
     },
@@ -3244,7 +3244,7 @@
       "itl3": "West Surrey"
     },
     "st albans": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Bedfordshire and Hertfordshire",
       "itl3": "Hertfordshire CC"
     },
@@ -3264,7 +3264,7 @@
       "itl3": "Staffordshire CC"
     },
     "stevenage": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Bedfordshire and Hertfordshire",
       "itl3": "Hertfordshire CC"
     },
@@ -3354,7 +3354,7 @@
       "itl3": "Telford and Wrekin"
     },
     "tendring": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Essex",
       "itl3": "Essex Haven Gateway"
     },
@@ -3374,12 +3374,12 @@
       "itl3": "East Kent"
     },
     "three rivers": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Bedfordshire and Hertfordshire",
       "itl3": "Hertfordshire CC"
     },
     "thurrock": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Essex",
       "itl3": "Thurrock"
     },
@@ -3419,7 +3419,7 @@
       "itl3": "West Kent"
     },
     "uttlesford": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Essex",
       "itl3": "West Essex"
     },
@@ -3464,7 +3464,7 @@
       "itl3": "Warwickshire CC"
     },
     "watford": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Bedfordshire and Hertfordshire",
       "itl3": "Hertfordshire CC"
     },
@@ -3479,7 +3479,7 @@
       "itl3": "East Sussex CC"
     },
     "welwyn hatfield": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "Bedfordshire and Hertfordshire",
       "itl3": "Hertfordshire CC"
     },
@@ -3524,7 +3524,7 @@
       "itl3": "Oxfordshire CC"
     },
     "west suffolk": {
-      "itl1": "East",
+      "itl1": "East (England)",
       "itl2": "East Anglia",
       "itl3": "Suffolk CC"
     },
