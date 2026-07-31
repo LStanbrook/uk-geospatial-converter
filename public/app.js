@@ -643,4 +643,15 @@ document.getElementById('load-columns-btn').addEventListener('click', () => {
 
 document.getElementById('cancel-upload-btn').addEventListener('click', resetUploadPanel);
 
+// The About/FAQ content stays in the page (good for SEO — collapsed
+// content is indexed the same as visible content) but is hidden by
+// default so it doesn't compete with the tool itself for attention.
+document.getElementById('about-toggle').addEventListener('click', () => {
+  const panel = document.getElementById('about-panel');
+  const nowHidden = !panel.hidden;
+  panel.hidden = nowHidden;
+  document.getElementById('about-toggle').setAttribute('aria-expanded', String(!nowHidden));
+  if (!nowHidden) panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
 initMap();
