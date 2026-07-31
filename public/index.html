@@ -93,6 +93,10 @@
       <p class="subtitle">Paste OS Grid Refs, Irish Grid Refs, Easting/Northing, Lat/Lon, or postcodes — one per line.</p>
     </div>
   </div>
+  <button id="about-toggle" class="secondary about-toggle" aria-expanded="false" aria-controls="about-panel" title="About this tool &amp; FAQ">
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-5"/><path d="M12 8h.01"/></svg>
+    <span>About &amp; FAQ</span>
+  </button>
 </header>
 
 <main>
@@ -193,7 +197,7 @@
   </section>
 </main>
 
-<section class="about-panel">
+<section class="about-panel" id="about-panel" hidden>
   <h2>About this converter</h2>
   <p>
     UK Geospatial Converter converts between the location formats used across the UK and Ireland:
