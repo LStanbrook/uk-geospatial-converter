@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://convertgeodata.co.uk/sitemap.xml
