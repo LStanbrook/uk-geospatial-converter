@@ -21,6 +21,66 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <link rel="stylesheet" href="style.css" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "UK Geospatial Converter",
+  "url": "https://convertgeodata.co.uk/",
+  "description": "Convert between OS Grid References, Irish Grid References, Easting/Northing, Lat/Lon and UK postcodes, with results mapped instantly.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any (web browser)",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is an OS Grid Reference?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An OS Grid Reference (e.g. \"NT 257 735\") is the alphanumeric coordinate system Ordnance Survey uses on its maps of Great Britain, based on the British National Grid. This tool converts OS Grid References to and from postcodes, Easting/Northing, and Latitude/Longitude."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I convert a UK postcode to a grid reference or Lat/Long?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — paste a full or partial postcode (e.g. \"SW1A 1AA\" or just \"SW1A\") and it converts to OS Grid Reference, Easting/Northing, Latitude/Longitude, and identifies the postcode's ITL1/ITL2/ITL3 region."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this work for Northern Ireland postcodes and grid references?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Northern Ireland uses the Irish Grid rather than the British National Grid, and this tool automatically detects and converts both Irish Grid References and Northern Ireland postcodes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I convert lots of locations at once?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — paste up to 2000 locations (one per line) or upload a CSV, then download the results as CSV or Excel."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this an official Ordnance Survey or Royal Mail tool?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. This is an independent tool built using published open coordinate-conversion formulae and open postcode data — it is not affiliated with or endorsed by Ordnance Survey, Royal Mail, or the Office for National Statistics."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <header>
@@ -132,6 +192,54 @@
     </div>
   </section>
 </main>
+
+<section class="about-panel">
+  <h2>About this converter</h2>
+  <p>
+    UK Geospatial Converter converts between the location formats used across the UK and Ireland:
+    <strong>OS Grid References</strong> (the British National Grid used on Ordnance Survey maps of
+    England, Scotland and Wales), <strong>Irish Grid References</strong> (used in Northern Ireland
+    and the Republic of Ireland), <strong>Easting/Northing</strong> (OSGB36), decimal
+    <strong>Latitude/Longitude</strong> (WGS84), and full or partial <strong>UK postcodes</strong> —
+    including their ITL1/ITL2/ITL3 region. Paste one location per line, or upload a CSV, and see
+    every format side by side on an interactive map.
+  </p>
+
+  <h3>Frequently asked questions</h3>
+
+  <h4>What is an OS Grid Reference?</h4>
+  <p>
+    An OS Grid Reference (e.g. "NT 257 735") is the alphanumeric coordinate system Ordnance Survey
+    uses on its maps of Great Britain, based on the British National Grid. This tool converts OS
+    Grid References to and from postcodes, Easting/Northing, and Latitude/Longitude.
+  </p>
+
+  <h4>Can I convert a UK postcode to a grid reference or Lat/Long?</h4>
+  <p>
+    Yes — paste a full or partial postcode (e.g. "SW1A 1AA" or just "SW1A") and it converts to OS
+    Grid Reference, Easting/Northing, Latitude/Longitude, and identifies the postcode's ITL1/ITL2/ITL3
+    region.
+  </p>
+
+  <h4>Does this work for Northern Ireland postcodes and grid references?</h4>
+  <p>
+    Yes. Northern Ireland uses the Irish Grid rather than the British National Grid, and this tool
+    automatically detects and converts both Irish Grid References and Northern Ireland postcodes.
+  </p>
+
+  <h4>Can I convert lots of locations at once?</h4>
+  <p>
+    Yes — paste up to 2000 locations (one per line) or upload a CSV, then download the results as
+    CSV or Excel.
+  </p>
+
+  <h4>Is this an official Ordnance Survey or Royal Mail tool?</h4>
+  <p>
+    No. This is an independent tool built using published open coordinate-conversion formulae and
+    open postcode data — it is not affiliated with or endorsed by Ordnance Survey, Royal Mail, or
+    the Office for National Statistics.
+  </p>
+</section>
 
 <footer>
   <p>Questions or feedback? <a href="mailto:info@convertgeodata.co.uk">info@convertgeodata.co.uk</a></p>

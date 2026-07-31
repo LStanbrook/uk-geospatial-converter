@@ -576,6 +576,42 @@ textarea::-webkit-scrollbar-track {
   background: transparent;
 }
 
+.about-panel {
+  max-width: 760px;
+  margin: 0.5rem auto 0;
+  padding: 1.25rem 1.5rem 0.5rem;
+  color: var(--slate-600);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.about-panel h2 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--slate-800);
+  margin: 0 0 0.5rem;
+}
+
+.about-panel h3 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--slate-400);
+  margin: 1.5rem 0 0.75rem;
+}
+
+.about-panel h4 {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--slate-800);
+  margin: 1rem 0 0.25rem;
+}
+
+.about-panel p {
+  margin: 0 0 0.5rem;
+}
+
 footer {
   padding: 0.5rem 1.5rem 1.5rem;
   text-align: center;
