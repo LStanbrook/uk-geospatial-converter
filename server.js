@@ -27,11 +27,16 @@ const convertLimiter = rateLimit({
 });
 
 // A single "Regions" map render can legitimately fire one /api/boundary
-// request per converted point in a short burst, so this needs more
-// headroom than the convert limiter.
+// request per converted point in a short burst — and /api/convert allows
+// up to 2000 lines per request, so this needs to comfortably clear that,
+// not just "more than the convert limiter". 300 was well under it in
+// practice: converting a few hundred points in Regions mode would start
+// silently falling back to illustrative circles partway through once the
+// limit was hit, indistinguishable from "no boundary data" at the UI
+// level (see buildPostcodeAreaLayer in app.js).
 const boundaryLimiter = rateLimit({
   windowMs: 60 * 1000,
-  limit: 300,
+  limit: 2500,
   standardHeaders: true,
   legacyHeaders: false,
   message: { error: 'Too many boundary requests — please slow down and try again shortly.' },

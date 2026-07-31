@@ -206,13 +206,22 @@ async function buildPostcodeAreaLayer(r, colour, regionSize) {
   return { layer: circle, rank: REGION_LEVEL_RANK[regionSize] ?? 0 };
 }
 
+// A large paste/CSV can mean hundreds of points needing a boundary lookup
+// in Regions mode. Firing them all at once used to blow past the server's
+// /api/boundary rate limit partway through a big batch — every request
+// past that point got a 429, which looks identical to "no boundary data"
+// at this end, so the map silently filled with illustrative circles
+// instead of real polygons. Same worker-pool fix as convertBatch's
+// postcodes.io calls on the server (src/convert.js).
+const BOUNDARY_FETCH_CONCURRENCY = 8;
+
 async function renderMarkers(results, { refit = true } = {}) {
   markerLayer.clearLayers();
   const bounds = [];
   const regionSize = document.getElementById('region-size-select').value;
   const areaLayers = [];
 
-  const jobs = results.map(async (r) => {
+  async function processResult(r) {
     if (r.lat == null || r.lon == null) return;
     bounds.push([r.lat, r.lon]);
     const colour = TYPE_COLOURS[r.type] || TYPE_COLOURS.unknown;
@@ -226,9 +235,16 @@ async function renderMarkers(results, { refit = true } = {}) {
     } else {
       addPointMarker(r, colour);
     }
-  });
+  }
 
-  await Promise.all(jobs);
+  let next = 0;
+  async function worker() {
+    while (next < results.length) {
+      await processResult(results[next++]);
+    }
+  }
+  await Promise.all(Array.from({ length: Math.min(BOUNDARY_FETCH_CONCURRENCY, results.length) }, worker));
+
   areaLayers
     .sort((a, b) => a.rank - b.rank)
     .forEach(({ layer }) => layer.addTo(markerLayer));
