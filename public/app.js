@@ -31,7 +31,22 @@ let lastResults = [];
 let displayStyle = 'points'; // 'points' | 'area'
 
 function initMap() {
-  map = L.map('map').setView([54.5, -3.5], 6);
+  // Leaflet defaults to SVG for vector layers (points, circles, region
+  // polygons) — one DOM element per shape, which gets very expensive with
+  // hundreds/thousands of them (a full 2000-line batch in Regions mode).
+  // Canvas rendering draws them as pixels on a single element instead,
+  // which is dramatically cheaper at that scale — this is the standard
+  // fix for "the map chokes on lots of shapes", not fetch concurrency.
+  map = L.map('map', {
+    renderer: L.canvas(),
+    // Scroll-wheel zoom defaults to jumping a whole zoom level at a time.
+    // zoomSnap lets it rest at quarter-levels instead of only integers, and
+    // wheelPxPerZoomLevel (default 60) requires more scroll distance per
+    // level, so each scroll tick moves the map a smaller, more gradual amount.
+    zoomSnap: 0.25,
+    zoomDelta: 0.25,
+    wheelPxPerZoomLevel: 120,
+  }).setView([54.5, -3.5], 6);
   // CartoDB's basemap tiles, not raw tile.openstreetmap.org: the latter's
   // usage policy throttles/blocks normal interactive (non-cached) use,
   // which shows up as tiles greying out and never loading while panning —
@@ -158,6 +173,54 @@ const REGION_LEVEL_LABELS = { area: 'area', district: 'district', sector: 'secto
 const REGION_LEVEL_RANK = { area: 0, district: 1, sector: 2, unit: 3 };
 
 /**
+ * Mirrors postcodeParts() in src/boundaries.js just enough to predict which
+ * boundary file a postcode+level will resolve to, without needing a network
+ * round trip to find out. Real-world point sets are often geographically
+ * clustered (e.g. tree-planting data across a few council areas) — lots of
+ * different postcodes sharing the same district/area — so this lets
+ * fetchBoundaryGeometry below dedupe by the *resolved* code, not just the
+ * raw postcode string, catching the common "different postcode, same area"
+ * case rather than only exact repeats.
+ */
+function boundaryCacheKey(postcode, regionSize) {
+  const compact = (postcode || '').toUpperCase().replace(/\s+/g, '');
+  const isFull = /^[A-Z]{1,2}\d[A-Z\d]?\d[A-Z]{2}$/.test(compact);
+  const outward = isFull ? compact.slice(0, -3) : compact;
+  const inward = isFull ? compact.slice(-3) : null;
+  const area = outward.match(/^[A-Z]{1,2}/)?.[0] || outward;
+  switch (regionSize) {
+    case 'area':
+      return area;
+    case 'sector':
+      return inward ? `${outward} ${inward[0]}` : outward;
+    case 'unit':
+      return isFull ? compact : outward; // units are already ~unique per full postcode
+    case 'district':
+    default:
+      return outward;
+  }
+}
+
+// Caches in-flight/resolved boundary fetches by resolved code+level for the
+// current renderMarkers() call, so 2000 points clustered into a handful of
+// real districts/areas cost a handful of network requests, not 2000 —
+// previously every point refetched (and rebuilt) the same geometry from
+// scratch even when many shared the exact same underlying boundary.
+let boundaryFetchCache = new Map();
+
+/** Fetches (and caches) just the raw {geometry, level, requested} — no styling, no popup, no per-point info. */
+function fetchBoundaryGeometry(postcode, regionSize) {
+  const key = `${regionSize}:${boundaryCacheKey(postcode, regionSize)}`;
+  if (boundaryFetchCache.has(key)) return boundaryFetchCache.get(key);
+
+  const promise = fetch(`api/boundary/${encodeURIComponent(postcode)}?level=${encodeURIComponent(regionSize)}`).then(
+    async (res) => (res.ok ? res.json() : null)
+  );
+  boundaryFetchCache.set(key, promise);
+  return promise;
+}
+
+/**
  * Builds a boundary polygon (or illustrative circle fallback) for a
  * postcode, without adding it to the map yet — the caller adds layers in
  * coarsest-to-finest order once every lookup has resolved, so a finer
@@ -170,11 +233,18 @@ const REGION_LEVEL_RANK = { area: 0, district: 1, sector: 2, unit: 3 };
 async function buildPostcodeAreaLayer(r, colour, regionSize) {
   const code = (r.postcode || '').replace(/^~/, '');
   try {
-    const res = await fetch(`api/boundary/${encodeURIComponent(code)}?level=${encodeURIComponent(regionSize)}`);
-    if (res.ok) {
-      const body = await res.json();
+    const body = await fetchBoundaryGeometry(code, regionSize);
+    if (body) {
       const layer = L.geoJSON(body.geometry, {
-        style: { color: colour, weight: 2, fillColor: colour, fillOpacity: 0.25 },
+        // smoothFactor (default 1.0) controls how aggressively Leaflet
+        // simplifies each shape's vertices at the current zoom level before
+        // drawing it — panning/zooming redraws every visible shape on every
+        // frame, so with hundreds/thousands of multi-hundred-vertex region
+        // polygons on screen, that per-frame cost is what makes moving the
+        // map feel sluggish on a large batch. A higher factor trades a bit
+        // of shape precision (imperceptible at the zoom levels this map
+        // actually shows) for a much cheaper redraw.
+        style: { color: colour, weight: 2, fillColor: colour, fillOpacity: 0.25, smoothFactor: 3 },
       });
       const levelNote =
         body.level === body.requested
@@ -224,6 +294,7 @@ const BOUNDARY_FETCH_CONCURRENCY = 32;
 
 async function renderMarkers(results, { refit = true } = {}) {
   markerLayer.clearLayers();
+  boundaryFetchCache = new Map(); // dedupe within this render pass only, not across the whole session
   const bounds = [];
   const regionSize = document.getElementById('region-size-select').value;
   const areaLayers = [];

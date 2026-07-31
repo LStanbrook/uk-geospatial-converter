@@ -28,15 +28,19 @@ const convertLimiter = rateLimit({
 
 // A single "Regions" map render can legitimately fire one /api/boundary
 // request per converted point in a short burst — and /api/convert allows
-// up to 2000 lines per request, so this needs to comfortably clear that,
-// not just "more than the convert limiter". 300 was well under it in
-// practice: converting a few hundred points in Regions mode would start
-// silently falling back to illustrative circles partway through once the
-// limit was hit, indistinguishable from "no boundary data" at the UI
-// level (see buildPostcodeAreaLayer in app.js).
+// up to 2000 lines per request, so this needs to comfortably clear that.
+// 2500 turned out to still be too tight in practice: switching region size
+// a couple of times in quick succession while testing (e.g. Unit, then
+// Area) fires up to 2000 requests *each* time, and the cumulative total
+// within the same 60s window ran past 2500, silently falling back to
+// illustrative circles for the remainder — indistinguishable from "no
+// boundary data" at the UI level (see buildPostcodeAreaLayer in app.js).
+// Unlike postcodes.io, this endpoint only ever reads our own bundled
+// static files, so there's no real cost to being generous here — the
+// limit exists to blunt a scripted flood, not to ration a cheap local read.
 const boundaryLimiter = rateLimit({
   windowMs: 60 * 1000,
-  limit: 2500,
+  limit: 20000,
   standardHeaders: true,
   legacyHeaders: false,
   message: { error: 'Too many boundary requests — please slow down and try again shortly.' },
