@@ -211,9 +211,16 @@ async function buildPostcodeAreaLayer(r, colour, regionSize) {
 // /api/boundary rate limit partway through a big batch — every request
 // past that point got a 429, which looks identical to "no boundary data"
 // at this end, so the map silently filled with illustrative circles
-// instead of real polygons. Same worker-pool fix as convertBatch's
-// postcodes.io calls on the server (src/convert.js).
-const BOUNDARY_FETCH_CONCURRENCY = 8;
+// instead of real polygons. That's now fixed properly at the source (the
+// rate limit was raised to comfortably clear the app's 2000-line cap), so
+// this is just a courtesy cap, not what's preventing the bug — kept high
+// so small/typical conversions are unaffected (all points still fire in
+// one go whenever there are fewer than this) and even large ones stay
+// fast. Unlike convertBatch's postcodes.io calls (a third-party API that
+// itself falls over under heavy concurrency), these all hit our own
+// server, and the browser's own per-origin connection limit already caps
+// how many are truly in flight at once regardless of this number.
+const BOUNDARY_FETCH_CONCURRENCY = 32;
 
 async function renderMarkers(results, { refit = true } = {}) {
   markerLayer.clearLayers();
