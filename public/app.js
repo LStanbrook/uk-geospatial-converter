@@ -47,15 +47,15 @@ function initMap() {
     zoomDelta: 0.25,
     wheelPxPerZoomLevel: 120,
   }).setView([54.5, -3.5], 6);
-  // CartoDB's basemap tiles, not raw tile.openstreetmap.org: the latter's
-  // usage policy throttles/blocks normal interactive (non-cached) use,
-  // which shows up as tiles greying out and never loading while panning —
-  // exactly the symptom this was swapped in to fix. Data is still OSM,
-  // just served through a provider that tolerates this kind of use.
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-    subdomains: 'abcd',
+  // Esri's free Light Gray Canvas basemap, not raw tile.openstreetmap.org:
+  // the latter's usage policy throttles/blocks normal interactive
+  // (non-cached) use, which shows up as tiles greying out and never
+  // loading while panning. CartoDB's free anonymous tiles (used here
+  // previously) were retired in favour of a paid/API-key-required service.
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+    attribution: '&copy; <a href="https://www.esri.com">Esri</a>, HERE, Garmin, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     maxZoom: 19,
+    maxNativeZoom: 16,
   }).addTo(map);
   markerLayer = L.layerGroup().addTo(map);
   renderLegend();
