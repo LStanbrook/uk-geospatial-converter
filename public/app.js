@@ -620,7 +620,7 @@ document.getElementById('has-header-checkbox').addEventListener('change', () => 
   renderColumnPicker();
 });
 
-document.getElementById('load-columns-btn').addEventListener('click', () => {
+document.getElementById('load-columns-btn').addEventListener('click', async () => {
   if (selectedColumns.length === 0) {
     document.getElementById('upload-status').textContent = 'Select at least 1 column first.';
     return;
@@ -632,13 +632,14 @@ document.getElementById('load-columns-btn').addEventListener('click', () => {
     .filter(Boolean);
 
   document.getElementById('input-text').value = lines.join('\n');
+  document.getElementById('upload-status').textContent = 'Converting…';
+  await convert(); // loading columns in should go straight to converting, no extra click
   // Deliberately leave the upload panel open (rather than resetting it) —
   // if the header checkbox or column choice turns out to be wrong once you
   // see the converted results, you can fix it and hit "Load & Convert"
   // again without re-uploading the file. "Cancel" or picking a new file
   // are the only things that actually clear this state.
   document.getElementById('upload-status').textContent = 'Converted below. Adjust settings above and reload if needed.';
-  convert(); // loading columns in should go straight to converting, no extra click
 });
 
 document.getElementById('cancel-upload-btn').addEventListener('click', resetUploadPanel);
