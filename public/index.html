@@ -73,6 +73,14 @@
     },
     {
       "@type": "Question",
+      "name": "How are these different location formats calculated from each other?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Latitude/Longitude (WGS84) is the hub format: whatever you paste in is converted to Lat/Lon first, and every other format is derived from that. OS Grid Reference and Easting/Northing are the same British National Grid coordinate pair, just written differently — Easting/Northing is the raw numbers, OS Grid Reference is the same numbers in OS's letter-plus-digits shorthand. Irish Grid Reference and its Easting/Northing work the same way on a separate projection used in Northern Ireland and Ireland. Postcodes aren't calculated from coordinates — they're looked up in an open postcode dataset: a postcode input looks up its coordinate directly, while any other input finds the nearest postcode to the converted coordinate (hence marked as approximate), which also brings along its ITL1/ITL2/ITL3 region."
+      }
+    },
+    {
+      "@type": "Question",
       "name": "Is this an official Ordnance Survey or Royal Mail tool?",
       "acceptedAnswer": {
         "@type": "Answer",
@@ -230,6 +238,22 @@
   <p>
     Yes. Northern Ireland uses the Irish Grid rather than the British National Grid, and this tool
     automatically detects and converts both Irish Grid References and Northern Ireland postcodes.
+  </p>
+
+  <h4>How are these different location formats calculated from each other?</h4>
+  <p>
+    <strong>Latitude/Longitude (WGS84)</strong> is the hub format: whatever you paste in is converted
+    to Lat/Lon first, and every other format is derived from that. <strong>OS Grid Reference</strong>
+    and <strong>Easting/Northing</strong> are actually the same British National Grid coordinate pair,
+    just written differently — Easting/Northing is the raw numbers, and the OS Grid Reference is
+    those same numbers in Ordnance Survey's letter-plus-digits shorthand. <strong>Irish Grid
+    Reference</strong> and its own Easting/Northing pair work the same way, but on a separate
+    projection used in Northern Ireland and Ireland — so converting between the two grid systems
+    always goes via Lat/Lon. <strong>Postcodes</strong> aren't calculated from coordinates at all —
+    they're looked up in an open postcode dataset: a postcode input looks up its coordinate directly,
+    while any other input finds the <em>nearest</em> postcode to the converted coordinate (which is
+    why it's marked as approximate), and that lookup also brings along the postcode's ITL1/ITL2/ITL3
+    region.
   </p>
 
   <h4>Can I convert lots of locations at once?</h4>
