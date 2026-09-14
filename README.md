@@ -158,30 +158,26 @@ npm start        # http://localhost:3000
 
 For local iteration with auto-restart: `npm run dev`.
 
-## Deploying (Render.com)
+## Deploying
 
-`render.yaml` in the repo root is a Render Blueprint, so deploying is just:
+Runs on a Contabo VPS as a plain git checkout, managed by `pm2`, fronted
+by nginx (which also handles the `convertgeodata.co.uk` TLS termination;
+DNS for the domain is managed separately at IONOS).
 
-1. Push this repo to GitHub (already done if you're reading this there).
-2. On [render.com](https://render.com), sign in with GitHub.
-3. **New +** → **Blueprint** → select this repo. Render reads `render.yaml`
-   and configures the web service (build: `npm install`, start: `npm start`,
-   health check: `/healthz`) automatically — just confirm and deploy.
+```bash
+ssh contabo-vmi3447839 "cd /var/www/projects/uk-geospatial-converter && git pull && pm2 restart uk-geospatial-converter"
+```
 
-That's it — no server to manage, no Dockerfile needed. A couple of things
-worth knowing about this specific app in that environment:
+A couple of things worth knowing about this specific app in that
+environment:
 
-- **The postcode boundary dataset is not deployed** (it's gitignored — see
-  "Postcode boundary polygons" above, and it's several GB, well beyond what
-  a free host needs for this app to work). "Regions" map mode will fall
-  back to the illustrative circles in production. Everything else (all
-  conversions, Points mode, CSV upload/download, postcode lookups) works
-  identically.
-- The app is stateless (no database, no writes to disk at runtime), so it
-  fits a free/ephemeral-disk host without any caveats there.
-- Render's free tier spins a service down after 15 minutes idle; the next
-  visit takes ~50 seconds to wake back up. Fine for occasional/personal use
-  across devices; upgrade to a paid instance type if you want it always-on.
+- **The postcode boundary dataset *is* deployed** here (it's gitignored —
+  see "Postcode boundary polygons" above — but was copied to the server
+  directly rather than via git, since it's several GB). "Regions" map mode
+  works fully in production, unlike on a typical free/ephemeral-disk host.
+- The app is stateless (no database, no writes to disk at runtime).
+- `/healthz` is a plain liveness endpoint `pm2`/nginx (or any other
+  process supervisor) can poll.
 
 ## Testing
 
