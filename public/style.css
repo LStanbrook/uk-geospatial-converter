@@ -623,6 +623,19 @@ textarea::-webkit-scrollbar-track {
   margin: 0 0 0.5rem;
 }
 
+.about-panel ul {
+  margin: 0 0 0.5rem;
+  padding-left: 1.25rem;
+}
+
+.about-panel li {
+  margin: 0 0 0.5rem;
+}
+
+.about-panel li:last-child {
+  margin-bottom: 0;
+}
+
 footer {
   padding: 0.5rem 1.5rem 1.5rem;
   text-align: center;
