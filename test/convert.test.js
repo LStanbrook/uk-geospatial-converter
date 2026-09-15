@@ -100,6 +100,17 @@ test('detectType classifies each supported input format', () => {
   assert.equal(detectType(''), null);
 });
 
+test('2-letter + 2-digit tokens that are real postcode areas beat their grid-square reading', () => {
+  // NN, NR and NE are all plausible GB 100km grid squares *and* real Royal
+  // Mail postcode areas (Northampton, Norwich, Newcastle) — postcode must
+  // win, per the file's documented heuristic, or these silently convert to
+  // the wrong place. TQ has no postal meaning, so it still reads as a grid.
+  assert.equal(detectType('NN11'), TYPES.POSTCODE_PARTIAL);
+  assert.equal(detectType('NR20'), TYPES.POSTCODE_PARTIAL);
+  assert.equal(detectType('NE25'), TYPES.POSTCODE_PARTIAL);
+  assert.equal(detectType('TQ28'), TYPES.OS_GRID);
+});
+
 test('convertLine end-to-end for an OS grid reference (no network required)', async () => {
   const { convertLine } = require('../src/convert');
   const result = await convertLine('NT 253 735');
